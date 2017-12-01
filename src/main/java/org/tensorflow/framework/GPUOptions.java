@@ -20,6 +20,9 @@ public  final class GPUOptions extends
     deferredDeletionBytes_ = 0L;
     allowGrowth_ = false;
     visibleDeviceList_ = "";
+    pollingActiveDelayUsecs_ = 0;
+    pollingInactiveDelayMsecs_ = 0;
+    forceGpuCompatible_ = false;
   }
 
   @java.lang.Override
@@ -72,6 +75,21 @@ public  final class GPUOptions extends
             java.lang.String s = input.readStringRequireUtf8();
 
             visibleDeviceList_ = s;
+            break;
+          }
+          case 48: {
+
+            pollingActiveDelayUsecs_ = input.readInt32();
+            break;
+          }
+          case 56: {
+
+            pollingInactiveDelayMsecs_ = input.readInt32();
+            break;
+          }
+          case 64: {
+
+            forceGpuCompatible_ = input.readBool();
             break;
           }
         }
@@ -201,7 +219,7 @@ public  final class GPUOptions extends
    * A comma-separated list of GPU ids that determines the 'visible'
    * to 'virtual' mapping of GPU devices.  For example, if TensorFlow
    * can see 8 GPU devices in the process, and one wanted to map
-   * visible GPU devices 5 and 3 as "/gpu:0", and "/gpu:1", then one
+   * visible GPU devices 5 and 3 as "/device:GPU:0", and "/device:GPU:1", then one
    * would specify this field as "5,3".  This field is similar in
    * spirit to the CUDA_VISIBLE_DEVICES environment variable, except
    * it applies to the visible GPU devices in the process.
@@ -233,7 +251,7 @@ public  final class GPUOptions extends
    * A comma-separated list of GPU ids that determines the 'visible'
    * to 'virtual' mapping of GPU devices.  For example, if TensorFlow
    * can see 8 GPU devices in the process, and one wanted to map
-   * visible GPU devices 5 and 3 as "/gpu:0", and "/gpu:1", then one
+   * visible GPU devices 5 and 3 as "/device:GPU:0", and "/device:GPU:1", then one
    * would specify this field as "5,3".  This field is similar in
    * spirit to the CUDA_VISIBLE_DEVICES environment variable, except
    * it applies to the visible GPU devices in the process.
@@ -260,6 +278,58 @@ public  final class GPUOptions extends
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
+  }
+
+  public static final int POLLING_ACTIVE_DELAY_USECS_FIELD_NUMBER = 6;
+  private int pollingActiveDelayUsecs_;
+  /**
+   * <pre>
+   * In the event polling loop sleep this many microseconds between
+   * PollEvents calls, when the queue is not empty.  If value is not
+   * set or set to 0, gets set to a non-zero default.
+   * </pre>
+   *
+   * <code>optional int32 polling_active_delay_usecs = 6;</code>
+   */
+  public int getPollingActiveDelayUsecs() {
+    return pollingActiveDelayUsecs_;
+  }
+
+  public static final int POLLING_INACTIVE_DELAY_MSECS_FIELD_NUMBER = 7;
+  private int pollingInactiveDelayMsecs_;
+  /**
+   * <pre>
+   * In the event polling loop sleep this many millisconds between
+   * PollEvents calls, when the queue is empty.  If value is not
+   * set or set to 0, gets set to a non-zero default.
+   * </pre>
+   *
+   * <code>optional int32 polling_inactive_delay_msecs = 7;</code>
+   */
+  public int getPollingInactiveDelayMsecs() {
+    return pollingInactiveDelayMsecs_;
+  }
+
+  public static final int FORCE_GPU_COMPATIBLE_FIELD_NUMBER = 8;
+  private boolean forceGpuCompatible_;
+  /**
+   * <pre>
+   * Force all tensors to be gpu_compatible. On a GPU-enabled TensorFlow,
+   * enabling this option forces all CPU tensors to be allocated with Cuda
+   * pinned memory. Normally, TensorFlow will infer which tensors should be
+   * allocated as the pinned memory. But in case where the inference is
+   * incomplete, this option can significantly speed up the cross-device memory
+   * copy performance as long as it fits the memory.
+   * Note that this option is not something that should be
+   * enabled by default for unknown or very large models, since all Cuda pinned
+   * memory is unpageable, having too much pinned memory might negatively impact
+   * the overall host system performance.
+   * </pre>
+   *
+   * <code>optional bool force_gpu_compatible = 8;</code>
+   */
+  public boolean getForceGpuCompatible() {
+    return forceGpuCompatible_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -289,6 +359,15 @@ public  final class GPUOptions extends
     if (!getVisibleDeviceListBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 5, visibleDeviceList_);
     }
+    if (pollingActiveDelayUsecs_ != 0) {
+      output.writeInt32(6, pollingActiveDelayUsecs_);
+    }
+    if (pollingInactiveDelayMsecs_ != 0) {
+      output.writeInt32(7, pollingInactiveDelayMsecs_);
+    }
+    if (forceGpuCompatible_ != false) {
+      output.writeBool(8, forceGpuCompatible_);
+    }
   }
 
   public int getSerializedSize() {
@@ -313,6 +392,18 @@ public  final class GPUOptions extends
     }
     if (!getVisibleDeviceListBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, visibleDeviceList_);
+    }
+    if (pollingActiveDelayUsecs_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(6, pollingActiveDelayUsecs_);
+    }
+    if (pollingInactiveDelayMsecs_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(7, pollingInactiveDelayMsecs_);
+    }
+    if (forceGpuCompatible_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(8, forceGpuCompatible_);
     }
     memoizedSize = size;
     return size;
@@ -342,6 +433,12 @@ public  final class GPUOptions extends
         == other.getAllowGrowth());
     result = result && getVisibleDeviceList()
         .equals(other.getVisibleDeviceList());
+    result = result && (getPollingActiveDelayUsecs()
+        == other.getPollingActiveDelayUsecs());
+    result = result && (getPollingInactiveDelayMsecs()
+        == other.getPollingInactiveDelayMsecs());
+    result = result && (getForceGpuCompatible()
+        == other.getForceGpuCompatible());
     return result;
   }
 
@@ -365,6 +462,13 @@ public  final class GPUOptions extends
         getAllowGrowth());
     hash = (37 * hash) + VISIBLE_DEVICE_LIST_FIELD_NUMBER;
     hash = (53 * hash) + getVisibleDeviceList().hashCode();
+    hash = (37 * hash) + POLLING_ACTIVE_DELAY_USECS_FIELD_NUMBER;
+    hash = (53 * hash) + getPollingActiveDelayUsecs();
+    hash = (37 * hash) + POLLING_INACTIVE_DELAY_MSECS_FIELD_NUMBER;
+    hash = (53 * hash) + getPollingInactiveDelayMsecs();
+    hash = (37 * hash) + FORCE_GPU_COMPATIBLE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getForceGpuCompatible());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -493,6 +597,12 @@ public  final class GPUOptions extends
 
       visibleDeviceList_ = "";
 
+      pollingActiveDelayUsecs_ = 0;
+
+      pollingInactiveDelayMsecs_ = 0;
+
+      forceGpuCompatible_ = false;
+
       return this;
     }
 
@@ -520,6 +630,9 @@ public  final class GPUOptions extends
       result.deferredDeletionBytes_ = deferredDeletionBytes_;
       result.allowGrowth_ = allowGrowth_;
       result.visibleDeviceList_ = visibleDeviceList_;
+      result.pollingActiveDelayUsecs_ = pollingActiveDelayUsecs_;
+      result.pollingInactiveDelayMsecs_ = pollingInactiveDelayMsecs_;
+      result.forceGpuCompatible_ = forceGpuCompatible_;
       onBuilt();
       return result;
     }
@@ -577,6 +690,15 @@ public  final class GPUOptions extends
       if (!other.getVisibleDeviceList().isEmpty()) {
         visibleDeviceList_ = other.visibleDeviceList_;
         onChanged();
+      }
+      if (other.getPollingActiveDelayUsecs() != 0) {
+        setPollingActiveDelayUsecs(other.getPollingActiveDelayUsecs());
+      }
+      if (other.getPollingInactiveDelayMsecs() != 0) {
+        setPollingInactiveDelayMsecs(other.getPollingInactiveDelayMsecs());
+      }
+      if (other.getForceGpuCompatible() != false) {
+        setForceGpuCompatible(other.getForceGpuCompatible());
       }
       onChanged();
       return this;
@@ -856,7 +978,7 @@ public  final class GPUOptions extends
      * A comma-separated list of GPU ids that determines the 'visible'
      * to 'virtual' mapping of GPU devices.  For example, if TensorFlow
      * can see 8 GPU devices in the process, and one wanted to map
-     * visible GPU devices 5 and 3 as "/gpu:0", and "/gpu:1", then one
+     * visible GPU devices 5 and 3 as "/device:GPU:0", and "/device:GPU:1", then one
      * would specify this field as "5,3".  This field is similar in
      * spirit to the CUDA_VISIBLE_DEVICES environment variable, except
      * it applies to the visible GPU devices in the process.
@@ -888,7 +1010,7 @@ public  final class GPUOptions extends
      * A comma-separated list of GPU ids that determines the 'visible'
      * to 'virtual' mapping of GPU devices.  For example, if TensorFlow
      * can see 8 GPU devices in the process, and one wanted to map
-     * visible GPU devices 5 and 3 as "/gpu:0", and "/gpu:1", then one
+     * visible GPU devices 5 and 3 as "/device:GPU:0", and "/device:GPU:1", then one
      * would specify this field as "5,3".  This field is similar in
      * spirit to the CUDA_VISIBLE_DEVICES environment variable, except
      * it applies to the visible GPU devices in the process.
@@ -921,7 +1043,7 @@ public  final class GPUOptions extends
      * A comma-separated list of GPU ids that determines the 'visible'
      * to 'virtual' mapping of GPU devices.  For example, if TensorFlow
      * can see 8 GPU devices in the process, and one wanted to map
-     * visible GPU devices 5 and 3 as "/gpu:0", and "/gpu:1", then one
+     * visible GPU devices 5 and 3 as "/device:GPU:0", and "/device:GPU:1", then one
      * would specify this field as "5,3".  This field is similar in
      * spirit to the CUDA_VISIBLE_DEVICES environment variable, except
      * it applies to the visible GPU devices in the process.
@@ -951,7 +1073,7 @@ public  final class GPUOptions extends
      * A comma-separated list of GPU ids that determines the 'visible'
      * to 'virtual' mapping of GPU devices.  For example, if TensorFlow
      * can see 8 GPU devices in the process, and one wanted to map
-     * visible GPU devices 5 and 3 as "/gpu:0", and "/gpu:1", then one
+     * visible GPU devices 5 and 3 as "/device:GPU:0", and "/device:GPU:1", then one
      * would specify this field as "5,3".  This field is similar in
      * spirit to the CUDA_VISIBLE_DEVICES environment variable, except
      * it applies to the visible GPU devices in the process.
@@ -977,7 +1099,7 @@ public  final class GPUOptions extends
      * A comma-separated list of GPU ids that determines the 'visible'
      * to 'virtual' mapping of GPU devices.  For example, if TensorFlow
      * can see 8 GPU devices in the process, and one wanted to map
-     * visible GPU devices 5 and 3 as "/gpu:0", and "/gpu:1", then one
+     * visible GPU devices 5 and 3 as "/device:GPU:0", and "/device:GPU:1", then one
      * would specify this field as "5,3".  This field is similar in
      * spirit to the CUDA_VISIBLE_DEVICES environment variable, except
      * it applies to the visible GPU devices in the process.
@@ -1000,6 +1122,159 @@ public  final class GPUOptions extends
   checkByteStringIsUtf8(value);
       
       visibleDeviceList_ = value;
+      onChanged();
+      return this;
+    }
+
+    private int pollingActiveDelayUsecs_ ;
+    /**
+     * <pre>
+     * In the event polling loop sleep this many microseconds between
+     * PollEvents calls, when the queue is not empty.  If value is not
+     * set or set to 0, gets set to a non-zero default.
+     * </pre>
+     *
+     * <code>optional int32 polling_active_delay_usecs = 6;</code>
+     */
+    public int getPollingActiveDelayUsecs() {
+      return pollingActiveDelayUsecs_;
+    }
+    /**
+     * <pre>
+     * In the event polling loop sleep this many microseconds between
+     * PollEvents calls, when the queue is not empty.  If value is not
+     * set or set to 0, gets set to a non-zero default.
+     * </pre>
+     *
+     * <code>optional int32 polling_active_delay_usecs = 6;</code>
+     */
+    public Builder setPollingActiveDelayUsecs(int value) {
+      
+      pollingActiveDelayUsecs_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * In the event polling loop sleep this many microseconds between
+     * PollEvents calls, when the queue is not empty.  If value is not
+     * set or set to 0, gets set to a non-zero default.
+     * </pre>
+     *
+     * <code>optional int32 polling_active_delay_usecs = 6;</code>
+     */
+    public Builder clearPollingActiveDelayUsecs() {
+      
+      pollingActiveDelayUsecs_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private int pollingInactiveDelayMsecs_ ;
+    /**
+     * <pre>
+     * In the event polling loop sleep this many millisconds between
+     * PollEvents calls, when the queue is empty.  If value is not
+     * set or set to 0, gets set to a non-zero default.
+     * </pre>
+     *
+     * <code>optional int32 polling_inactive_delay_msecs = 7;</code>
+     */
+    public int getPollingInactiveDelayMsecs() {
+      return pollingInactiveDelayMsecs_;
+    }
+    /**
+     * <pre>
+     * In the event polling loop sleep this many millisconds between
+     * PollEvents calls, when the queue is empty.  If value is not
+     * set or set to 0, gets set to a non-zero default.
+     * </pre>
+     *
+     * <code>optional int32 polling_inactive_delay_msecs = 7;</code>
+     */
+    public Builder setPollingInactiveDelayMsecs(int value) {
+      
+      pollingInactiveDelayMsecs_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * In the event polling loop sleep this many millisconds between
+     * PollEvents calls, when the queue is empty.  If value is not
+     * set or set to 0, gets set to a non-zero default.
+     * </pre>
+     *
+     * <code>optional int32 polling_inactive_delay_msecs = 7;</code>
+     */
+    public Builder clearPollingInactiveDelayMsecs() {
+      
+      pollingInactiveDelayMsecs_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private boolean forceGpuCompatible_ ;
+    /**
+     * <pre>
+     * Force all tensors to be gpu_compatible. On a GPU-enabled TensorFlow,
+     * enabling this option forces all CPU tensors to be allocated with Cuda
+     * pinned memory. Normally, TensorFlow will infer which tensors should be
+     * allocated as the pinned memory. But in case where the inference is
+     * incomplete, this option can significantly speed up the cross-device memory
+     * copy performance as long as it fits the memory.
+     * Note that this option is not something that should be
+     * enabled by default for unknown or very large models, since all Cuda pinned
+     * memory is unpageable, having too much pinned memory might negatively impact
+     * the overall host system performance.
+     * </pre>
+     *
+     * <code>optional bool force_gpu_compatible = 8;</code>
+     */
+    public boolean getForceGpuCompatible() {
+      return forceGpuCompatible_;
+    }
+    /**
+     * <pre>
+     * Force all tensors to be gpu_compatible. On a GPU-enabled TensorFlow,
+     * enabling this option forces all CPU tensors to be allocated with Cuda
+     * pinned memory. Normally, TensorFlow will infer which tensors should be
+     * allocated as the pinned memory. But in case where the inference is
+     * incomplete, this option can significantly speed up the cross-device memory
+     * copy performance as long as it fits the memory.
+     * Note that this option is not something that should be
+     * enabled by default for unknown or very large models, since all Cuda pinned
+     * memory is unpageable, having too much pinned memory might negatively impact
+     * the overall host system performance.
+     * </pre>
+     *
+     * <code>optional bool force_gpu_compatible = 8;</code>
+     */
+    public Builder setForceGpuCompatible(boolean value) {
+      
+      forceGpuCompatible_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Force all tensors to be gpu_compatible. On a GPU-enabled TensorFlow,
+     * enabling this option forces all CPU tensors to be allocated with Cuda
+     * pinned memory. Normally, TensorFlow will infer which tensors should be
+     * allocated as the pinned memory. But in case where the inference is
+     * incomplete, this option can significantly speed up the cross-device memory
+     * copy performance as long as it fits the memory.
+     * Note that this option is not something that should be
+     * enabled by default for unknown or very large models, since all Cuda pinned
+     * memory is unpageable, having too much pinned memory might negatively impact
+     * the overall host system performance.
+     * </pre>
+     *
+     * <code>optional bool force_gpu_compatible = 8;</code>
+     */
+    public Builder clearForceGpuCompatible() {
+      
+      forceGpuCompatible_ = false;
       onChanged();
       return this;
     }

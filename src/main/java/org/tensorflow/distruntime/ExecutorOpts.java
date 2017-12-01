@@ -21,6 +21,7 @@ public  final class ExecutorOpts extends
   private ExecutorOpts() {
     recordCosts_ = false;
     recordTimeline_ = false;
+    recordPartitionGraphs_ = false;
   }
 
   @java.lang.Override
@@ -56,6 +57,11 @@ public  final class ExecutorOpts extends
           case 24: {
 
             recordTimeline_ = input.readBool();
+            break;
+          }
+          case 32: {
+
+            recordPartitionGraphs_ = input.readBool();
             break;
           }
         }
@@ -99,6 +105,15 @@ public  final class ExecutorOpts extends
     return recordTimeline_;
   }
 
+  public static final int RECORD_PARTITION_GRAPHS_FIELD_NUMBER = 4;
+  private boolean recordPartitionGraphs_;
+  /**
+   * <code>optional bool record_partition_graphs = 4;</code>
+   */
+  public boolean getRecordPartitionGraphs() {
+    return recordPartitionGraphs_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -117,6 +132,9 @@ public  final class ExecutorOpts extends
     if (recordTimeline_ != false) {
       output.writeBool(3, recordTimeline_);
     }
+    if (recordPartitionGraphs_ != false) {
+      output.writeBool(4, recordPartitionGraphs_);
+    }
   }
 
   public int getSerializedSize() {
@@ -131,6 +149,10 @@ public  final class ExecutorOpts extends
     if (recordTimeline_ != false) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(3, recordTimeline_);
+    }
+    if (recordPartitionGraphs_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(4, recordPartitionGraphs_);
     }
     memoizedSize = size;
     return size;
@@ -152,6 +174,8 @@ public  final class ExecutorOpts extends
         == other.getRecordCosts());
     result = result && (getRecordTimeline()
         == other.getRecordTimeline());
+    result = result && (getRecordPartitionGraphs()
+        == other.getRecordPartitionGraphs());
     return result;
   }
 
@@ -168,6 +192,9 @@ public  final class ExecutorOpts extends
     hash = (37 * hash) + RECORD_TIMELINE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getRecordTimeline());
+    hash = (37 * hash) + RECORD_PARTITION_GRAPHS_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getRecordPartitionGraphs());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -294,6 +321,8 @@ public  final class ExecutorOpts extends
 
       recordTimeline_ = false;
 
+      recordPartitionGraphs_ = false;
+
       return this;
     }
 
@@ -318,6 +347,7 @@ public  final class ExecutorOpts extends
       org.tensorflow.distruntime.ExecutorOpts result = new org.tensorflow.distruntime.ExecutorOpts(this);
       result.recordCosts_ = recordCosts_;
       result.recordTimeline_ = recordTimeline_;
+      result.recordPartitionGraphs_ = recordPartitionGraphs_;
       onBuilt();
       return result;
     }
@@ -364,6 +394,9 @@ public  final class ExecutorOpts extends
       }
       if (other.getRecordTimeline() != false) {
         setRecordTimeline(other.getRecordTimeline());
+      }
+      if (other.getRecordPartitionGraphs() != false) {
+        setRecordPartitionGraphs(other.getRecordPartitionGraphs());
       }
       onChanged();
       return this;
@@ -439,6 +472,32 @@ public  final class ExecutorOpts extends
     public Builder clearRecordTimeline() {
       
       recordTimeline_ = false;
+      onChanged();
+      return this;
+    }
+
+    private boolean recordPartitionGraphs_ ;
+    /**
+     * <code>optional bool record_partition_graphs = 4;</code>
+     */
+    public boolean getRecordPartitionGraphs() {
+      return recordPartitionGraphs_;
+    }
+    /**
+     * <code>optional bool record_partition_graphs = 4;</code>
+     */
+    public Builder setRecordPartitionGraphs(boolean value) {
+      
+      recordPartitionGraphs_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>optional bool record_partition_graphs = 4;</code>
+     */
+    public Builder clearRecordPartitionGraphs() {
+      
+      recordPartitionGraphs_ = false;
       onChanged();
       return this;
     }

@@ -20,6 +20,7 @@ public  final class DebugOptions extends
   }
   private DebugOptions() {
     debugTensorWatchOpts_ = java.util.Collections.emptyList();
+    globalStep_ = 0L;
   }
 
   @java.lang.Override
@@ -56,6 +57,11 @@ public  final class DebugOptions extends
                 input.readMessage(org.tensorflow.framework.DebugTensorWatch.parser(), extensionRegistry));
             break;
           }
+          case 80: {
+
+            globalStep_ = input.readInt64();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -82,6 +88,7 @@ public  final class DebugOptions extends
             org.tensorflow.framework.DebugOptions.class, org.tensorflow.framework.DebugOptions.Builder.class);
   }
 
+  private int bitField0_;
   public static final int DEBUG_TENSOR_WATCH_OPTS_FIELD_NUMBER = 4;
   private java.util.List<org.tensorflow.framework.DebugTensorWatch> debugTensorWatchOpts_;
   /**
@@ -137,6 +144,21 @@ public  final class DebugOptions extends
     return debugTensorWatchOpts_.get(index);
   }
 
+  public static final int GLOBAL_STEP_FIELD_NUMBER = 10;
+  private long globalStep_;
+  /**
+   * <pre>
+   * Caller-specified global step count.
+   * Note that this is distinct from the session run count and the executor
+   * step count.
+   * </pre>
+   *
+   * <code>optional int64 global_step = 10;</code>
+   */
+  public long getGlobalStep() {
+    return globalStep_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -152,6 +174,9 @@ public  final class DebugOptions extends
     for (int i = 0; i < debugTensorWatchOpts_.size(); i++) {
       output.writeMessage(4, debugTensorWatchOpts_.get(i));
     }
+    if (globalStep_ != 0L) {
+      output.writeInt64(10, globalStep_);
+    }
   }
 
   public int getSerializedSize() {
@@ -162,6 +187,10 @@ public  final class DebugOptions extends
     for (int i = 0; i < debugTensorWatchOpts_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, debugTensorWatchOpts_.get(i));
+    }
+    if (globalStep_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(10, globalStep_);
     }
     memoizedSize = size;
     return size;
@@ -181,6 +210,8 @@ public  final class DebugOptions extends
     boolean result = true;
     result = result && getDebugTensorWatchOptsList()
         .equals(other.getDebugTensorWatchOptsList());
+    result = result && (getGlobalStep()
+        == other.getGlobalStep());
     return result;
   }
 
@@ -195,6 +226,9 @@ public  final class DebugOptions extends
       hash = (37 * hash) + DEBUG_TENSOR_WATCH_OPTS_FIELD_NUMBER;
       hash = (53 * hash) + getDebugTensorWatchOptsList().hashCode();
     }
+    hash = (37 * hash) + GLOBAL_STEP_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getGlobalStep());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -324,6 +358,8 @@ public  final class DebugOptions extends
       } else {
         debugTensorWatchOptsBuilder_.clear();
       }
+      globalStep_ = 0L;
+
       return this;
     }
 
@@ -347,6 +383,7 @@ public  final class DebugOptions extends
     public org.tensorflow.framework.DebugOptions buildPartial() {
       org.tensorflow.framework.DebugOptions result = new org.tensorflow.framework.DebugOptions(this);
       int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (debugTensorWatchOptsBuilder_ == null) {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           debugTensorWatchOpts_ = java.util.Collections.unmodifiableList(debugTensorWatchOpts_);
@@ -356,6 +393,8 @@ public  final class DebugOptions extends
       } else {
         result.debugTensorWatchOpts_ = debugTensorWatchOptsBuilder_.build();
       }
+      result.globalStep_ = globalStep_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -422,6 +461,9 @@ public  final class DebugOptions extends
             debugTensorWatchOptsBuilder_.addAllMessages(other.debugTensorWatchOpts_);
           }
         }
+      }
+      if (other.getGlobalStep() != 0L) {
+        setGlobalStep(other.getGlobalStep());
       }
       onChanged();
       return this;
@@ -760,6 +802,50 @@ public  final class DebugOptions extends
         debugTensorWatchOpts_ = null;
       }
       return debugTensorWatchOptsBuilder_;
+    }
+
+    private long globalStep_ ;
+    /**
+     * <pre>
+     * Caller-specified global step count.
+     * Note that this is distinct from the session run count and the executor
+     * step count.
+     * </pre>
+     *
+     * <code>optional int64 global_step = 10;</code>
+     */
+    public long getGlobalStep() {
+      return globalStep_;
+    }
+    /**
+     * <pre>
+     * Caller-specified global step count.
+     * Note that this is distinct from the session run count and the executor
+     * step count.
+     * </pre>
+     *
+     * <code>optional int64 global_step = 10;</code>
+     */
+    public Builder setGlobalStep(long value) {
+      
+      globalStep_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Caller-specified global step count.
+     * Note that this is distinct from the session run count and the executor
+     * step count.
+     * </pre>
+     *
+     * <code>optional int64 global_step = 10;</code>
+     */
+    public Builder clearGlobalStep() {
+      
+      globalStep_ = 0L;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

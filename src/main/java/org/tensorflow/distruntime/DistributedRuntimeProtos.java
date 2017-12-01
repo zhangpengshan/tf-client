@@ -98,36 +98,37 @@ public final class DistributedRuntimeProtos {
       "evice_attributes.proto\032%tensorflow/core/" +
       "framework/graph.proto\032%tensorflow/core/p" +
       "rotobuf/config.proto\032+tensorflow/core/pr" +
-      "otobuf/named_tensor.proto\"h\n\024CreateSessi" +
+      "otobuf/named_tensor.proto\"x\n\024CreateSessi" +
       "onRequest\022\'\n\tgraph_def\030\001 \001(\0132\024.tensorflo" +
       "w.GraphDef\022\'\n\006config\030\002 \001(\0132\027.tensorflow." +
-      "ConfigProto\"F\n\025CreateSessionResponse\022\026\n\016" +
-      "session_handle\030\001 \001(\t\022\025\n\rgraph_version\030\002 ",
-      "\001(\003\"v\n\024ExtendSessionRequest\022\026\n\016session_h" +
-      "andle\030\001 \001(\t\022\'\n\tgraph_def\030\002 \001(\0132\024.tensorf" +
-      "low.GraphDef\022\035\n\025current_graph_version\030\003 " +
-      "\001(\003\"2\n\025ExtendSessionResponse\022\031\n\021new_grap" +
-      "h_version\030\004 \001(\003\"\270\001\n\016RunStepRequest\022\026\n\016se" +
-      "ssion_handle\030\001 \001(\t\022*\n\004feed\030\002 \003(\0132\034.tenso" +
-      "rflow.NamedTensorProto\022\r\n\005fetch\030\003 \003(\t\022\016\n" +
-      "\006target\030\004 \003(\t\022\'\n\007options\030\005 \001(\0132\026.tensorf" +
-      "low.RunOptions\022\032\n\022partial_run_handle\030\006 \001" +
-      "(\t\"j\n\017RunStepResponse\022,\n\006tensor\030\001 \003(\0132\034.",
-      "tensorflow.NamedTensorProto\022)\n\010metadata\030" +
-      "\002 \001(\0132\027.tensorflow.RunMetadata\"]\n\026Partia" +
-      "lRunSetupRequest\022\026\n\016session_handle\030\001 \001(\t" +
-      "\022\014\n\004feed\030\002 \003(\t\022\r\n\005fetch\030\003 \003(\t\022\016\n\006target\030" +
-      "\004 \003(\t\"5\n\027PartialRunSetupResponse\022\032\n\022part" +
-      "ial_run_handle\030\001 \001(\t\"-\n\023CloseSessionRequ" +
-      "est\022\026\n\016session_handle\030\001 \001(\t\"\026\n\024CloseSess" +
-      "ionResponse\"!\n\014ResetRequest\022\021\n\tcontainer" +
-      "\030\001 \003(\t\"\017\n\rResetResponse\"\024\n\022ListDevicesRe" +
-      "quest\"~\n\023ListDevicesResponse\0222\n\014local_de",
-      "vice\030\001 \003(\0132\034.tensorflow.DeviceAttributes" +
-      "\0223\n\rremote_device\030\002 \003(\0132\034.tensorflow.Dev" +
-      "iceAttributesB;\n\032org.tensorflow.distrunt" +
-      "imeB\030DistributedRuntimeProtosP\001\370\001\001b\006prot" +
-      "o3"
+      "ConfigProto\022\016\n\006target\030\003 \001(\t\"F\n\025CreateSes" +
+      "sionResponse\022\026\n\016session_handle\030\001 \001(\t\022\025\n\r",
+      "graph_version\030\002 \001(\003\"v\n\024ExtendSessionRequ" +
+      "est\022\026\n\016session_handle\030\001 \001(\t\022\'\n\tgraph_def" +
+      "\030\002 \001(\0132\024.tensorflow.GraphDef\022\035\n\025current_" +
+      "graph_version\030\003 \001(\003\"2\n\025ExtendSessionResp" +
+      "onse\022\031\n\021new_graph_version\030\004 \001(\003\"\270\001\n\016RunS" +
+      "tepRequest\022\026\n\016session_handle\030\001 \001(\t\022*\n\004fe" +
+      "ed\030\002 \003(\0132\034.tensorflow.NamedTensorProto\022\r" +
+      "\n\005fetch\030\003 \003(\t\022\016\n\006target\030\004 \003(\t\022\'\n\007options" +
+      "\030\005 \001(\0132\026.tensorflow.RunOptions\022\032\n\022partia" +
+      "l_run_handle\030\006 \001(\t\"j\n\017RunStepResponse\022,\n",
+      "\006tensor\030\001 \003(\0132\034.tensorflow.NamedTensorPr" +
+      "oto\022)\n\010metadata\030\002 \001(\0132\027.tensorflow.RunMe" +
+      "tadata\"]\n\026PartialRunSetupRequest\022\026\n\016sess" +
+      "ion_handle\030\001 \001(\t\022\014\n\004feed\030\002 \003(\t\022\r\n\005fetch\030" +
+      "\003 \003(\t\022\016\n\006target\030\004 \003(\t\"5\n\027PartialRunSetup" +
+      "Response\022\032\n\022partial_run_handle\030\001 \001(\t\"-\n\023" +
+      "CloseSessionRequest\022\026\n\016session_handle\030\001 " +
+      "\001(\t\"\026\n\024CloseSessionResponse\"9\n\014ResetRequ" +
+      "est\022\021\n\tcontainer\030\001 \003(\t\022\026\n\016device_filters" +
+      "\030\002 \003(\t\"\017\n\rResetResponse\",\n\022ListDevicesRe",
+      "quest\022\026\n\016session_handle\030\001 \001(\t\"~\n\023ListDev" +
+      "icesResponse\0222\n\014local_device\030\001 \003(\0132\034.ten" +
+      "sorflow.DeviceAttributes\0223\n\rremote_devic" +
+      "e\030\002 \003(\0132\034.tensorflow.DeviceAttributesB;\n" +
+      "\032org.tensorflow.distruntimeB\030Distributed" +
+      "RuntimeProtosP\001\370\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -150,7 +151,7 @@ public final class DistributedRuntimeProtos {
     internal_static_tensorflow_CreateSessionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_CreateSessionRequest_descriptor,
-        new java.lang.String[] { "GraphDef", "Config", });
+        new java.lang.String[] { "GraphDef", "Config", "Target", });
     internal_static_tensorflow_CreateSessionResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_tensorflow_CreateSessionResponse_fieldAccessorTable = new
@@ -210,7 +211,7 @@ public final class DistributedRuntimeProtos {
     internal_static_tensorflow_ResetRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_ResetRequest_descriptor,
-        new java.lang.String[] { "Container", });
+        new java.lang.String[] { "Container", "DeviceFilters", });
     internal_static_tensorflow_ResetResponse_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_tensorflow_ResetResponse_fieldAccessorTable = new
@@ -222,7 +223,7 @@ public final class DistributedRuntimeProtos {
     internal_static_tensorflow_ListDevicesRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_ListDevicesRequest_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "SessionHandle", });
     internal_static_tensorflow_ListDevicesResponse_descriptor =
       getDescriptor().getMessageTypes().get(13);
     internal_static_tensorflow_ListDevicesResponse_fieldAccessorTable = new

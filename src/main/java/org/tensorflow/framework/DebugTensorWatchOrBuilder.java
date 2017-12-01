@@ -84,9 +84,22 @@ public interface DebugTensorWatchOrBuilder extends
   /**
    * <pre>
    * URL(s) for debug targets(s).
-   *   E.g., "file:///foo/tfdbg_dump", "grpc://localhost:11011"
+   * Supported URL formats are:
+   *   - file:///foo/tfdbg_dump: Writes out Event content to file
+   *     /foo/tfdbg_dump.  Assumes all directories can be created if they don't
+   *     already exist.
+   *   - grpc://localhost:11011: Sends an RPC request to an EventListener
+   *     service running at localhost:11011 with the event.
+   *   - memcbk:///event_key: Routes tensors to clients using the
+   *     callback registered with the DebugCallbackRegistry for event_key.
    * Each debug op listed in debug_ops will publish its output tensor (debug
    * signal) to all URLs in debug_urls.
+   * N.B. Session::Run() supports concurrent invocations of the same inputs
+   * (feed keys), outputs and target nodes. If such concurrent invocations
+   * are to be debugged, the callers of Session::Run() must use distinct
+   * debug_urls to make sure that the streamed or dumped events do not overlap
+   * among the invocations.
+   * TODO(cais): More visible documentation of this in g3docs.
    * </pre>
    *
    * <code>repeated string debug_urls = 4;</code>
@@ -96,9 +109,22 @@ public interface DebugTensorWatchOrBuilder extends
   /**
    * <pre>
    * URL(s) for debug targets(s).
-   *   E.g., "file:///foo/tfdbg_dump", "grpc://localhost:11011"
+   * Supported URL formats are:
+   *   - file:///foo/tfdbg_dump: Writes out Event content to file
+   *     /foo/tfdbg_dump.  Assumes all directories can be created if they don't
+   *     already exist.
+   *   - grpc://localhost:11011: Sends an RPC request to an EventListener
+   *     service running at localhost:11011 with the event.
+   *   - memcbk:///event_key: Routes tensors to clients using the
+   *     callback registered with the DebugCallbackRegistry for event_key.
    * Each debug op listed in debug_ops will publish its output tensor (debug
    * signal) to all URLs in debug_urls.
+   * N.B. Session::Run() supports concurrent invocations of the same inputs
+   * (feed keys), outputs and target nodes. If such concurrent invocations
+   * are to be debugged, the callers of Session::Run() must use distinct
+   * debug_urls to make sure that the streamed or dumped events do not overlap
+   * among the invocations.
+   * TODO(cais): More visible documentation of this in g3docs.
    * </pre>
    *
    * <code>repeated string debug_urls = 4;</code>
@@ -107,9 +133,22 @@ public interface DebugTensorWatchOrBuilder extends
   /**
    * <pre>
    * URL(s) for debug targets(s).
-   *   E.g., "file:///foo/tfdbg_dump", "grpc://localhost:11011"
+   * Supported URL formats are:
+   *   - file:///foo/tfdbg_dump: Writes out Event content to file
+   *     /foo/tfdbg_dump.  Assumes all directories can be created if they don't
+   *     already exist.
+   *   - grpc://localhost:11011: Sends an RPC request to an EventListener
+   *     service running at localhost:11011 with the event.
+   *   - memcbk:///event_key: Routes tensors to clients using the
+   *     callback registered with the DebugCallbackRegistry for event_key.
    * Each debug op listed in debug_ops will publish its output tensor (debug
    * signal) to all URLs in debug_urls.
+   * N.B. Session::Run() supports concurrent invocations of the same inputs
+   * (feed keys), outputs and target nodes. If such concurrent invocations
+   * are to be debugged, the callers of Session::Run() must use distinct
+   * debug_urls to make sure that the streamed or dumped events do not overlap
+   * among the invocations.
+   * TODO(cais): More visible documentation of this in g3docs.
    * </pre>
    *
    * <code>repeated string debug_urls = 4;</code>
@@ -118,13 +157,36 @@ public interface DebugTensorWatchOrBuilder extends
   /**
    * <pre>
    * URL(s) for debug targets(s).
-   *   E.g., "file:///foo/tfdbg_dump", "grpc://localhost:11011"
+   * Supported URL formats are:
+   *   - file:///foo/tfdbg_dump: Writes out Event content to file
+   *     /foo/tfdbg_dump.  Assumes all directories can be created if they don't
+   *     already exist.
+   *   - grpc://localhost:11011: Sends an RPC request to an EventListener
+   *     service running at localhost:11011 with the event.
+   *   - memcbk:///event_key: Routes tensors to clients using the
+   *     callback registered with the DebugCallbackRegistry for event_key.
    * Each debug op listed in debug_ops will publish its output tensor (debug
    * signal) to all URLs in debug_urls.
+   * N.B. Session::Run() supports concurrent invocations of the same inputs
+   * (feed keys), outputs and target nodes. If such concurrent invocations
+   * are to be debugged, the callers of Session::Run() must use distinct
+   * debug_urls to make sure that the streamed or dumped events do not overlap
+   * among the invocations.
+   * TODO(cais): More visible documentation of this in g3docs.
    * </pre>
    *
    * <code>repeated string debug_urls = 4;</code>
    */
   com.google.protobuf.ByteString
       getDebugUrlsBytes(int index);
+
+  /**
+   * <pre>
+   * Do not error out if debug op creation fails (e.g., due to dtype
+   * incompatibility). Instead, just log the failure.
+   * </pre>
+   *
+   * <code>optional bool tolerate_debug_op_creation_failures = 5;</code>
+   */
+  boolean getTolerateDebugOpCreationFailures();
 }

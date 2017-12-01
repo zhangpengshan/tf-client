@@ -97,6 +97,19 @@ public  final class GraphOptions extends
             buildCostModelAfter_ = input.readInt64();
             break;
           }
+          case 82: {
+            org.tensorflow.framework.RewriterConfig.Builder subBuilder = null;
+            if (rewriteOptions_ != null) {
+              subBuilder = rewriteOptions_.toBuilder();
+            }
+            rewriteOptions_ = input.readMessage(org.tensorflow.framework.RewriterConfig.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(rewriteOptions_);
+              rewriteOptions_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -255,6 +268,45 @@ public  final class GraphOptions extends
     return timelineStep_;
   }
 
+  public static final int REWRITE_OPTIONS_FIELD_NUMBER = 10;
+  private org.tensorflow.framework.RewriterConfig rewriteOptions_;
+  /**
+   * <pre>
+   * Options that control the type and amount of graph rewriting.
+   * Not currently configurable via the public Python API (i.e. there is no API
+   * stability guarantee if you import RewriterConfig explicitly).
+   * </pre>
+   *
+   * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+   */
+  public boolean hasRewriteOptions() {
+    return rewriteOptions_ != null;
+  }
+  /**
+   * <pre>
+   * Options that control the type and amount of graph rewriting.
+   * Not currently configurable via the public Python API (i.e. there is no API
+   * stability guarantee if you import RewriterConfig explicitly).
+   * </pre>
+   *
+   * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+   */
+  public org.tensorflow.framework.RewriterConfig getRewriteOptions() {
+    return rewriteOptions_ == null ? org.tensorflow.framework.RewriterConfig.getDefaultInstance() : rewriteOptions_;
+  }
+  /**
+   * <pre>
+   * Options that control the type and amount of graph rewriting.
+   * Not currently configurable via the public Python API (i.e. there is no API
+   * stability guarantee if you import RewriterConfig explicitly).
+   * </pre>
+   *
+   * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+   */
+  public org.tensorflow.framework.RewriterConfigOrBuilder getRewriteOptionsOrBuilder() {
+    return getRewriteOptions();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -290,6 +342,9 @@ public  final class GraphOptions extends
     }
     if (buildCostModelAfter_ != 0L) {
       output.writeInt64(9, buildCostModelAfter_);
+    }
+    if (rewriteOptions_ != null) {
+      output.writeMessage(10, getRewriteOptions());
     }
   }
 
@@ -330,6 +385,10 @@ public  final class GraphOptions extends
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(9, buildCostModelAfter_);
     }
+    if (rewriteOptions_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(10, getRewriteOptions());
+    }
     memoizedSize = size;
     return size;
   }
@@ -365,6 +424,11 @@ public  final class GraphOptions extends
         == other.getEnableBfloat16Sendrecv());
     result = result && (getTimelineStep()
         == other.getTimelineStep());
+    result = result && (hasRewriteOptions() == other.hasRewriteOptions());
+    if (hasRewriteOptions()) {
+      result = result && getRewriteOptions()
+          .equals(other.getRewriteOptions());
+    }
     return result;
   }
 
@@ -399,6 +463,10 @@ public  final class GraphOptions extends
         getEnableBfloat16Sendrecv());
     hash = (37 * hash) + TIMELINE_STEP_FIELD_NUMBER;
     hash = (53 * hash) + getTimelineStep();
+    if (hasRewriteOptions()) {
+      hash = (37 * hash) + REWRITE_OPTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getRewriteOptions().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -537,6 +605,12 @@ public  final class GraphOptions extends
 
       timelineStep_ = 0;
 
+      if (rewriteOptionsBuilder_ == null) {
+        rewriteOptions_ = null;
+      } else {
+        rewriteOptions_ = null;
+        rewriteOptionsBuilder_ = null;
+      }
       return this;
     }
 
@@ -571,6 +645,11 @@ public  final class GraphOptions extends
       result.placePrunedGraph_ = placePrunedGraph_;
       result.enableBfloat16Sendrecv_ = enableBfloat16Sendrecv_;
       result.timelineStep_ = timelineStep_;
+      if (rewriteOptionsBuilder_ == null) {
+        result.rewriteOptions_ = rewriteOptions_;
+      } else {
+        result.rewriteOptions_ = rewriteOptionsBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -635,6 +714,9 @@ public  final class GraphOptions extends
       }
       if (other.getTimelineStep() != 0) {
         setTimelineStep(other.getTimelineStep());
+      }
+      if (other.hasRewriteOptions()) {
+        mergeRewriteOptions(other.getRewriteOptions());
       }
       onChanged();
       return this;
@@ -1112,6 +1194,177 @@ public  final class GraphOptions extends
       timelineStep_ = 0;
       onChanged();
       return this;
+    }
+
+    private org.tensorflow.framework.RewriterConfig rewriteOptions_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.tensorflow.framework.RewriterConfig, org.tensorflow.framework.RewriterConfig.Builder, org.tensorflow.framework.RewriterConfigOrBuilder> rewriteOptionsBuilder_;
+    /**
+     * <pre>
+     * Options that control the type and amount of graph rewriting.
+     * Not currently configurable via the public Python API (i.e. there is no API
+     * stability guarantee if you import RewriterConfig explicitly).
+     * </pre>
+     *
+     * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+     */
+    public boolean hasRewriteOptions() {
+      return rewriteOptionsBuilder_ != null || rewriteOptions_ != null;
+    }
+    /**
+     * <pre>
+     * Options that control the type and amount of graph rewriting.
+     * Not currently configurable via the public Python API (i.e. there is no API
+     * stability guarantee if you import RewriterConfig explicitly).
+     * </pre>
+     *
+     * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+     */
+    public org.tensorflow.framework.RewriterConfig getRewriteOptions() {
+      if (rewriteOptionsBuilder_ == null) {
+        return rewriteOptions_ == null ? org.tensorflow.framework.RewriterConfig.getDefaultInstance() : rewriteOptions_;
+      } else {
+        return rewriteOptionsBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Options that control the type and amount of graph rewriting.
+     * Not currently configurable via the public Python API (i.e. there is no API
+     * stability guarantee if you import RewriterConfig explicitly).
+     * </pre>
+     *
+     * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+     */
+    public Builder setRewriteOptions(org.tensorflow.framework.RewriterConfig value) {
+      if (rewriteOptionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        rewriteOptions_ = value;
+        onChanged();
+      } else {
+        rewriteOptionsBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Options that control the type and amount of graph rewriting.
+     * Not currently configurable via the public Python API (i.e. there is no API
+     * stability guarantee if you import RewriterConfig explicitly).
+     * </pre>
+     *
+     * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+     */
+    public Builder setRewriteOptions(
+        org.tensorflow.framework.RewriterConfig.Builder builderForValue) {
+      if (rewriteOptionsBuilder_ == null) {
+        rewriteOptions_ = builderForValue.build();
+        onChanged();
+      } else {
+        rewriteOptionsBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Options that control the type and amount of graph rewriting.
+     * Not currently configurable via the public Python API (i.e. there is no API
+     * stability guarantee if you import RewriterConfig explicitly).
+     * </pre>
+     *
+     * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+     */
+    public Builder mergeRewriteOptions(org.tensorflow.framework.RewriterConfig value) {
+      if (rewriteOptionsBuilder_ == null) {
+        if (rewriteOptions_ != null) {
+          rewriteOptions_ =
+            org.tensorflow.framework.RewriterConfig.newBuilder(rewriteOptions_).mergeFrom(value).buildPartial();
+        } else {
+          rewriteOptions_ = value;
+        }
+        onChanged();
+      } else {
+        rewriteOptionsBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Options that control the type and amount of graph rewriting.
+     * Not currently configurable via the public Python API (i.e. there is no API
+     * stability guarantee if you import RewriterConfig explicitly).
+     * </pre>
+     *
+     * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+     */
+    public Builder clearRewriteOptions() {
+      if (rewriteOptionsBuilder_ == null) {
+        rewriteOptions_ = null;
+        onChanged();
+      } else {
+        rewriteOptions_ = null;
+        rewriteOptionsBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Options that control the type and amount of graph rewriting.
+     * Not currently configurable via the public Python API (i.e. there is no API
+     * stability guarantee if you import RewriterConfig explicitly).
+     * </pre>
+     *
+     * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+     */
+    public org.tensorflow.framework.RewriterConfig.Builder getRewriteOptionsBuilder() {
+      
+      onChanged();
+      return getRewriteOptionsFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Options that control the type and amount of graph rewriting.
+     * Not currently configurable via the public Python API (i.e. there is no API
+     * stability guarantee if you import RewriterConfig explicitly).
+     * </pre>
+     *
+     * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+     */
+    public org.tensorflow.framework.RewriterConfigOrBuilder getRewriteOptionsOrBuilder() {
+      if (rewriteOptionsBuilder_ != null) {
+        return rewriteOptionsBuilder_.getMessageOrBuilder();
+      } else {
+        return rewriteOptions_ == null ?
+            org.tensorflow.framework.RewriterConfig.getDefaultInstance() : rewriteOptions_;
+      }
+    }
+    /**
+     * <pre>
+     * Options that control the type and amount of graph rewriting.
+     * Not currently configurable via the public Python API (i.e. there is no API
+     * stability guarantee if you import RewriterConfig explicitly).
+     * </pre>
+     *
+     * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.tensorflow.framework.RewriterConfig, org.tensorflow.framework.RewriterConfig.Builder, org.tensorflow.framework.RewriterConfigOrBuilder> 
+        getRewriteOptionsFieldBuilder() {
+      if (rewriteOptionsBuilder_ == null) {
+        rewriteOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            org.tensorflow.framework.RewriterConfig, org.tensorflow.framework.RewriterConfig.Builder, org.tensorflow.framework.RewriterConfigOrBuilder>(
+                getRewriteOptions(),
+                getParentForChildren(),
+                isClean());
+        rewriteOptions_ = null;
+      }
+      return rewriteOptionsBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

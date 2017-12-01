@@ -409,12 +409,22 @@ public  final class OptimizerOptions extends
   public static final int OPT_LEVEL_FIELD_NUMBER = 3;
   private int optLevel_;
   /**
+   * <pre>
+   * Overall optimization level. The actual optimizations applied will be the
+   * logical OR of the flags that this level implies and any flags already set.
+   * </pre>
+   *
    * <code>optional .tensorflow.OptimizerOptions.Level opt_level = 3;</code>
    */
   public int getOptLevelValue() {
     return optLevel_;
   }
   /**
+   * <pre>
+   * Overall optimization level. The actual optimizations applied will be the
+   * logical OR of the flags that this level implies and any flags already set.
+   * </pre>
+   *
    * <code>optional .tensorflow.OptimizerOptions.Level opt_level = 3;</code>
    */
   public org.tensorflow.framework.OptimizerOptions.Level getOptLevel() {
@@ -896,12 +906,22 @@ public  final class OptimizerOptions extends
 
     private int optLevel_ = 0;
     /**
+     * <pre>
+     * Overall optimization level. The actual optimizations applied will be the
+     * logical OR of the flags that this level implies and any flags already set.
+     * </pre>
+     *
      * <code>optional .tensorflow.OptimizerOptions.Level opt_level = 3;</code>
      */
     public int getOptLevelValue() {
       return optLevel_;
     }
     /**
+     * <pre>
+     * Overall optimization level. The actual optimizations applied will be the
+     * logical OR of the flags that this level implies and any flags already set.
+     * </pre>
+     *
      * <code>optional .tensorflow.OptimizerOptions.Level opt_level = 3;</code>
      */
     public Builder setOptLevelValue(int value) {
@@ -910,6 +930,11 @@ public  final class OptimizerOptions extends
       return this;
     }
     /**
+     * <pre>
+     * Overall optimization level. The actual optimizations applied will be the
+     * logical OR of the flags that this level implies and any flags already set.
+     * </pre>
+     *
      * <code>optional .tensorflow.OptimizerOptions.Level opt_level = 3;</code>
      */
     public org.tensorflow.framework.OptimizerOptions.Level getOptLevel() {
@@ -917,6 +942,11 @@ public  final class OptimizerOptions extends
       return result == null ? org.tensorflow.framework.OptimizerOptions.Level.UNRECOGNIZED : result;
     }
     /**
+     * <pre>
+     * Overall optimization level. The actual optimizations applied will be the
+     * logical OR of the flags that this level implies and any flags already set.
+     * </pre>
+     *
      * <code>optional .tensorflow.OptimizerOptions.Level opt_level = 3;</code>
      */
     public Builder setOptLevel(org.tensorflow.framework.OptimizerOptions.Level value) {
@@ -929,6 +959,11 @@ public  final class OptimizerOptions extends
       return this;
     }
     /**
+     * <pre>
+     * Overall optimization level. The actual optimizations applied will be the
+     * logical OR of the flags that this level implies and any flags already set.
+     * </pre>
+     *
      * <code>optional .tensorflow.OptimizerOptions.Level opt_level = 3;</code>
      */
     public Builder clearOptLevel() {

@@ -95,4 +95,29 @@ public interface RecvTensorRequestOrBuilder extends
    * <code>optional .tensorflow.DeviceLocality server_locality = 5;</code>
    */
   org.tensorflow.framework.DeviceLocalityOrBuilder getServerLocalityOrBuilder();
+
+  /**
+   * <pre>
+   * Optional information needed by the RPC subsystem.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Any transport_options = 6;</code>
+   */
+  boolean hasTransportOptions();
+  /**
+   * <pre>
+   * Optional information needed by the RPC subsystem.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Any transport_options = 6;</code>
+   */
+  com.google.protobuf.Any getTransportOptions();
+  /**
+   * <pre>
+   * Optional information needed by the RPC subsystem.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Any transport_options = 6;</code>
+   */
+  com.google.protobuf.AnyOrBuilder getTransportOptionsOrBuilder();
 }

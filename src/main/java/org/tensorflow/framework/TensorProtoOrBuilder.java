@@ -305,24 +305,24 @@ public interface TensorProtoOrBuilder extends
    * DT_RESOURCE
    * </pre>
    *
-   * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+   * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
    */
-  java.util.List<org.tensorflow.framework.ResourceHandle> 
+  java.util.List<org.tensorflow.framework.ResourceHandleProto> 
       getResourceHandleValList();
   /**
    * <pre>
    * DT_RESOURCE
    * </pre>
    *
-   * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+   * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
    */
-  org.tensorflow.framework.ResourceHandle getResourceHandleVal(int index);
+  org.tensorflow.framework.ResourceHandleProto getResourceHandleVal(int index);
   /**
    * <pre>
    * DT_RESOURCE
    * </pre>
    *
-   * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+   * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
    */
   int getResourceHandleValCount();
   /**
@@ -330,17 +330,61 @@ public interface TensorProtoOrBuilder extends
    * DT_RESOURCE
    * </pre>
    *
-   * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+   * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
    */
-  java.util.List<? extends org.tensorflow.framework.ResourceHandleOrBuilder> 
+  java.util.List<? extends org.tensorflow.framework.ResourceHandleProtoOrBuilder> 
       getResourceHandleValOrBuilderList();
   /**
    * <pre>
    * DT_RESOURCE
    * </pre>
    *
-   * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+   * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
    */
-  org.tensorflow.framework.ResourceHandleOrBuilder getResourceHandleValOrBuilder(
+  org.tensorflow.framework.ResourceHandleProtoOrBuilder getResourceHandleValOrBuilder(
+      int index);
+
+  /**
+   * <pre>
+   * DT_VARIANT
+   * </pre>
+   *
+   * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+   */
+  java.util.List<org.tensorflow.framework.VariantTensorDataProto> 
+      getVariantValList();
+  /**
+   * <pre>
+   * DT_VARIANT
+   * </pre>
+   *
+   * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+   */
+  org.tensorflow.framework.VariantTensorDataProto getVariantVal(int index);
+  /**
+   * <pre>
+   * DT_VARIANT
+   * </pre>
+   *
+   * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+   */
+  int getVariantValCount();
+  /**
+   * <pre>
+   * DT_VARIANT
+   * </pre>
+   *
+   * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+   */
+  java.util.List<? extends org.tensorflow.framework.VariantTensorDataProtoOrBuilder> 
+      getVariantValOrBuilderList();
+  /**
+   * <pre>
+   * DT_VARIANT
+   * </pre>
+   *
+   * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+   */
+  org.tensorflow.framework.VariantTensorDataProtoOrBuilder getVariantValOrBuilder(
       int index);
 }

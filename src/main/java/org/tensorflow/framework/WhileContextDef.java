@@ -27,6 +27,7 @@ public  final class WhileContextDef extends
     pivotForPredName_ = "";
     pivotForBodyName_ = "";
     loopExitNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    loopEnterNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
   }
 
   @java.lang.Override
@@ -115,6 +116,15 @@ public  final class WhileContextDef extends
 
             break;
           }
+          case 82: {
+            java.lang.String s = input.readStringRequireUtf8();
+            if (!((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+              loopEnterNames_ = new com.google.protobuf.LazyStringArrayList();
+              mutable_bitField0_ |= 0x00000100;
+            }
+            loopEnterNames_.add(s);
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -125,6 +135,9 @@ public  final class WhileContextDef extends
     } finally {
       if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
         loopExitNames_ = loopExitNames_.getUnmodifiableView();
+      }
+      if (((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+        loopEnterNames_ = loopEnterNames_.getUnmodifiableView();
       }
       makeExtensionsImmutable();
     }
@@ -394,6 +407,51 @@ public  final class WhileContextDef extends
     return loopExitNames_.getByteString(index);
   }
 
+  public static final int LOOP_ENTER_NAMES_FIELD_NUMBER = 10;
+  private com.google.protobuf.LazyStringList loopEnterNames_;
+  /**
+   * <pre>
+   * List of names for enter tensors.
+   * </pre>
+   *
+   * <code>repeated string loop_enter_names = 10;</code>
+   */
+  public com.google.protobuf.ProtocolStringList
+      getLoopEnterNamesList() {
+    return loopEnterNames_;
+  }
+  /**
+   * <pre>
+   * List of names for enter tensors.
+   * </pre>
+   *
+   * <code>repeated string loop_enter_names = 10;</code>
+   */
+  public int getLoopEnterNamesCount() {
+    return loopEnterNames_.size();
+  }
+  /**
+   * <pre>
+   * List of names for enter tensors.
+   * </pre>
+   *
+   * <code>repeated string loop_enter_names = 10;</code>
+   */
+  public java.lang.String getLoopEnterNames(int index) {
+    return loopEnterNames_.get(index);
+  }
+  /**
+   * <pre>
+   * List of names for enter tensors.
+   * </pre>
+   *
+   * <code>repeated string loop_enter_names = 10;</code>
+   */
+  public com.google.protobuf.ByteString
+      getLoopEnterNamesBytes(int index) {
+    return loopEnterNames_.getByteString(index);
+  }
+
   public static final int VALUES_DEF_FIELD_NUMBER = 9;
   private org.tensorflow.framework.ValuesDef valuesDef_;
   /**
@@ -466,6 +524,9 @@ public  final class WhileContextDef extends
     if (valuesDef_ != null) {
       output.writeMessage(9, getValuesDef());
     }
+    for (int i = 0; i < loopEnterNames_.size(); i++) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 10, loopEnterNames_.getRaw(i));
+    }
   }
 
   public int getSerializedSize() {
@@ -509,6 +570,14 @@ public  final class WhileContextDef extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(9, getValuesDef());
     }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < loopEnterNames_.size(); i++) {
+        dataSize += computeStringSizeNoTag(loopEnterNames_.getRaw(i));
+      }
+      size += dataSize;
+      size += 1 * getLoopEnterNamesList().size();
+    }
     memoizedSize = size;
     return size;
   }
@@ -541,6 +610,8 @@ public  final class WhileContextDef extends
         .equals(other.getPivotForBodyName());
     result = result && getLoopExitNamesList()
         .equals(other.getLoopExitNamesList());
+    result = result && getLoopEnterNamesList()
+        .equals(other.getLoopEnterNamesList());
     result = result && (hasValuesDef() == other.hasValuesDef());
     if (hasValuesDef()) {
       result = result && getValuesDef()
@@ -575,6 +646,10 @@ public  final class WhileContextDef extends
     if (getLoopExitNamesCount() > 0) {
       hash = (37 * hash) + LOOP_EXIT_NAMES_FIELD_NUMBER;
       hash = (53 * hash) + getLoopExitNamesList().hashCode();
+    }
+    if (getLoopEnterNamesCount() > 0) {
+      hash = (37 * hash) + LOOP_ENTER_NAMES_FIELD_NUMBER;
+      hash = (53 * hash) + getLoopEnterNamesList().hashCode();
     }
     if (hasValuesDef()) {
       hash = (37 * hash) + VALUES_DEF_FIELD_NUMBER;
@@ -718,6 +793,8 @@ public  final class WhileContextDef extends
 
       loopExitNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       bitField0_ = (bitField0_ & ~0x00000080);
+      loopEnterNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000100);
       if (valuesDefBuilder_ == null) {
         valuesDef_ = null;
       } else {
@@ -760,6 +837,11 @@ public  final class WhileContextDef extends
         bitField0_ = (bitField0_ & ~0x00000080);
       }
       result.loopExitNames_ = loopExitNames_;
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        loopEnterNames_ = loopEnterNames_.getUnmodifiableView();
+        bitField0_ = (bitField0_ & ~0x00000100);
+      }
+      result.loopEnterNames_ = loopEnterNames_;
       if (valuesDefBuilder_ == null) {
         result.valuesDef_ = valuesDef_;
       } else {
@@ -839,6 +921,16 @@ public  final class WhileContextDef extends
         } else {
           ensureLoopExitNamesIsMutable();
           loopExitNames_.addAll(other.loopExitNames_);
+        }
+        onChanged();
+      }
+      if (!other.loopEnterNames_.isEmpty()) {
+        if (loopEnterNames_.isEmpty()) {
+          loopEnterNames_ = other.loopEnterNames_;
+          bitField0_ = (bitField0_ & ~0x00000100);
+        } else {
+          ensureLoopEnterNamesIsMutable();
+          loopEnterNames_.addAll(other.loopEnterNames_);
         }
         onChanged();
       }
@@ -1468,6 +1560,136 @@ public  final class WhileContextDef extends
   checkByteStringIsUtf8(value);
       ensureLoopExitNamesIsMutable();
       loopExitNames_.add(value);
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.LazyStringList loopEnterNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private void ensureLoopEnterNamesIsMutable() {
+      if (!((bitField0_ & 0x00000100) == 0x00000100)) {
+        loopEnterNames_ = new com.google.protobuf.LazyStringArrayList(loopEnterNames_);
+        bitField0_ |= 0x00000100;
+       }
+    }
+    /**
+     * <pre>
+     * List of names for enter tensors.
+     * </pre>
+     *
+     * <code>repeated string loop_enter_names = 10;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getLoopEnterNamesList() {
+      return loopEnterNames_.getUnmodifiableView();
+    }
+    /**
+     * <pre>
+     * List of names for enter tensors.
+     * </pre>
+     *
+     * <code>repeated string loop_enter_names = 10;</code>
+     */
+    public int getLoopEnterNamesCount() {
+      return loopEnterNames_.size();
+    }
+    /**
+     * <pre>
+     * List of names for enter tensors.
+     * </pre>
+     *
+     * <code>repeated string loop_enter_names = 10;</code>
+     */
+    public java.lang.String getLoopEnterNames(int index) {
+      return loopEnterNames_.get(index);
+    }
+    /**
+     * <pre>
+     * List of names for enter tensors.
+     * </pre>
+     *
+     * <code>repeated string loop_enter_names = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLoopEnterNamesBytes(int index) {
+      return loopEnterNames_.getByteString(index);
+    }
+    /**
+     * <pre>
+     * List of names for enter tensors.
+     * </pre>
+     *
+     * <code>repeated string loop_enter_names = 10;</code>
+     */
+    public Builder setLoopEnterNames(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureLoopEnterNamesIsMutable();
+      loopEnterNames_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * List of names for enter tensors.
+     * </pre>
+     *
+     * <code>repeated string loop_enter_names = 10;</code>
+     */
+    public Builder addLoopEnterNames(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureLoopEnterNamesIsMutable();
+      loopEnterNames_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * List of names for enter tensors.
+     * </pre>
+     *
+     * <code>repeated string loop_enter_names = 10;</code>
+     */
+    public Builder addAllLoopEnterNames(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureLoopEnterNamesIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, loopEnterNames_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * List of names for enter tensors.
+     * </pre>
+     *
+     * <code>repeated string loop_enter_names = 10;</code>
+     */
+    public Builder clearLoopEnterNames() {
+      loopEnterNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000100);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * List of names for enter tensors.
+     * </pre>
+     *
+     * <code>repeated string loop_enter_names = 10;</code>
+     */
+    public Builder addLoopEnterNamesBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureLoopEnterNamesIsMutable();
+      loopEnterNames_.add(value);
       onChanged();
       return this;
     }

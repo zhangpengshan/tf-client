@@ -25,26 +25,29 @@ public final class WorkerServiceProtos {
     java.lang.String[] descriptorData = {
       "\n-tensorflow/core/protobuf/worker_servic" +
       "e.proto\022\017tensorflow.grpc\032%tensorflow/cor" +
-      "e/protobuf/worker.proto2\311\005\n\rWorkerServic" +
+      "e/protobuf/worker.proto2\261\006\n\rWorkerServic" +
       "e\022H\n\tGetStatus\022\034.tensorflow.GetStatusReq" +
-      "uest\032\035.tensorflow.GetStatusResponse\022T\n\rR" +
-      "egisterGraph\022 .tensorflow.RegisterGraphR" +
-      "equest\032!.tensorflow.RegisterGraphRespons" +
-      "e\022Z\n\017DeregisterGraph\022\".tensorflow.Deregi" +
-      "sterGraphRequest\032#.tensorflow.Deregister" +
-      "GraphResponse\022E\n\010RunGraph\022\033.tensorflow.R",
-      "unGraphRequest\032\034.tensorflow.RunGraphResp" +
-      "onse\022Q\n\014CleanupGraph\022\037.tensorflow.Cleanu" +
-      "pGraphRequest\032 .tensorflow.CleanupGraphR" +
-      "esponse\022K\n\nCleanupAll\022\035.tensorflow.Clean" +
-      "upAllRequest\032\036.tensorflow.CleanupAllResp" +
-      "onse\022M\n\nRecvTensor\022\035.tensorflow.RecvTens" +
-      "orRequest\032\036.tensorflow.RecvTensorRespons" +
-      "e\"\000\022B\n\007Logging\022\032.tensorflow.LoggingReque" +
-      "st\032\033.tensorflow.LoggingResponse\022B\n\007Traci" +
-      "ng\022\032.tensorflow.TracingRequest\032\033.tensorf",
-      "low.TracingResponseB3\n\032org.tensorflow.di" +
-      "struntimeB\023WorkerServiceProtosP\001b\006proto3"
+      "uest\032\035.tensorflow.GetStatusResponse\022f\n\023C" +
+      "reateWorkerSession\022&.tensorflow.CreateWo" +
+      "rkerSessionRequest\032\'.tensorflow.CreateWo" +
+      "rkerSessionResponse\022T\n\rRegisterGraph\022 .t" +
+      "ensorflow.RegisterGraphRequest\032!.tensorf" +
+      "low.RegisterGraphResponse\022Z\n\017DeregisterG",
+      "raph\022\".tensorflow.DeregisterGraphRequest" +
+      "\032#.tensorflow.DeregisterGraphResponse\022E\n" +
+      "\010RunGraph\022\033.tensorflow.RunGraphRequest\032\034" +
+      ".tensorflow.RunGraphResponse\022Q\n\014CleanupG" +
+      "raph\022\037.tensorflow.CleanupGraphRequest\032 ." +
+      "tensorflow.CleanupGraphResponse\022K\n\nClean" +
+      "upAll\022\035.tensorflow.CleanupAllRequest\032\036.t" +
+      "ensorflow.CleanupAllResponse\022M\n\nRecvTens" +
+      "or\022\035.tensorflow.RecvTensorRequest\032\036.tens" +
+      "orflow.RecvTensorResponse\"\000\022B\n\007Logging\022\032",
+      ".tensorflow.LoggingRequest\032\033.tensorflow." +
+      "LoggingResponse\022B\n\007Tracing\022\032.tensorflow." +
+      "TracingRequest\032\033.tensorflow.TracingRespo" +
+      "nseB3\n\032org.tensorflow.distruntimeB\023Worke" +
+      "rServiceProtosP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

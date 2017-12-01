@@ -143,6 +143,41 @@ public interface WhileContextDefOrBuilder extends
 
   /**
    * <pre>
+   * List of names for enter tensors.
+   * </pre>
+   *
+   * <code>repeated string loop_enter_names = 10;</code>
+   */
+  java.util.List<java.lang.String>
+      getLoopEnterNamesList();
+  /**
+   * <pre>
+   * List of names for enter tensors.
+   * </pre>
+   *
+   * <code>repeated string loop_enter_names = 10;</code>
+   */
+  int getLoopEnterNamesCount();
+  /**
+   * <pre>
+   * List of names for enter tensors.
+   * </pre>
+   *
+   * <code>repeated string loop_enter_names = 10;</code>
+   */
+  java.lang.String getLoopEnterNames(int index);
+  /**
+   * <pre>
+   * List of names for enter tensors.
+   * </pre>
+   *
+   * <code>repeated string loop_enter_names = 10;</code>
+   */
+  com.google.protobuf.ByteString
+      getLoopEnterNamesBytes(int index);
+
+  /**
+   * <pre>
    * Values and external values in control flow context.
    * </pre>
    *

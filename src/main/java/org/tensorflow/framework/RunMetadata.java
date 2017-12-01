@@ -5,7 +5,7 @@ package org.tensorflow.framework;
 
 /**
  * <pre>
- * EXPERIMENTAL. Metadata output (i.e., non-Tensor) for a single Run() call.
+ * Metadata output (i.e., non-Tensor) for a single Run() call.
  * </pre>
  *
  * Protobuf type {@code tensorflow.RunMetadata}
@@ -410,7 +410,7 @@ public  final class RunMetadata extends
   }
   /**
    * <pre>
-   * EXPERIMENTAL. Metadata output (i.e., non-Tensor) for a single Run() call.
+   * Metadata output (i.e., non-Tensor) for a single Run() call.
    * </pre>
    *
    * Protobuf type {@code tensorflow.RunMetadata}

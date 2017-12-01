@@ -91,53 +91,9 @@ public interface FunctionDefOrBuilder extends
 
   /**
    * <pre>
-   * The body of the function.
-   * </pre>
-   *
-   * <code>repeated .tensorflow.FunctionDef.Node node = 2;</code>
-   */
-  java.util.List<org.tensorflow.framework.FunctionDef.Node> 
-      getNodeList();
-  /**
-   * <pre>
-   * The body of the function.
-   * </pre>
-   *
-   * <code>repeated .tensorflow.FunctionDef.Node node = 2;</code>
-   */
-  org.tensorflow.framework.FunctionDef.Node getNode(int index);
-  /**
-   * <pre>
-   * The body of the function.
-   * </pre>
-   *
-   * <code>repeated .tensorflow.FunctionDef.Node node = 2;</code>
-   */
-  int getNodeCount();
-  /**
-   * <pre>
-   * The body of the function.
-   * </pre>
-   *
-   * <code>repeated .tensorflow.FunctionDef.Node node = 2;</code>
-   */
-  java.util.List<? extends org.tensorflow.framework.FunctionDef.NodeOrBuilder> 
-      getNodeOrBuilderList();
-  /**
-   * <pre>
-   * The body of the function.
-   * </pre>
-   *
-   * <code>repeated .tensorflow.FunctionDef.Node node = 2;</code>
-   */
-  org.tensorflow.framework.FunctionDef.NodeOrBuilder getNodeOrBuilder(
-      int index);
-
-  /**
-   * <pre>
-   * The body of the function.  Unlike the NodeDefs in a GraphDef, attrs
-   * may have values of type `placeholder` and the `input` field uses
-   * the "output" format above.
+   * By convention, "op" in node_def is resolved by consulting with a
+   * user-defined library first. If not resolved, "func" is assumed to
+   * be a builtin op.
    * </pre>
    *
    * <code>repeated .tensorflow.NodeDef node_def = 3;</code>
@@ -146,9 +102,9 @@ public interface FunctionDefOrBuilder extends
       getNodeDefList();
   /**
    * <pre>
-   * The body of the function.  Unlike the NodeDefs in a GraphDef, attrs
-   * may have values of type `placeholder` and the `input` field uses
-   * the "output" format above.
+   * By convention, "op" in node_def is resolved by consulting with a
+   * user-defined library first. If not resolved, "func" is assumed to
+   * be a builtin op.
    * </pre>
    *
    * <code>repeated .tensorflow.NodeDef node_def = 3;</code>
@@ -156,9 +112,9 @@ public interface FunctionDefOrBuilder extends
   org.tensorflow.framework.NodeDef getNodeDef(int index);
   /**
    * <pre>
-   * The body of the function.  Unlike the NodeDefs in a GraphDef, attrs
-   * may have values of type `placeholder` and the `input` field uses
-   * the "output" format above.
+   * By convention, "op" in node_def is resolved by consulting with a
+   * user-defined library first. If not resolved, "func" is assumed to
+   * be a builtin op.
    * </pre>
    *
    * <code>repeated .tensorflow.NodeDef node_def = 3;</code>
@@ -166,9 +122,9 @@ public interface FunctionDefOrBuilder extends
   int getNodeDefCount();
   /**
    * <pre>
-   * The body of the function.  Unlike the NodeDefs in a GraphDef, attrs
-   * may have values of type `placeholder` and the `input` field uses
-   * the "output" format above.
+   * By convention, "op" in node_def is resolved by consulting with a
+   * user-defined library first. If not resolved, "func" is assumed to
+   * be a builtin op.
    * </pre>
    *
    * <code>repeated .tensorflow.NodeDef node_def = 3;</code>
@@ -177,9 +133,9 @@ public interface FunctionDefOrBuilder extends
       getNodeDefOrBuilderList();
   /**
    * <pre>
-   * The body of the function.  Unlike the NodeDefs in a GraphDef, attrs
-   * may have values of type `placeholder` and the `input` field uses
-   * the "output" format above.
+   * By convention, "op" in node_def is resolved by consulting with a
+   * user-defined library first. If not resolved, "func" is assumed to
+   * be a builtin op.
    * </pre>
    *
    * <code>repeated .tensorflow.NodeDef node_def = 3;</code>

@@ -187,13 +187,53 @@ public  final class CostGraphDef extends
     long getTemporaryMemorySize();
 
     /**
+     * <code>optional int64 host_temp_memory_size = 10;</code>
+     */
+    long getHostTempMemorySize();
+
+    /**
+     * <code>optional int64 device_temp_memory_size = 11;</code>
+     */
+    long getDeviceTempMemorySize();
+
+    /**
+     * <code>optional int64 host_persistent_memory_size = 12;</code>
+     */
+    long getHostPersistentMemorySize();
+
+    /**
+     * <code>optional int64 device_persistent_memory_size = 16;</code>
+     */
+    long getDevicePersistentMemorySize();
+
+    /**
      * <pre>
-     * Estimate of the computational cost of this node.
+     * Estimate of the computational cost of this node, in microseconds.
      * </pre>
      *
      * <code>optional int64 compute_cost = 9;</code>
      */
     long getComputeCost();
+
+    /**
+     * <pre>
+     * Analytical estimate of the computational cost of this node, in
+     * microseconds.
+     * </pre>
+     *
+     * <code>optional int64 compute_time = 14;</code>
+     */
+    long getComputeTime();
+
+    /**
+     * <pre>
+     * Analytical estimate of the memory access cost of this node, in
+     * microseconds.
+     * </pre>
+     *
+     * <code>optional int64 memory_time = 15;</code>
+     */
+    long getMemoryTime();
 
     /**
      * <pre>
@@ -248,7 +288,13 @@ public  final class CostGraphDef extends
       inputInfo_ = java.util.Collections.emptyList();
       outputInfo_ = java.util.Collections.emptyList();
       temporaryMemorySize_ = 0L;
+      hostTempMemorySize_ = 0L;
+      deviceTempMemorySize_ = 0L;
+      hostPersistentMemorySize_ = 0L;
+      devicePersistentMemorySize_ = 0L;
       computeCost_ = 0L;
+      computeTime_ = 0L;
+      memoryTime_ = 0L;
       isFinal_ = false;
       controlInput_ = java.util.Collections.emptyList();
     }
@@ -324,9 +370,9 @@ public  final class CostGraphDef extends
               break;
             }
             case 64: {
-              if (!((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+              if (!((mutable_bitField0_ & 0x00004000) == 0x00004000)) {
                 controlInput_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField0_ |= 0x00000100;
+                mutable_bitField0_ |= 0x00004000;
               }
               controlInput_.add(input.readInt32());
               break;
@@ -334,9 +380,9 @@ public  final class CostGraphDef extends
             case 66: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000100) == 0x00000100) && input.getBytesUntilLimit() > 0) {
+              if (!((mutable_bitField0_ & 0x00004000) == 0x00004000) && input.getBytesUntilLimit() > 0) {
                 controlInput_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField0_ |= 0x00000100;
+                mutable_bitField0_ |= 0x00004000;
               }
               while (input.getBytesUntilLimit() > 0) {
                 controlInput_.add(input.readInt32());
@@ -347,6 +393,36 @@ public  final class CostGraphDef extends
             case 72: {
 
               computeCost_ = input.readInt64();
+              break;
+            }
+            case 80: {
+
+              hostTempMemorySize_ = input.readInt64();
+              break;
+            }
+            case 88: {
+
+              deviceTempMemorySize_ = input.readInt64();
+              break;
+            }
+            case 96: {
+
+              hostPersistentMemorySize_ = input.readInt64();
+              break;
+            }
+            case 112: {
+
+              computeTime_ = input.readInt64();
+              break;
+            }
+            case 120: {
+
+              memoryTime_ = input.readInt64();
+              break;
+            }
+            case 128: {
+
+              devicePersistentMemorySize_ = input.readInt64();
               break;
             }
           }
@@ -363,7 +439,7 @@ public  final class CostGraphDef extends
         if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
           outputInfo_ = java.util.Collections.unmodifiableList(outputInfo_);
         }
-        if (((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+        if (((mutable_bitField0_ & 0x00004000) == 0x00004000)) {
           controlInput_ = java.util.Collections.unmodifiableList(controlInput_);
         }
         makeExtensionsImmutable();
@@ -1886,17 +1962,81 @@ public  final class CostGraphDef extends
       return temporaryMemorySize_;
     }
 
+    public static final int HOST_TEMP_MEMORY_SIZE_FIELD_NUMBER = 10;
+    private long hostTempMemorySize_;
+    /**
+     * <code>optional int64 host_temp_memory_size = 10;</code>
+     */
+    public long getHostTempMemorySize() {
+      return hostTempMemorySize_;
+    }
+
+    public static final int DEVICE_TEMP_MEMORY_SIZE_FIELD_NUMBER = 11;
+    private long deviceTempMemorySize_;
+    /**
+     * <code>optional int64 device_temp_memory_size = 11;</code>
+     */
+    public long getDeviceTempMemorySize() {
+      return deviceTempMemorySize_;
+    }
+
+    public static final int HOST_PERSISTENT_MEMORY_SIZE_FIELD_NUMBER = 12;
+    private long hostPersistentMemorySize_;
+    /**
+     * <code>optional int64 host_persistent_memory_size = 12;</code>
+     */
+    public long getHostPersistentMemorySize() {
+      return hostPersistentMemorySize_;
+    }
+
+    public static final int DEVICE_PERSISTENT_MEMORY_SIZE_FIELD_NUMBER = 16;
+    private long devicePersistentMemorySize_;
+    /**
+     * <code>optional int64 device_persistent_memory_size = 16;</code>
+     */
+    public long getDevicePersistentMemorySize() {
+      return devicePersistentMemorySize_;
+    }
+
     public static final int COMPUTE_COST_FIELD_NUMBER = 9;
     private long computeCost_;
     /**
      * <pre>
-     * Estimate of the computational cost of this node.
+     * Estimate of the computational cost of this node, in microseconds.
      * </pre>
      *
      * <code>optional int64 compute_cost = 9;</code>
      */
     public long getComputeCost() {
       return computeCost_;
+    }
+
+    public static final int COMPUTE_TIME_FIELD_NUMBER = 14;
+    private long computeTime_;
+    /**
+     * <pre>
+     * Analytical estimate of the computational cost of this node, in
+     * microseconds.
+     * </pre>
+     *
+     * <code>optional int64 compute_time = 14;</code>
+     */
+    public long getComputeTime() {
+      return computeTime_;
+    }
+
+    public static final int MEMORY_TIME_FIELD_NUMBER = 15;
+    private long memoryTime_;
+    /**
+     * <pre>
+     * Analytical estimate of the memory access cost of this node, in
+     * microseconds.
+     * </pre>
+     *
+     * <code>optional int64 memory_time = 15;</code>
+     */
+    public long getMemoryTime() {
+      return memoryTime_;
     }
 
     public static final int IS_FINAL_FIELD_NUMBER = 7;
@@ -1992,6 +2132,24 @@ public  final class CostGraphDef extends
       if (computeCost_ != 0L) {
         output.writeInt64(9, computeCost_);
       }
+      if (hostTempMemorySize_ != 0L) {
+        output.writeInt64(10, hostTempMemorySize_);
+      }
+      if (deviceTempMemorySize_ != 0L) {
+        output.writeInt64(11, deviceTempMemorySize_);
+      }
+      if (hostPersistentMemorySize_ != 0L) {
+        output.writeInt64(12, hostPersistentMemorySize_);
+      }
+      if (computeTime_ != 0L) {
+        output.writeInt64(14, computeTime_);
+      }
+      if (memoryTime_ != 0L) {
+        output.writeInt64(15, memoryTime_);
+      }
+      if (devicePersistentMemorySize_ != 0L) {
+        output.writeInt64(16, devicePersistentMemorySize_);
+      }
     }
 
     public int getSerializedSize() {
@@ -2043,6 +2201,30 @@ public  final class CostGraphDef extends
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(9, computeCost_);
       }
+      if (hostTempMemorySize_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(10, hostTempMemorySize_);
+      }
+      if (deviceTempMemorySize_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(11, deviceTempMemorySize_);
+      }
+      if (hostPersistentMemorySize_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(12, hostPersistentMemorySize_);
+      }
+      if (computeTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(14, computeTime_);
+      }
+      if (memoryTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(15, memoryTime_);
+      }
+      if (devicePersistentMemorySize_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(16, devicePersistentMemorySize_);
+      }
       memoizedSize = size;
       return size;
     }
@@ -2071,8 +2253,20 @@ public  final class CostGraphDef extends
           .equals(other.getOutputInfoList());
       result = result && (getTemporaryMemorySize()
           == other.getTemporaryMemorySize());
+      result = result && (getHostTempMemorySize()
+          == other.getHostTempMemorySize());
+      result = result && (getDeviceTempMemorySize()
+          == other.getDeviceTempMemorySize());
+      result = result && (getHostPersistentMemorySize()
+          == other.getHostPersistentMemorySize());
+      result = result && (getDevicePersistentMemorySize()
+          == other.getDevicePersistentMemorySize());
       result = result && (getComputeCost()
           == other.getComputeCost());
+      result = result && (getComputeTime()
+          == other.getComputeTime());
+      result = result && (getMemoryTime()
+          == other.getMemoryTime());
       result = result && (getIsFinal()
           == other.getIsFinal());
       result = result && getControlInputList()
@@ -2104,9 +2298,27 @@ public  final class CostGraphDef extends
       hash = (37 * hash) + TEMPORARY_MEMORY_SIZE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getTemporaryMemorySize());
+      hash = (37 * hash) + HOST_TEMP_MEMORY_SIZE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getHostTempMemorySize());
+      hash = (37 * hash) + DEVICE_TEMP_MEMORY_SIZE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getDeviceTempMemorySize());
+      hash = (37 * hash) + HOST_PERSISTENT_MEMORY_SIZE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getHostPersistentMemorySize());
+      hash = (37 * hash) + DEVICE_PERSISTENT_MEMORY_SIZE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getDevicePersistentMemorySize());
       hash = (37 * hash) + COMPUTE_COST_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getComputeCost());
+      hash = (37 * hash) + COMPUTE_TIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getComputeTime());
+      hash = (37 * hash) + MEMORY_TIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getMemoryTime());
       hash = (37 * hash) + IS_FINAL_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getIsFinal());
@@ -2254,12 +2466,24 @@ public  final class CostGraphDef extends
         }
         temporaryMemorySize_ = 0L;
 
+        hostTempMemorySize_ = 0L;
+
+        deviceTempMemorySize_ = 0L;
+
+        hostPersistentMemorySize_ = 0L;
+
+        devicePersistentMemorySize_ = 0L;
+
         computeCost_ = 0L;
+
+        computeTime_ = 0L;
+
+        memoryTime_ = 0L;
 
         isFinal_ = false;
 
         controlInput_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00004000);
         return this;
       }
 
@@ -2306,11 +2530,17 @@ public  final class CostGraphDef extends
           result.outputInfo_ = outputInfoBuilder_.build();
         }
         result.temporaryMemorySize_ = temporaryMemorySize_;
+        result.hostTempMemorySize_ = hostTempMemorySize_;
+        result.deviceTempMemorySize_ = deviceTempMemorySize_;
+        result.hostPersistentMemorySize_ = hostPersistentMemorySize_;
+        result.devicePersistentMemorySize_ = devicePersistentMemorySize_;
         result.computeCost_ = computeCost_;
+        result.computeTime_ = computeTime_;
+        result.memoryTime_ = memoryTime_;
         result.isFinal_ = isFinal_;
-        if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        if (((bitField0_ & 0x00004000) == 0x00004000)) {
           controlInput_ = java.util.Collections.unmodifiableList(controlInput_);
-          bitField0_ = (bitField0_ & ~0x00000100);
+          bitField0_ = (bitField0_ & ~0x00004000);
         }
         result.controlInput_ = controlInput_;
         result.bitField0_ = to_bitField0_;
@@ -2421,8 +2651,26 @@ public  final class CostGraphDef extends
         if (other.getTemporaryMemorySize() != 0L) {
           setTemporaryMemorySize(other.getTemporaryMemorySize());
         }
+        if (other.getHostTempMemorySize() != 0L) {
+          setHostTempMemorySize(other.getHostTempMemorySize());
+        }
+        if (other.getDeviceTempMemorySize() != 0L) {
+          setDeviceTempMemorySize(other.getDeviceTempMemorySize());
+        }
+        if (other.getHostPersistentMemorySize() != 0L) {
+          setHostPersistentMemorySize(other.getHostPersistentMemorySize());
+        }
+        if (other.getDevicePersistentMemorySize() != 0L) {
+          setDevicePersistentMemorySize(other.getDevicePersistentMemorySize());
+        }
         if (other.getComputeCost() != 0L) {
           setComputeCost(other.getComputeCost());
+        }
+        if (other.getComputeTime() != 0L) {
+          setComputeTime(other.getComputeTime());
+        }
+        if (other.getMemoryTime() != 0L) {
+          setMemoryTime(other.getMemoryTime());
         }
         if (other.getIsFinal() != false) {
           setIsFinal(other.getIsFinal());
@@ -2430,7 +2678,7 @@ public  final class CostGraphDef extends
         if (!other.controlInput_.isEmpty()) {
           if (controlInput_.isEmpty()) {
             controlInput_ = other.controlInput_;
-            bitField0_ = (bitField0_ & ~0x00000100);
+            bitField0_ = (bitField0_ & ~0x00004000);
           } else {
             ensureControlInputIsMutable();
             controlInput_.addAll(other.controlInput_);
@@ -3203,10 +3451,114 @@ public  final class CostGraphDef extends
         return this;
       }
 
+      private long hostTempMemorySize_ ;
+      /**
+       * <code>optional int64 host_temp_memory_size = 10;</code>
+       */
+      public long getHostTempMemorySize() {
+        return hostTempMemorySize_;
+      }
+      /**
+       * <code>optional int64 host_temp_memory_size = 10;</code>
+       */
+      public Builder setHostTempMemorySize(long value) {
+        
+        hostTempMemorySize_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 host_temp_memory_size = 10;</code>
+       */
+      public Builder clearHostTempMemorySize() {
+        
+        hostTempMemorySize_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long deviceTempMemorySize_ ;
+      /**
+       * <code>optional int64 device_temp_memory_size = 11;</code>
+       */
+      public long getDeviceTempMemorySize() {
+        return deviceTempMemorySize_;
+      }
+      /**
+       * <code>optional int64 device_temp_memory_size = 11;</code>
+       */
+      public Builder setDeviceTempMemorySize(long value) {
+        
+        deviceTempMemorySize_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 device_temp_memory_size = 11;</code>
+       */
+      public Builder clearDeviceTempMemorySize() {
+        
+        deviceTempMemorySize_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long hostPersistentMemorySize_ ;
+      /**
+       * <code>optional int64 host_persistent_memory_size = 12;</code>
+       */
+      public long getHostPersistentMemorySize() {
+        return hostPersistentMemorySize_;
+      }
+      /**
+       * <code>optional int64 host_persistent_memory_size = 12;</code>
+       */
+      public Builder setHostPersistentMemorySize(long value) {
+        
+        hostPersistentMemorySize_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 host_persistent_memory_size = 12;</code>
+       */
+      public Builder clearHostPersistentMemorySize() {
+        
+        hostPersistentMemorySize_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long devicePersistentMemorySize_ ;
+      /**
+       * <code>optional int64 device_persistent_memory_size = 16;</code>
+       */
+      public long getDevicePersistentMemorySize() {
+        return devicePersistentMemorySize_;
+      }
+      /**
+       * <code>optional int64 device_persistent_memory_size = 16;</code>
+       */
+      public Builder setDevicePersistentMemorySize(long value) {
+        
+        devicePersistentMemorySize_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 device_persistent_memory_size = 16;</code>
+       */
+      public Builder clearDevicePersistentMemorySize() {
+        
+        devicePersistentMemorySize_ = 0L;
+        onChanged();
+        return this;
+      }
+
       private long computeCost_ ;
       /**
        * <pre>
-       * Estimate of the computational cost of this node.
+       * Estimate of the computational cost of this node, in microseconds.
        * </pre>
        *
        * <code>optional int64 compute_cost = 9;</code>
@@ -3216,7 +3568,7 @@ public  final class CostGraphDef extends
       }
       /**
        * <pre>
-       * Estimate of the computational cost of this node.
+       * Estimate of the computational cost of this node, in microseconds.
        * </pre>
        *
        * <code>optional int64 compute_cost = 9;</code>
@@ -3229,7 +3581,7 @@ public  final class CostGraphDef extends
       }
       /**
        * <pre>
-       * Estimate of the computational cost of this node.
+       * Estimate of the computational cost of this node, in microseconds.
        * </pre>
        *
        * <code>optional int64 compute_cost = 9;</code>
@@ -3237,6 +3589,88 @@ public  final class CostGraphDef extends
       public Builder clearComputeCost() {
         
         computeCost_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long computeTime_ ;
+      /**
+       * <pre>
+       * Analytical estimate of the computational cost of this node, in
+       * microseconds.
+       * </pre>
+       *
+       * <code>optional int64 compute_time = 14;</code>
+       */
+      public long getComputeTime() {
+        return computeTime_;
+      }
+      /**
+       * <pre>
+       * Analytical estimate of the computational cost of this node, in
+       * microseconds.
+       * </pre>
+       *
+       * <code>optional int64 compute_time = 14;</code>
+       */
+      public Builder setComputeTime(long value) {
+        
+        computeTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Analytical estimate of the computational cost of this node, in
+       * microseconds.
+       * </pre>
+       *
+       * <code>optional int64 compute_time = 14;</code>
+       */
+      public Builder clearComputeTime() {
+        
+        computeTime_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long memoryTime_ ;
+      /**
+       * <pre>
+       * Analytical estimate of the memory access cost of this node, in
+       * microseconds.
+       * </pre>
+       *
+       * <code>optional int64 memory_time = 15;</code>
+       */
+      public long getMemoryTime() {
+        return memoryTime_;
+      }
+      /**
+       * <pre>
+       * Analytical estimate of the memory access cost of this node, in
+       * microseconds.
+       * </pre>
+       *
+       * <code>optional int64 memory_time = 15;</code>
+       */
+      public Builder setMemoryTime(long value) {
+        
+        memoryTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Analytical estimate of the memory access cost of this node, in
+       * microseconds.
+       * </pre>
+       *
+       * <code>optional int64 memory_time = 15;</code>
+       */
+      public Builder clearMemoryTime() {
+        
+        memoryTime_ = 0L;
         onChanged();
         return this;
       }
@@ -3284,9 +3718,9 @@ public  final class CostGraphDef extends
 
       private java.util.List<java.lang.Integer> controlInput_ = java.util.Collections.emptyList();
       private void ensureControlInputIsMutable() {
-        if (!((bitField0_ & 0x00000100) == 0x00000100)) {
+        if (!((bitField0_ & 0x00004000) == 0x00004000)) {
           controlInput_ = new java.util.ArrayList<java.lang.Integer>(controlInput_);
-          bitField0_ |= 0x00000100;
+          bitField0_ |= 0x00004000;
          }
       }
       /**
@@ -3371,7 +3805,7 @@ public  final class CostGraphDef extends
        */
       public Builder clearControlInput() {
         controlInput_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00004000);
         onChanged();
         return this;
       }

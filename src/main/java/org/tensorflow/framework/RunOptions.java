@@ -5,7 +5,7 @@ package org.tensorflow.framework;
 
 /**
  * <pre>
- * EXPERIMENTAL. Options for a single Run() call.
+ * Options for a single Run() call.
  * </pre>
  *
  * Protobuf type {@code tensorflow.RunOptions}
@@ -507,7 +507,7 @@ public  final class RunOptions extends
   }
   /**
    * <pre>
-   * EXPERIMENTAL. Options for a single Run() call.
+   * Options for a single Run() call.
    * </pre>
    *
    * Protobuf type {@code tensorflow.RunOptions}

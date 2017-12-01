@@ -16,6 +16,7 @@ public  final class RunGraphResponse extends
   }
   private RunGraphResponse() {
     recv_ = java.util.Collections.emptyList();
+    partitionGraph_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -45,11 +46,11 @@ public  final class RunGraphResponse extends
           }
           case 10: {
             if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-              recv_ = new java.util.ArrayList<org.tensorflow.distruntime.NamedTensor>();
+              recv_ = new java.util.ArrayList<org.tensorflow.framework.NamedTensorProto>();
               mutable_bitField0_ |= 0x00000001;
             }
             recv_.add(
-                input.readMessage(org.tensorflow.distruntime.NamedTensor.parser(), extensionRegistry));
+                input.readMessage(org.tensorflow.framework.NamedTensorProto.parser(), extensionRegistry));
             break;
           }
           case 18: {
@@ -78,6 +79,15 @@ public  final class RunGraphResponse extends
 
             break;
           }
+          case 34: {
+            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+              partitionGraph_ = new java.util.ArrayList<org.tensorflow.framework.GraphDef>();
+              mutable_bitField0_ |= 0x00000008;
+            }
+            partitionGraph_.add(
+                input.readMessage(org.tensorflow.framework.GraphDef.parser(), extensionRegistry));
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -88,6 +98,9 @@ public  final class RunGraphResponse extends
     } finally {
       if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
         recv_ = java.util.Collections.unmodifiableList(recv_);
+      }
+      if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+        partitionGraph_ = java.util.Collections.unmodifiableList(partitionGraph_);
       }
       makeExtensionsImmutable();
     }
@@ -106,16 +119,16 @@ public  final class RunGraphResponse extends
 
   private int bitField0_;
   public static final int RECV_FIELD_NUMBER = 1;
-  private java.util.List<org.tensorflow.distruntime.NamedTensor> recv_;
+  private java.util.List<org.tensorflow.framework.NamedTensorProto> recv_;
   /**
    * <pre>
    * A list of tensors corresponding to those requested by
    * `RunGraphRequest.recv_key`.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+   * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
    */
-  public java.util.List<org.tensorflow.distruntime.NamedTensor> getRecvList() {
+  public java.util.List<org.tensorflow.framework.NamedTensorProto> getRecvList() {
     return recv_;
   }
   /**
@@ -124,9 +137,9 @@ public  final class RunGraphResponse extends
    * `RunGraphRequest.recv_key`.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+   * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
    */
-  public java.util.List<? extends org.tensorflow.distruntime.NamedTensorOrBuilder> 
+  public java.util.List<? extends org.tensorflow.framework.NamedTensorProtoOrBuilder> 
       getRecvOrBuilderList() {
     return recv_;
   }
@@ -136,7 +149,7 @@ public  final class RunGraphResponse extends
    * `RunGraphRequest.recv_key`.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+   * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
    */
   public int getRecvCount() {
     return recv_.size();
@@ -147,9 +160,9 @@ public  final class RunGraphResponse extends
    * `RunGraphRequest.recv_key`.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+   * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
    */
-  public org.tensorflow.distruntime.NamedTensor getRecv(int index) {
+  public org.tensorflow.framework.NamedTensorProto getRecv(int index) {
     return recv_.get(index);
   }
   /**
@@ -158,9 +171,9 @@ public  final class RunGraphResponse extends
    * `RunGraphRequest.recv_key`.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+   * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
    */
-  public org.tensorflow.distruntime.NamedTensorOrBuilder getRecvOrBuilder(
+  public org.tensorflow.framework.NamedTensorProtoOrBuilder getRecvOrBuilder(
       int index) {
     return recv_.get(index);
   }
@@ -169,8 +182,9 @@ public  final class RunGraphResponse extends
   private org.tensorflow.framework.StepStats stepStats_;
   /**
    * <pre>
-   * If the request asked for execution stats or cost graph, these are returned
-   * here.
+   * If the request asked for execution stats, the cost graph, or the partition
+   * graphs, these are returned here.
+   * TODO(suharshs): Package these in a RunMetadata instead.
    * </pre>
    *
    * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -180,8 +194,9 @@ public  final class RunGraphResponse extends
   }
   /**
    * <pre>
-   * If the request asked for execution stats or cost graph, these are returned
-   * here.
+   * If the request asked for execution stats, the cost graph, or the partition
+   * graphs, these are returned here.
+   * TODO(suharshs): Package these in a RunMetadata instead.
    * </pre>
    *
    * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -191,8 +206,9 @@ public  final class RunGraphResponse extends
   }
   /**
    * <pre>
-   * If the request asked for execution stats or cost graph, these are returned
-   * here.
+   * If the request asked for execution stats, the cost graph, or the partition
+   * graphs, these are returned here.
+   * TODO(suharshs): Package these in a RunMetadata instead.
    * </pre>
    *
    * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -222,6 +238,41 @@ public  final class RunGraphResponse extends
     return getCostGraph();
   }
 
+  public static final int PARTITION_GRAPH_FIELD_NUMBER = 4;
+  private java.util.List<org.tensorflow.framework.GraphDef> partitionGraph_;
+  /**
+   * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+   */
+  public java.util.List<org.tensorflow.framework.GraphDef> getPartitionGraphList() {
+    return partitionGraph_;
+  }
+  /**
+   * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+   */
+  public java.util.List<? extends org.tensorflow.framework.GraphDefOrBuilder> 
+      getPartitionGraphOrBuilderList() {
+    return partitionGraph_;
+  }
+  /**
+   * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+   */
+  public int getPartitionGraphCount() {
+    return partitionGraph_.size();
+  }
+  /**
+   * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+   */
+  public org.tensorflow.framework.GraphDef getPartitionGraph(int index) {
+    return partitionGraph_.get(index);
+  }
+  /**
+   * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+   */
+  public org.tensorflow.framework.GraphDefOrBuilder getPartitionGraphOrBuilder(
+      int index) {
+    return partitionGraph_.get(index);
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -243,6 +294,9 @@ public  final class RunGraphResponse extends
     if (costGraph_ != null) {
       output.writeMessage(3, getCostGraph());
     }
+    for (int i = 0; i < partitionGraph_.size(); i++) {
+      output.writeMessage(4, partitionGraph_.get(i));
+    }
   }
 
   public int getSerializedSize() {
@@ -261,6 +315,10 @@ public  final class RunGraphResponse extends
     if (costGraph_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, getCostGraph());
+    }
+    for (int i = 0; i < partitionGraph_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, partitionGraph_.get(i));
     }
     memoizedSize = size;
     return size;
@@ -290,6 +348,8 @@ public  final class RunGraphResponse extends
       result = result && getCostGraph()
           .equals(other.getCostGraph());
     }
+    result = result && getPartitionGraphList()
+        .equals(other.getPartitionGraphList());
     return result;
   }
 
@@ -311,6 +371,10 @@ public  final class RunGraphResponse extends
     if (hasCostGraph()) {
       hash = (37 * hash) + COST_GRAPH_FIELD_NUMBER;
       hash = (53 * hash) + getCostGraph().hashCode();
+    }
+    if (getPartitionGraphCount() > 0) {
+      hash = (37 * hash) + PARTITION_GRAPH_FIELD_NUMBER;
+      hash = (53 * hash) + getPartitionGraphList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -427,6 +491,7 @@ public  final class RunGraphResponse extends
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
         getRecvFieldBuilder();
+        getPartitionGraphFieldBuilder();
       }
     }
     public Builder clear() {
@@ -448,6 +513,12 @@ public  final class RunGraphResponse extends
       } else {
         costGraph_ = null;
         costGraphBuilder_ = null;
+      }
+      if (partitionGraphBuilder_ == null) {
+        partitionGraph_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
+      } else {
+        partitionGraphBuilder_.clear();
       }
       return this;
     }
@@ -491,6 +562,15 @@ public  final class RunGraphResponse extends
         result.costGraph_ = costGraph_;
       } else {
         result.costGraph_ = costGraphBuilder_.build();
+      }
+      if (partitionGraphBuilder_ == null) {
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          partitionGraph_ = java.util.Collections.unmodifiableList(partitionGraph_);
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.partitionGraph_ = partitionGraph_;
+      } else {
+        result.partitionGraph_ = partitionGraphBuilder_.build();
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -566,6 +646,32 @@ public  final class RunGraphResponse extends
       if (other.hasCostGraph()) {
         mergeCostGraph(other.getCostGraph());
       }
+      if (partitionGraphBuilder_ == null) {
+        if (!other.partitionGraph_.isEmpty()) {
+          if (partitionGraph_.isEmpty()) {
+            partitionGraph_ = other.partitionGraph_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+          } else {
+            ensurePartitionGraphIsMutable();
+            partitionGraph_.addAll(other.partitionGraph_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.partitionGraph_.isEmpty()) {
+          if (partitionGraphBuilder_.isEmpty()) {
+            partitionGraphBuilder_.dispose();
+            partitionGraphBuilder_ = null;
+            partitionGraph_ = other.partitionGraph_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+            partitionGraphBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getPartitionGraphFieldBuilder() : null;
+          } else {
+            partitionGraphBuilder_.addAllMessages(other.partitionGraph_);
+          }
+        }
+      }
       onChanged();
       return this;
     }
@@ -593,17 +699,17 @@ public  final class RunGraphResponse extends
     }
     private int bitField0_;
 
-    private java.util.List<org.tensorflow.distruntime.NamedTensor> recv_ =
+    private java.util.List<org.tensorflow.framework.NamedTensorProto> recv_ =
       java.util.Collections.emptyList();
     private void ensureRecvIsMutable() {
       if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-        recv_ = new java.util.ArrayList<org.tensorflow.distruntime.NamedTensor>(recv_);
+        recv_ = new java.util.ArrayList<org.tensorflow.framework.NamedTensorProto>(recv_);
         bitField0_ |= 0x00000001;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        org.tensorflow.distruntime.NamedTensor, org.tensorflow.distruntime.NamedTensor.Builder, org.tensorflow.distruntime.NamedTensorOrBuilder> recvBuilder_;
+        org.tensorflow.framework.NamedTensorProto, org.tensorflow.framework.NamedTensorProto.Builder, org.tensorflow.framework.NamedTensorProtoOrBuilder> recvBuilder_;
 
     /**
      * <pre>
@@ -611,9 +717,9 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
-    public java.util.List<org.tensorflow.distruntime.NamedTensor> getRecvList() {
+    public java.util.List<org.tensorflow.framework.NamedTensorProto> getRecvList() {
       if (recvBuilder_ == null) {
         return java.util.Collections.unmodifiableList(recv_);
       } else {
@@ -626,7 +732,7 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
     public int getRecvCount() {
       if (recvBuilder_ == null) {
@@ -641,9 +747,9 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
-    public org.tensorflow.distruntime.NamedTensor getRecv(int index) {
+    public org.tensorflow.framework.NamedTensorProto getRecv(int index) {
       if (recvBuilder_ == null) {
         return recv_.get(index);
       } else {
@@ -656,10 +762,10 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
     public Builder setRecv(
-        int index, org.tensorflow.distruntime.NamedTensor value) {
+        int index, org.tensorflow.framework.NamedTensorProto value) {
       if (recvBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -678,10 +784,10 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
     public Builder setRecv(
-        int index, org.tensorflow.distruntime.NamedTensor.Builder builderForValue) {
+        int index, org.tensorflow.framework.NamedTensorProto.Builder builderForValue) {
       if (recvBuilder_ == null) {
         ensureRecvIsMutable();
         recv_.set(index, builderForValue.build());
@@ -697,9 +803,9 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
-    public Builder addRecv(org.tensorflow.distruntime.NamedTensor value) {
+    public Builder addRecv(org.tensorflow.framework.NamedTensorProto value) {
       if (recvBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -718,10 +824,10 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
     public Builder addRecv(
-        int index, org.tensorflow.distruntime.NamedTensor value) {
+        int index, org.tensorflow.framework.NamedTensorProto value) {
       if (recvBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -740,10 +846,10 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
     public Builder addRecv(
-        org.tensorflow.distruntime.NamedTensor.Builder builderForValue) {
+        org.tensorflow.framework.NamedTensorProto.Builder builderForValue) {
       if (recvBuilder_ == null) {
         ensureRecvIsMutable();
         recv_.add(builderForValue.build());
@@ -759,10 +865,10 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
     public Builder addRecv(
-        int index, org.tensorflow.distruntime.NamedTensor.Builder builderForValue) {
+        int index, org.tensorflow.framework.NamedTensorProto.Builder builderForValue) {
       if (recvBuilder_ == null) {
         ensureRecvIsMutable();
         recv_.add(index, builderForValue.build());
@@ -778,10 +884,10 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
     public Builder addAllRecv(
-        java.lang.Iterable<? extends org.tensorflow.distruntime.NamedTensor> values) {
+        java.lang.Iterable<? extends org.tensorflow.framework.NamedTensorProto> values) {
       if (recvBuilder_ == null) {
         ensureRecvIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -798,7 +904,7 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
     public Builder clearRecv() {
       if (recvBuilder_ == null) {
@@ -816,7 +922,7 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
     public Builder removeRecv(int index) {
       if (recvBuilder_ == null) {
@@ -834,9 +940,9 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
-    public org.tensorflow.distruntime.NamedTensor.Builder getRecvBuilder(
+    public org.tensorflow.framework.NamedTensorProto.Builder getRecvBuilder(
         int index) {
       return getRecvFieldBuilder().getBuilder(index);
     }
@@ -846,9 +952,9 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
-    public org.tensorflow.distruntime.NamedTensorOrBuilder getRecvOrBuilder(
+    public org.tensorflow.framework.NamedTensorProtoOrBuilder getRecvOrBuilder(
         int index) {
       if (recvBuilder_ == null) {
         return recv_.get(index);  } else {
@@ -861,9 +967,9 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
-    public java.util.List<? extends org.tensorflow.distruntime.NamedTensorOrBuilder> 
+    public java.util.List<? extends org.tensorflow.framework.NamedTensorProtoOrBuilder> 
          getRecvOrBuilderList() {
       if (recvBuilder_ != null) {
         return recvBuilder_.getMessageOrBuilderList();
@@ -877,11 +983,11 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
-    public org.tensorflow.distruntime.NamedTensor.Builder addRecvBuilder() {
+    public org.tensorflow.framework.NamedTensorProto.Builder addRecvBuilder() {
       return getRecvFieldBuilder().addBuilder(
-          org.tensorflow.distruntime.NamedTensor.getDefaultInstance());
+          org.tensorflow.framework.NamedTensorProto.getDefaultInstance());
     }
     /**
      * <pre>
@@ -889,12 +995,12 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
-    public org.tensorflow.distruntime.NamedTensor.Builder addRecvBuilder(
+    public org.tensorflow.framework.NamedTensorProto.Builder addRecvBuilder(
         int index) {
       return getRecvFieldBuilder().addBuilder(
-          index, org.tensorflow.distruntime.NamedTensor.getDefaultInstance());
+          index, org.tensorflow.framework.NamedTensorProto.getDefaultInstance());
     }
     /**
      * <pre>
@@ -902,18 +1008,18 @@ public  final class RunGraphResponse extends
      * `RunGraphRequest.recv_key`.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor recv = 1;</code>
+     * <code>repeated .tensorflow.NamedTensorProto recv = 1;</code>
      */
-    public java.util.List<org.tensorflow.distruntime.NamedTensor.Builder> 
+    public java.util.List<org.tensorflow.framework.NamedTensorProto.Builder> 
          getRecvBuilderList() {
       return getRecvFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        org.tensorflow.distruntime.NamedTensor, org.tensorflow.distruntime.NamedTensor.Builder, org.tensorflow.distruntime.NamedTensorOrBuilder> 
+        org.tensorflow.framework.NamedTensorProto, org.tensorflow.framework.NamedTensorProto.Builder, org.tensorflow.framework.NamedTensorProtoOrBuilder> 
         getRecvFieldBuilder() {
       if (recvBuilder_ == null) {
         recvBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            org.tensorflow.distruntime.NamedTensor, org.tensorflow.distruntime.NamedTensor.Builder, org.tensorflow.distruntime.NamedTensorOrBuilder>(
+            org.tensorflow.framework.NamedTensorProto, org.tensorflow.framework.NamedTensorProto.Builder, org.tensorflow.framework.NamedTensorProtoOrBuilder>(
                 recv_,
                 ((bitField0_ & 0x00000001) == 0x00000001),
                 getParentForChildren(),
@@ -928,8 +1034,9 @@ public  final class RunGraphResponse extends
         org.tensorflow.framework.StepStats, org.tensorflow.framework.StepStats.Builder, org.tensorflow.framework.StepStatsOrBuilder> stepStatsBuilder_;
     /**
      * <pre>
-     * If the request asked for execution stats or cost graph, these are returned
-     * here.
+     * If the request asked for execution stats, the cost graph, or the partition
+     * graphs, these are returned here.
+     * TODO(suharshs): Package these in a RunMetadata instead.
      * </pre>
      *
      * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -939,8 +1046,9 @@ public  final class RunGraphResponse extends
     }
     /**
      * <pre>
-     * If the request asked for execution stats or cost graph, these are returned
-     * here.
+     * If the request asked for execution stats, the cost graph, or the partition
+     * graphs, these are returned here.
+     * TODO(suharshs): Package these in a RunMetadata instead.
      * </pre>
      *
      * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -954,8 +1062,9 @@ public  final class RunGraphResponse extends
     }
     /**
      * <pre>
-     * If the request asked for execution stats or cost graph, these are returned
-     * here.
+     * If the request asked for execution stats, the cost graph, or the partition
+     * graphs, these are returned here.
+     * TODO(suharshs): Package these in a RunMetadata instead.
      * </pre>
      *
      * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -975,8 +1084,9 @@ public  final class RunGraphResponse extends
     }
     /**
      * <pre>
-     * If the request asked for execution stats or cost graph, these are returned
-     * here.
+     * If the request asked for execution stats, the cost graph, or the partition
+     * graphs, these are returned here.
+     * TODO(suharshs): Package these in a RunMetadata instead.
      * </pre>
      *
      * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -994,8 +1104,9 @@ public  final class RunGraphResponse extends
     }
     /**
      * <pre>
-     * If the request asked for execution stats or cost graph, these are returned
-     * here.
+     * If the request asked for execution stats, the cost graph, or the partition
+     * graphs, these are returned here.
+     * TODO(suharshs): Package these in a RunMetadata instead.
      * </pre>
      *
      * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -1017,8 +1128,9 @@ public  final class RunGraphResponse extends
     }
     /**
      * <pre>
-     * If the request asked for execution stats or cost graph, these are returned
-     * here.
+     * If the request asked for execution stats, the cost graph, or the partition
+     * graphs, these are returned here.
+     * TODO(suharshs): Package these in a RunMetadata instead.
      * </pre>
      *
      * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -1036,8 +1148,9 @@ public  final class RunGraphResponse extends
     }
     /**
      * <pre>
-     * If the request asked for execution stats or cost graph, these are returned
-     * here.
+     * If the request asked for execution stats, the cost graph, or the partition
+     * graphs, these are returned here.
+     * TODO(suharshs): Package these in a RunMetadata instead.
      * </pre>
      *
      * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -1049,8 +1162,9 @@ public  final class RunGraphResponse extends
     }
     /**
      * <pre>
-     * If the request asked for execution stats or cost graph, these are returned
-     * here.
+     * If the request asked for execution stats, the cost graph, or the partition
+     * graphs, these are returned here.
+     * TODO(suharshs): Package these in a RunMetadata instead.
      * </pre>
      *
      * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -1065,8 +1179,9 @@ public  final class RunGraphResponse extends
     }
     /**
      * <pre>
-     * If the request asked for execution stats or cost graph, these are returned
-     * here.
+     * If the request asked for execution stats, the cost graph, or the partition
+     * graphs, these are returned here.
+     * TODO(suharshs): Package these in a RunMetadata instead.
      * </pre>
      *
      * <code>optional .tensorflow.StepStats step_stats = 2;</code>
@@ -1200,6 +1315,246 @@ public  final class RunGraphResponse extends
         costGraph_ = null;
       }
       return costGraphBuilder_;
+    }
+
+    private java.util.List<org.tensorflow.framework.GraphDef> partitionGraph_ =
+      java.util.Collections.emptyList();
+    private void ensurePartitionGraphIsMutable() {
+      if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+        partitionGraph_ = new java.util.ArrayList<org.tensorflow.framework.GraphDef>(partitionGraph_);
+        bitField0_ |= 0x00000008;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        org.tensorflow.framework.GraphDef, org.tensorflow.framework.GraphDef.Builder, org.tensorflow.framework.GraphDefOrBuilder> partitionGraphBuilder_;
+
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public java.util.List<org.tensorflow.framework.GraphDef> getPartitionGraphList() {
+      if (partitionGraphBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(partitionGraph_);
+      } else {
+        return partitionGraphBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public int getPartitionGraphCount() {
+      if (partitionGraphBuilder_ == null) {
+        return partitionGraph_.size();
+      } else {
+        return partitionGraphBuilder_.getCount();
+      }
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public org.tensorflow.framework.GraphDef getPartitionGraph(int index) {
+      if (partitionGraphBuilder_ == null) {
+        return partitionGraph_.get(index);
+      } else {
+        return partitionGraphBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public Builder setPartitionGraph(
+        int index, org.tensorflow.framework.GraphDef value) {
+      if (partitionGraphBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensurePartitionGraphIsMutable();
+        partitionGraph_.set(index, value);
+        onChanged();
+      } else {
+        partitionGraphBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public Builder setPartitionGraph(
+        int index, org.tensorflow.framework.GraphDef.Builder builderForValue) {
+      if (partitionGraphBuilder_ == null) {
+        ensurePartitionGraphIsMutable();
+        partitionGraph_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        partitionGraphBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public Builder addPartitionGraph(org.tensorflow.framework.GraphDef value) {
+      if (partitionGraphBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensurePartitionGraphIsMutable();
+        partitionGraph_.add(value);
+        onChanged();
+      } else {
+        partitionGraphBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public Builder addPartitionGraph(
+        int index, org.tensorflow.framework.GraphDef value) {
+      if (partitionGraphBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensurePartitionGraphIsMutable();
+        partitionGraph_.add(index, value);
+        onChanged();
+      } else {
+        partitionGraphBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public Builder addPartitionGraph(
+        org.tensorflow.framework.GraphDef.Builder builderForValue) {
+      if (partitionGraphBuilder_ == null) {
+        ensurePartitionGraphIsMutable();
+        partitionGraph_.add(builderForValue.build());
+        onChanged();
+      } else {
+        partitionGraphBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public Builder addPartitionGraph(
+        int index, org.tensorflow.framework.GraphDef.Builder builderForValue) {
+      if (partitionGraphBuilder_ == null) {
+        ensurePartitionGraphIsMutable();
+        partitionGraph_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        partitionGraphBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public Builder addAllPartitionGraph(
+        java.lang.Iterable<? extends org.tensorflow.framework.GraphDef> values) {
+      if (partitionGraphBuilder_ == null) {
+        ensurePartitionGraphIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, partitionGraph_);
+        onChanged();
+      } else {
+        partitionGraphBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public Builder clearPartitionGraph() {
+      if (partitionGraphBuilder_ == null) {
+        partitionGraph_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+      } else {
+        partitionGraphBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public Builder removePartitionGraph(int index) {
+      if (partitionGraphBuilder_ == null) {
+        ensurePartitionGraphIsMutable();
+        partitionGraph_.remove(index);
+        onChanged();
+      } else {
+        partitionGraphBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public org.tensorflow.framework.GraphDef.Builder getPartitionGraphBuilder(
+        int index) {
+      return getPartitionGraphFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public org.tensorflow.framework.GraphDefOrBuilder getPartitionGraphOrBuilder(
+        int index) {
+      if (partitionGraphBuilder_ == null) {
+        return partitionGraph_.get(index);  } else {
+        return partitionGraphBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public java.util.List<? extends org.tensorflow.framework.GraphDefOrBuilder> 
+         getPartitionGraphOrBuilderList() {
+      if (partitionGraphBuilder_ != null) {
+        return partitionGraphBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(partitionGraph_);
+      }
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public org.tensorflow.framework.GraphDef.Builder addPartitionGraphBuilder() {
+      return getPartitionGraphFieldBuilder().addBuilder(
+          org.tensorflow.framework.GraphDef.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public org.tensorflow.framework.GraphDef.Builder addPartitionGraphBuilder(
+        int index) {
+      return getPartitionGraphFieldBuilder().addBuilder(
+          index, org.tensorflow.framework.GraphDef.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .tensorflow.GraphDef partition_graph = 4;</code>
+     */
+    public java.util.List<org.tensorflow.framework.GraphDef.Builder> 
+         getPartitionGraphBuilderList() {
+      return getPartitionGraphFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        org.tensorflow.framework.GraphDef, org.tensorflow.framework.GraphDef.Builder, org.tensorflow.framework.GraphDefOrBuilder> 
+        getPartitionGraphFieldBuilder() {
+      if (partitionGraphBuilder_ == null) {
+        partitionGraphBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            org.tensorflow.framework.GraphDef, org.tensorflow.framework.GraphDef.Builder, org.tensorflow.framework.GraphDefOrBuilder>(
+                partitionGraph_,
+                ((bitField0_ & 0x00000008) == 0x00000008),
+                getParentForChildren(),
+                isClean());
+        partitionGraph_ = null;
+      }
+      return partitionGraphBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

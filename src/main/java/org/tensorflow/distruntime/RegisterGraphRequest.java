@@ -81,6 +81,19 @@ public  final class RegisterGraphRequest extends
 
             break;
           }
+          case 42: {
+            org.tensorflow.framework.DebugOptions.Builder subBuilder = null;
+            if (debugOptions_ != null) {
+              subBuilder = debugOptions_.toBuilder();
+            }
+            debugOptions_ = input.readMessage(org.tensorflow.framework.DebugOptions.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(debugOptions_);
+              debugOptions_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -229,6 +242,39 @@ public  final class RegisterGraphRequest extends
     return getGraphOptions();
   }
 
+  public static final int DEBUG_OPTIONS_FIELD_NUMBER = 5;
+  private org.tensorflow.framework.DebugOptions debugOptions_;
+  /**
+   * <pre>
+   * Field(s) used by TensorFlow Debugger (tfdbg).
+   * </pre>
+   *
+   * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+   */
+  public boolean hasDebugOptions() {
+    return debugOptions_ != null;
+  }
+  /**
+   * <pre>
+   * Field(s) used by TensorFlow Debugger (tfdbg).
+   * </pre>
+   *
+   * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+   */
+  public org.tensorflow.framework.DebugOptions getDebugOptions() {
+    return debugOptions_ == null ? org.tensorflow.framework.DebugOptions.getDefaultInstance() : debugOptions_;
+  }
+  /**
+   * <pre>
+   * Field(s) used by TensorFlow Debugger (tfdbg).
+   * </pre>
+   *
+   * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+   */
+  public org.tensorflow.framework.DebugOptionsOrBuilder getDebugOptionsOrBuilder() {
+    return getDebugOptions();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -253,6 +299,9 @@ public  final class RegisterGraphRequest extends
     if (graphOptions_ != null) {
       output.writeMessage(4, getGraphOptions());
     }
+    if (debugOptions_ != null) {
+      output.writeMessage(5, getDebugOptions());
+    }
   }
 
   public int getSerializedSize() {
@@ -274,6 +323,10 @@ public  final class RegisterGraphRequest extends
     if (graphOptions_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, getGraphOptions());
+    }
+    if (debugOptions_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(5, getDebugOptions());
     }
     memoizedSize = size;
     return size;
@@ -305,6 +358,11 @@ public  final class RegisterGraphRequest extends
       result = result && getGraphOptions()
           .equals(other.getGraphOptions());
     }
+    result = result && (hasDebugOptions() == other.hasDebugOptions());
+    if (hasDebugOptions()) {
+      result = result && getDebugOptions()
+          .equals(other.getDebugOptions());
+    }
     return result;
   }
 
@@ -327,6 +385,10 @@ public  final class RegisterGraphRequest extends
     if (hasGraphOptions()) {
       hash = (37 * hash) + GRAPH_OPTIONS_FIELD_NUMBER;
       hash = (53 * hash) + getGraphOptions().hashCode();
+    }
+    if (hasDebugOptions()) {
+      hash = (37 * hash) + DEBUG_OPTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getDebugOptions().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -462,6 +524,12 @@ public  final class RegisterGraphRequest extends
         graphOptions_ = null;
         graphOptionsBuilder_ = null;
       }
+      if (debugOptionsBuilder_ == null) {
+        debugOptions_ = null;
+      } else {
+        debugOptions_ = null;
+        debugOptionsBuilder_ = null;
+      }
       return this;
     }
 
@@ -495,6 +563,11 @@ public  final class RegisterGraphRequest extends
         result.graphOptions_ = graphOptions_;
       } else {
         result.graphOptions_ = graphOptionsBuilder_.build();
+      }
+      if (debugOptionsBuilder_ == null) {
+        result.debugOptions_ = debugOptions_;
+      } else {
+        result.debugOptions_ = debugOptionsBuilder_.build();
       }
       onBuilt();
       return result;
@@ -549,6 +622,9 @@ public  final class RegisterGraphRequest extends
       }
       if (other.hasGraphOptions()) {
         mergeGraphOptions(other.getGraphOptions());
+      }
+      if (other.hasDebugOptions()) {
+        mergeDebugOptions(other.getDebugOptions());
       }
       onChanged();
       return this;
@@ -1019,6 +1095,159 @@ public  final class RegisterGraphRequest extends
         graphOptions_ = null;
       }
       return graphOptionsBuilder_;
+    }
+
+    private org.tensorflow.framework.DebugOptions debugOptions_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.tensorflow.framework.DebugOptions, org.tensorflow.framework.DebugOptions.Builder, org.tensorflow.framework.DebugOptionsOrBuilder> debugOptionsBuilder_;
+    /**
+     * <pre>
+     * Field(s) used by TensorFlow Debugger (tfdbg).
+     * </pre>
+     *
+     * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+     */
+    public boolean hasDebugOptions() {
+      return debugOptionsBuilder_ != null || debugOptions_ != null;
+    }
+    /**
+     * <pre>
+     * Field(s) used by TensorFlow Debugger (tfdbg).
+     * </pre>
+     *
+     * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+     */
+    public org.tensorflow.framework.DebugOptions getDebugOptions() {
+      if (debugOptionsBuilder_ == null) {
+        return debugOptions_ == null ? org.tensorflow.framework.DebugOptions.getDefaultInstance() : debugOptions_;
+      } else {
+        return debugOptionsBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Field(s) used by TensorFlow Debugger (tfdbg).
+     * </pre>
+     *
+     * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+     */
+    public Builder setDebugOptions(org.tensorflow.framework.DebugOptions value) {
+      if (debugOptionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        debugOptions_ = value;
+        onChanged();
+      } else {
+        debugOptionsBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Field(s) used by TensorFlow Debugger (tfdbg).
+     * </pre>
+     *
+     * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+     */
+    public Builder setDebugOptions(
+        org.tensorflow.framework.DebugOptions.Builder builderForValue) {
+      if (debugOptionsBuilder_ == null) {
+        debugOptions_ = builderForValue.build();
+        onChanged();
+      } else {
+        debugOptionsBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Field(s) used by TensorFlow Debugger (tfdbg).
+     * </pre>
+     *
+     * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+     */
+    public Builder mergeDebugOptions(org.tensorflow.framework.DebugOptions value) {
+      if (debugOptionsBuilder_ == null) {
+        if (debugOptions_ != null) {
+          debugOptions_ =
+            org.tensorflow.framework.DebugOptions.newBuilder(debugOptions_).mergeFrom(value).buildPartial();
+        } else {
+          debugOptions_ = value;
+        }
+        onChanged();
+      } else {
+        debugOptionsBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Field(s) used by TensorFlow Debugger (tfdbg).
+     * </pre>
+     *
+     * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+     */
+    public Builder clearDebugOptions() {
+      if (debugOptionsBuilder_ == null) {
+        debugOptions_ = null;
+        onChanged();
+      } else {
+        debugOptions_ = null;
+        debugOptionsBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Field(s) used by TensorFlow Debugger (tfdbg).
+     * </pre>
+     *
+     * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+     */
+    public org.tensorflow.framework.DebugOptions.Builder getDebugOptionsBuilder() {
+      
+      onChanged();
+      return getDebugOptionsFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Field(s) used by TensorFlow Debugger (tfdbg).
+     * </pre>
+     *
+     * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+     */
+    public org.tensorflow.framework.DebugOptionsOrBuilder getDebugOptionsOrBuilder() {
+      if (debugOptionsBuilder_ != null) {
+        return debugOptionsBuilder_.getMessageOrBuilder();
+      } else {
+        return debugOptions_ == null ?
+            org.tensorflow.framework.DebugOptions.getDefaultInstance() : debugOptions_;
+      }
+    }
+    /**
+     * <pre>
+     * Field(s) used by TensorFlow Debugger (tfdbg).
+     * </pre>
+     *
+     * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.tensorflow.framework.DebugOptions, org.tensorflow.framework.DebugOptions.Builder, org.tensorflow.framework.DebugOptionsOrBuilder> 
+        getDebugOptionsFieldBuilder() {
+      if (debugOptionsBuilder_ == null) {
+        debugOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            org.tensorflow.framework.DebugOptions, org.tensorflow.framework.DebugOptions.Builder, org.tensorflow.framework.DebugOptionsOrBuilder>(
+                getDebugOptions(),
+                getParentForChildren(),
+                isClean());
+        debugOptions_ = null;
+      }
+      return debugOptionsBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

@@ -50,4 +50,15 @@ public interface DebugOptionsOrBuilder extends
    */
   org.tensorflow.framework.DebugTensorWatchOrBuilder getDebugTensorWatchOptsOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * Caller-specified global step count.
+   * Note that this is distinct from the session run count and the executor
+   * step count.
+   * </pre>
+   *
+   * <code>optional int64 global_step = 10;</code>
+   */
+  long getGlobalStep();
 }

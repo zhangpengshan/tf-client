@@ -126,6 +126,19 @@ public  final class NodeExecStats extends
                 input.readMessage(org.tensorflow.framework.AllocationDescription.parser(), extensionRegistry));
             break;
           }
+          case 98: {
+            org.tensorflow.framework.MemoryStats.Builder subBuilder = null;
+            if (memoryStats_ != null) {
+              subBuilder = memoryStats_.toBuilder();
+            }
+            memoryStats_ = input.readMessage(org.tensorflow.framework.MemoryStats.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(memoryStats_);
+              memoryStats_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -400,6 +413,27 @@ public  final class NodeExecStats extends
     return referencedTensor_.get(index);
   }
 
+  public static final int MEMORY_STATS_FIELD_NUMBER = 12;
+  private org.tensorflow.framework.MemoryStats memoryStats_;
+  /**
+   * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+   */
+  public boolean hasMemoryStats() {
+    return memoryStats_ != null;
+  }
+  /**
+   * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+   */
+  public org.tensorflow.framework.MemoryStats getMemoryStats() {
+    return memoryStats_ == null ? org.tensorflow.framework.MemoryStats.getDefaultInstance() : memoryStats_;
+  }
+  /**
+   * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+   */
+  public org.tensorflow.framework.MemoryStatsOrBuilder getMemoryStatsOrBuilder() {
+    return getMemoryStats();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -444,6 +478,9 @@ public  final class NodeExecStats extends
     }
     for (int i = 0; i < referencedTensor_.size(); i++) {
       output.writeMessage(11, referencedTensor_.get(i));
+    }
+    if (memoryStats_ != null) {
+      output.writeMessage(12, getMemoryStats());
     }
   }
 
@@ -494,6 +531,10 @@ public  final class NodeExecStats extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(11, referencedTensor_.get(i));
     }
+    if (memoryStats_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(12, getMemoryStats());
+    }
     memoizedSize = size;
     return size;
   }
@@ -532,6 +573,11 @@ public  final class NodeExecStats extends
         == other.getThreadId());
     result = result && getReferencedTensorList()
         .equals(other.getReferencedTensorList());
+    result = result && (hasMemoryStats() == other.hasMemoryStats());
+    if (hasMemoryStats()) {
+      result = result && getMemoryStats()
+          .equals(other.getMemoryStats());
+    }
     return result;
   }
 
@@ -574,6 +620,10 @@ public  final class NodeExecStats extends
     if (getReferencedTensorCount() > 0) {
       hash = (37 * hash) + REFERENCED_TENSOR_FIELD_NUMBER;
       hash = (53 * hash) + getReferencedTensorList().hashCode();
+    }
+    if (hasMemoryStats()) {
+      hash = (37 * hash) + MEMORY_STATS_FIELD_NUMBER;
+      hash = (53 * hash) + getMemoryStats().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -734,6 +784,12 @@ public  final class NodeExecStats extends
       } else {
         referencedTensorBuilder_.clear();
       }
+      if (memoryStatsBuilder_ == null) {
+        memoryStats_ = null;
+      } else {
+        memoryStats_ = null;
+        memoryStatsBuilder_ = null;
+      }
       return this;
     }
 
@@ -792,6 +848,11 @@ public  final class NodeExecStats extends
         result.referencedTensor_ = referencedTensor_;
       } else {
         result.referencedTensor_ = referencedTensorBuilder_.build();
+      }
+      if (memoryStatsBuilder_ == null) {
+        result.memoryStats_ = memoryStats_;
+      } else {
+        result.memoryStats_ = memoryStatsBuilder_.build();
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -938,6 +999,9 @@ public  final class NodeExecStats extends
             referencedTensorBuilder_.addAllMessages(other.referencedTensor_);
           }
         }
+      }
+      if (other.hasMemoryStats()) {
+        mergeMemoryStats(other.getMemoryStats());
       }
       onChanged();
       return this;
@@ -2013,6 +2077,123 @@ public  final class NodeExecStats extends
         referencedTensor_ = null;
       }
       return referencedTensorBuilder_;
+    }
+
+    private org.tensorflow.framework.MemoryStats memoryStats_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.tensorflow.framework.MemoryStats, org.tensorflow.framework.MemoryStats.Builder, org.tensorflow.framework.MemoryStatsOrBuilder> memoryStatsBuilder_;
+    /**
+     * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+     */
+    public boolean hasMemoryStats() {
+      return memoryStatsBuilder_ != null || memoryStats_ != null;
+    }
+    /**
+     * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+     */
+    public org.tensorflow.framework.MemoryStats getMemoryStats() {
+      if (memoryStatsBuilder_ == null) {
+        return memoryStats_ == null ? org.tensorflow.framework.MemoryStats.getDefaultInstance() : memoryStats_;
+      } else {
+        return memoryStatsBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+     */
+    public Builder setMemoryStats(org.tensorflow.framework.MemoryStats value) {
+      if (memoryStatsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        memoryStats_ = value;
+        onChanged();
+      } else {
+        memoryStatsBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+     */
+    public Builder setMemoryStats(
+        org.tensorflow.framework.MemoryStats.Builder builderForValue) {
+      if (memoryStatsBuilder_ == null) {
+        memoryStats_ = builderForValue.build();
+        onChanged();
+      } else {
+        memoryStatsBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+     */
+    public Builder mergeMemoryStats(org.tensorflow.framework.MemoryStats value) {
+      if (memoryStatsBuilder_ == null) {
+        if (memoryStats_ != null) {
+          memoryStats_ =
+            org.tensorflow.framework.MemoryStats.newBuilder(memoryStats_).mergeFrom(value).buildPartial();
+        } else {
+          memoryStats_ = value;
+        }
+        onChanged();
+      } else {
+        memoryStatsBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+     */
+    public Builder clearMemoryStats() {
+      if (memoryStatsBuilder_ == null) {
+        memoryStats_ = null;
+        onChanged();
+      } else {
+        memoryStats_ = null;
+        memoryStatsBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+     */
+    public org.tensorflow.framework.MemoryStats.Builder getMemoryStatsBuilder() {
+      
+      onChanged();
+      return getMemoryStatsFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+     */
+    public org.tensorflow.framework.MemoryStatsOrBuilder getMemoryStatsOrBuilder() {
+      if (memoryStatsBuilder_ != null) {
+        return memoryStatsBuilder_.getMessageOrBuilder();
+      } else {
+        return memoryStats_ == null ?
+            org.tensorflow.framework.MemoryStats.getDefaultInstance() : memoryStats_;
+      }
+    }
+    /**
+     * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.tensorflow.framework.MemoryStats, org.tensorflow.framework.MemoryStats.Builder, org.tensorflow.framework.MemoryStatsOrBuilder> 
+        getMemoryStatsFieldBuilder() {
+      if (memoryStatsBuilder_ == null) {
+        memoryStatsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            org.tensorflow.framework.MemoryStats, org.tensorflow.framework.MemoryStats.Builder, org.tensorflow.framework.MemoryStatsOrBuilder>(
+                getMemoryStats(),
+                getParentForChildren(),
+                isClean());
+        memoryStats_ = null;
+      }
+      return memoryStatsBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

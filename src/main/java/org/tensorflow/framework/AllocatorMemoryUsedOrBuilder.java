@@ -18,6 +18,10 @@ public interface AllocatorMemoryUsedOrBuilder extends
       getAllocatorNameBytes();
 
   /**
+   * <pre>
+   * These are per-node allocator memory stats.
+   * </pre>
+   *
    * <code>optional int64 total_bytes = 2;</code>
    */
   long getTotalBytes();
@@ -26,4 +30,23 @@ public interface AllocatorMemoryUsedOrBuilder extends
    * <code>optional int64 peak_bytes = 3;</code>
    */
   long getPeakBytes();
+
+  /**
+   * <pre>
+   * The bytes that are not deallocated.
+   * </pre>
+   *
+   * <code>optional int64 live_bytes = 4;</code>
+   */
+  long getLiveBytes();
+
+  /**
+   * <pre>
+   * These are snapshots of the overall allocator memory stats.
+   * The number of live bytes currently allocated by the allocator.
+   * </pre>
+   *
+   * <code>optional int64 allocator_bytes_in_use = 5;</code>
+   */
+  long getAllocatorBytesInUse();
 }

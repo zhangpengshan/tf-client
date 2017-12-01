@@ -54,7 +54,7 @@ public interface RecvTensorResponseOrBuilder extends
   /**
    * <pre>
    * Optional additional information about how to receive the tensor,
-   * in the event that `RecvTensorRequest.dma_ok` was true.
+   * e.g. in the event that `RecvTensorRequest.dma_ok` was true.
    * </pre>
    *
    * <code>optional .google.protobuf.Any transport_options = 4;</code>
@@ -63,7 +63,7 @@ public interface RecvTensorResponseOrBuilder extends
   /**
    * <pre>
    * Optional additional information about how to receive the tensor,
-   * in the event that `RecvTensorRequest.dma_ok` was true.
+   * e.g. in the event that `RecvTensorRequest.dma_ok` was true.
    * </pre>
    *
    * <code>optional .google.protobuf.Any transport_options = 4;</code>
@@ -72,7 +72,7 @@ public interface RecvTensorResponseOrBuilder extends
   /**
    * <pre>
    * Optional additional information about how to receive the tensor,
-   * in the event that `RecvTensorRequest.dma_ok` was true.
+   * e.g. in the event that `RecvTensorRequest.dma_ok` was true.
    * </pre>
    *
    * <code>optional .google.protobuf.Any transport_options = 4;</code>

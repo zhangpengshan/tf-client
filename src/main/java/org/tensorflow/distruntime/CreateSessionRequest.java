@@ -15,6 +15,7 @@ public  final class CreateSessionRequest extends
     super(builder);
   }
   private CreateSessionRequest() {
+    target_ = "";
   }
 
   @java.lang.Override
@@ -66,6 +67,12 @@ public  final class CreateSessionRequest extends
               config_ = subBuilder.buildPartial();
             }
 
+            break;
+          }
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            target_ = s;
             break;
           }
         }
@@ -157,6 +164,48 @@ public  final class CreateSessionRequest extends
     return getConfig();
   }
 
+  public static final int TARGET_FIELD_NUMBER = 3;
+  private volatile java.lang.Object target_;
+  /**
+   * <pre>
+   * The target string used from the client's perspective.
+   * </pre>
+   *
+   * <code>optional string target = 3;</code>
+   */
+  public java.lang.String getTarget() {
+    java.lang.Object ref = target_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      target_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * The target string used from the client's perspective.
+   * </pre>
+   *
+   * <code>optional string target = 3;</code>
+   */
+  public com.google.protobuf.ByteString
+      getTargetBytes() {
+    java.lang.Object ref = target_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      target_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -175,6 +224,9 @@ public  final class CreateSessionRequest extends
     if (config_ != null) {
       output.writeMessage(2, getConfig());
     }
+    if (!getTargetBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, target_);
+    }
   }
 
   public int getSerializedSize() {
@@ -189,6 +241,9 @@ public  final class CreateSessionRequest extends
     if (config_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getConfig());
+    }
+    if (!getTargetBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, target_);
     }
     memoizedSize = size;
     return size;
@@ -216,6 +271,8 @@ public  final class CreateSessionRequest extends
       result = result && getConfig()
           .equals(other.getConfig());
     }
+    result = result && getTarget()
+        .equals(other.getTarget());
     return result;
   }
 
@@ -234,6 +291,8 @@ public  final class CreateSessionRequest extends
       hash = (37 * hash) + CONFIG_FIELD_NUMBER;
       hash = (53 * hash) + getConfig().hashCode();
     }
+    hash = (37 * hash) + TARGET_FIELD_NUMBER;
+    hash = (53 * hash) + getTarget().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -364,6 +423,8 @@ public  final class CreateSessionRequest extends
         config_ = null;
         configBuilder_ = null;
       }
+      target_ = "";
+
       return this;
     }
 
@@ -396,6 +457,7 @@ public  final class CreateSessionRequest extends
       } else {
         result.config_ = configBuilder_.build();
       }
+      result.target_ = target_;
       onBuilt();
       return result;
     }
@@ -442,6 +504,10 @@ public  final class CreateSessionRequest extends
       }
       if (other.hasConfig()) {
         mergeConfig(other.getConfig());
+      }
+      if (!other.getTarget().isEmpty()) {
+        target_ = other.target_;
+        onChanged();
       }
       onChanged();
       return this;
@@ -773,6 +839,95 @@ public  final class CreateSessionRequest extends
         config_ = null;
       }
       return configBuilder_;
+    }
+
+    private java.lang.Object target_ = "";
+    /**
+     * <pre>
+     * The target string used from the client's perspective.
+     * </pre>
+     *
+     * <code>optional string target = 3;</code>
+     */
+    public java.lang.String getTarget() {
+      java.lang.Object ref = target_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        target_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * The target string used from the client's perspective.
+     * </pre>
+     *
+     * <code>optional string target = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTargetBytes() {
+      java.lang.Object ref = target_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        target_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * The target string used from the client's perspective.
+     * </pre>
+     *
+     * <code>optional string target = 3;</code>
+     */
+    public Builder setTarget(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      target_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The target string used from the client's perspective.
+     * </pre>
+     *
+     * <code>optional string target = 3;</code>
+     */
+    public Builder clearTarget() {
+      
+      target_ = getDefaultInstance().getTarget();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The target string used from the client's perspective.
+     * </pre>
+     *
+     * <code>optional string target = 3;</code>
+     */
+    public Builder setTargetBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      target_ = value;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

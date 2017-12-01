@@ -70,6 +70,11 @@ public final class MetaGraphProtos {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_tensorflow_TensorInfo_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tensorflow_TensorInfo_CooSparse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_tensorflow_TensorInfo_CooSparse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_tensorflow_SignatureDef_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -134,21 +139,25 @@ public final class MetaGraphProtos {
       "ue\030\001 \003(\t\032\032\n\tBytesList\022\r\n\005value\030\001 \003(\014\032\036\n\t" +
       "Int64List\022\021\n\005value\030\001 \003(\003B\002\020\001\032\036\n\tFloatLis" +
       "t\022\021\n\005value\030\001 \003(\002B\002\020\001\032.\n\007AnyList\022#\n\005value" +
-      "\030\001 \003(\0132\024.google.protobuf.AnyB\006\n\004kind\"s\n\n" +
-      "TensorInfo\022\014\n\004name\030\001 \001(\t\022#\n\005dtype\030\002 \001(\0162" +
-      "\024.tensorflow.DataType\0222\n\014tensor_shape\030\003 " +
-      "\001(\0132\034.tensorflow.TensorShapeProto\"\240\002\n\014Si",
-      "gnatureDef\0224\n\006inputs\030\001 \003(\0132$.tensorflow." +
-      "SignatureDef.InputsEntry\0226\n\007outputs\030\002 \003(" +
-      "\0132%.tensorflow.SignatureDef.OutputsEntry" +
-      "\022\023\n\013method_name\030\003 \001(\t\032E\n\013InputsEntry\022\013\n\003" +
-      "key\030\001 \001(\t\022%\n\005value\030\002 \001(\0132\026.tensorflow.Te" +
-      "nsorInfo:\0028\001\032F\n\014OutputsEntry\022\013\n\003key\030\001 \001(" +
-      "\t\022%\n\005value\030\002 \001(\0132\026.tensorflow.TensorInfo" +
-      ":\0028\001\"M\n\014AssetFileDef\022+\n\013tensor_info\030\001 \001(" +
-      "\0132\026.tensorflow.TensorInfo\022\020\n\010filename\030\002 " +
-      "\001(\tB0\n\030org.tensorflow.frameworkB\017MetaGra",
-      "phProtosP\001\370\001\001b\006proto3"
+      "\030\001 \003(\0132\024.google.protobuf.AnyB\006\n\004kind\"\240\002\n" +
+      "\nTensorInfo\022\016\n\004name\030\001 \001(\tH\000\0226\n\ncoo_spars" +
+      "e\030\004 \001(\0132 .tensorflow.TensorInfo.CooSpars" +
+      "eH\000\022#\n\005dtype\030\002 \001(\0162\024.tensorflow.DataType",
+      "\0222\n\014tensor_shape\030\003 \001(\0132\034.tensorflow.Tens" +
+      "orShapeProto\032e\n\tCooSparse\022\032\n\022values_tens" +
+      "or_name\030\001 \001(\t\022\033\n\023indices_tensor_name\030\002 \001" +
+      "(\t\022\037\n\027dense_shape_tensor_name\030\003 \001(\tB\n\n\010e" +
+      "ncoding\"\240\002\n\014SignatureDef\0224\n\006inputs\030\001 \003(\013" +
+      "2$.tensorflow.SignatureDef.InputsEntry\0226" +
+      "\n\007outputs\030\002 \003(\0132%.tensorflow.SignatureDe" +
+      "f.OutputsEntry\022\023\n\013method_name\030\003 \001(\t\032E\n\013I" +
+      "nputsEntry\022\013\n\003key\030\001 \001(\t\022%\n\005value\030\002 \001(\0132\026" +
+      ".tensorflow.TensorInfo:\0028\001\032F\n\014OutputsEnt",
+      "ry\022\013\n\003key\030\001 \001(\t\022%\n\005value\030\002 \001(\0132\026.tensorf" +
+      "low.TensorInfo:\0028\001\"M\n\014AssetFileDef\022+\n\013te" +
+      "nsor_info\030\001 \001(\0132\026.tensorflow.TensorInfo\022" +
+      "\020\n\010filename\030\002 \001(\tB0\n\030org.tensorflow.fram" +
+      "eworkB\017MetaGraphProtosP\001\370\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -233,7 +242,13 @@ public final class MetaGraphProtos {
     internal_static_tensorflow_TensorInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_TensorInfo_descriptor,
-        new java.lang.String[] { "Name", "Dtype", "TensorShape", });
+        new java.lang.String[] { "Name", "CooSparse", "Dtype", "TensorShape", "Encoding", });
+    internal_static_tensorflow_TensorInfo_CooSparse_descriptor =
+      internal_static_tensorflow_TensorInfo_descriptor.getNestedTypes().get(0);
+    internal_static_tensorflow_TensorInfo_CooSparse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_tensorflow_TensorInfo_CooSparse_descriptor,
+        new java.lang.String[] { "ValuesTensorName", "IndicesTensorName", "DenseShapeTensorName", });
     internal_static_tensorflow_SignatureDef_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_tensorflow_SignatureDef_fieldAccessorTable = new

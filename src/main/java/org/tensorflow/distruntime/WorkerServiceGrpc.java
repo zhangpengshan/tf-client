@@ -37,6 +37,15 @@ public class WorkerServiceGrpc {
           io.grpc.protobuf.ProtoUtils.marshaller(org.tensorflow.distruntime.GetStatusRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(org.tensorflow.distruntime.GetStatusResponse.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<org.tensorflow.distruntime.CreateWorkerSessionRequest,
+      org.tensorflow.distruntime.CreateWorkerSessionResponse> METHOD_CREATE_WORKER_SESSION =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "tensorflow.grpc.WorkerService", "CreateWorkerSession"),
+          io.grpc.protobuf.ProtoUtils.marshaller(org.tensorflow.distruntime.CreateWorkerSessionRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(org.tensorflow.distruntime.CreateWorkerSessionResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<org.tensorflow.distruntime.RegisterGraphRequest,
       org.tensorflow.distruntime.RegisterGraphResponse> METHOD_REGISTER_GRAPH =
       io.grpc.MethodDescriptor.create(
@@ -151,6 +160,16 @@ public class WorkerServiceGrpc {
      * See worker.proto for details.
      * </pre>
      */
+    public void createWorkerSession(org.tensorflow.distruntime.CreateWorkerSessionRequest request,
+        io.grpc.stub.StreamObserver<org.tensorflow.distruntime.CreateWorkerSessionResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_CREATE_WORKER_SESSION, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * See worker.proto for details.
+     * </pre>
+     */
     public void registerGraph(org.tensorflow.distruntime.RegisterGraphRequest request,
         io.grpc.stub.StreamObserver<org.tensorflow.distruntime.RegisterGraphResponse> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_REGISTER_GRAPH, responseObserver);
@@ -235,6 +254,13 @@ public class WorkerServiceGrpc {
                 org.tensorflow.distruntime.GetStatusRequest,
                 org.tensorflow.distruntime.GetStatusResponse>(
                   this, METHODID_GET_STATUS)))
+          .addMethod(
+            METHOD_CREATE_WORKER_SESSION,
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.tensorflow.distruntime.CreateWorkerSessionRequest,
+                org.tensorflow.distruntime.CreateWorkerSessionResponse>(
+                  this, METHODID_CREATE_WORKER_SESSION)))
           .addMethod(
             METHOD_REGISTER_GRAPH,
             asyncUnaryCall(
@@ -322,6 +348,17 @@ public class WorkerServiceGrpc {
         io.grpc.stub.StreamObserver<org.tensorflow.distruntime.GetStatusResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_GET_STATUS, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * See worker.proto for details.
+     * </pre>
+     */
+    public void createWorkerSession(org.tensorflow.distruntime.CreateWorkerSessionRequest request,
+        io.grpc.stub.StreamObserver<org.tensorflow.distruntime.CreateWorkerSessionResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_CREATE_WORKER_SESSION, getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -446,6 +483,16 @@ public class WorkerServiceGrpc {
      * See worker.proto for details.
      * </pre>
      */
+    public org.tensorflow.distruntime.CreateWorkerSessionResponse createWorkerSession(org.tensorflow.distruntime.CreateWorkerSessionRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_CREATE_WORKER_SESSION, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * See worker.proto for details.
+     * </pre>
+     */
     public org.tensorflow.distruntime.RegisterGraphResponse registerGraph(org.tensorflow.distruntime.RegisterGraphRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_REGISTER_GRAPH, getCallOptions(), request);
@@ -556,6 +603,17 @@ public class WorkerServiceGrpc {
      * See worker.proto for details.
      * </pre>
      */
+    public com.google.common.util.concurrent.ListenableFuture<org.tensorflow.distruntime.CreateWorkerSessionResponse> createWorkerSession(
+        org.tensorflow.distruntime.CreateWorkerSessionRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_CREATE_WORKER_SESSION, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * See worker.proto for details.
+     * </pre>
+     */
     public com.google.common.util.concurrent.ListenableFuture<org.tensorflow.distruntime.RegisterGraphResponse> registerGraph(
         org.tensorflow.distruntime.RegisterGraphRequest request) {
       return futureUnaryCall(
@@ -641,14 +699,15 @@ public class WorkerServiceGrpc {
   }
 
   private static final int METHODID_GET_STATUS = 0;
-  private static final int METHODID_REGISTER_GRAPH = 1;
-  private static final int METHODID_DEREGISTER_GRAPH = 2;
-  private static final int METHODID_RUN_GRAPH = 3;
-  private static final int METHODID_CLEANUP_GRAPH = 4;
-  private static final int METHODID_CLEANUP_ALL = 5;
-  private static final int METHODID_RECV_TENSOR = 6;
-  private static final int METHODID_LOGGING = 7;
-  private static final int METHODID_TRACING = 8;
+  private static final int METHODID_CREATE_WORKER_SESSION = 1;
+  private static final int METHODID_REGISTER_GRAPH = 2;
+  private static final int METHODID_DEREGISTER_GRAPH = 3;
+  private static final int METHODID_RUN_GRAPH = 4;
+  private static final int METHODID_CLEANUP_GRAPH = 5;
+  private static final int METHODID_CLEANUP_ALL = 6;
+  private static final int METHODID_RECV_TENSOR = 7;
+  private static final int METHODID_LOGGING = 8;
+  private static final int METHODID_TRACING = 9;
 
   private static class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -670,6 +729,10 @@ public class WorkerServiceGrpc {
         case METHODID_GET_STATUS:
           serviceImpl.getStatus((org.tensorflow.distruntime.GetStatusRequest) request,
               (io.grpc.stub.StreamObserver<org.tensorflow.distruntime.GetStatusResponse>) responseObserver);
+          break;
+        case METHODID_CREATE_WORKER_SESSION:
+          serviceImpl.createWorkerSession((org.tensorflow.distruntime.CreateWorkerSessionRequest) request,
+              (io.grpc.stub.StreamObserver<org.tensorflow.distruntime.CreateWorkerSessionResponse>) responseObserver);
           break;
         case METHODID_REGISTER_GRAPH:
           serviceImpl.registerGraph((org.tensorflow.distruntime.RegisterGraphRequest) request,
@@ -722,6 +785,7 @@ public class WorkerServiceGrpc {
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     return new io.grpc.ServiceDescriptor(SERVICE_NAME,
         METHOD_GET_STATUS,
+        METHOD_CREATE_WORKER_SESSION,
         METHOD_REGISTER_GRAPH,
         METHOD_DEREGISTER_GRAPH,
         METHOD_RUN_GRAPH,

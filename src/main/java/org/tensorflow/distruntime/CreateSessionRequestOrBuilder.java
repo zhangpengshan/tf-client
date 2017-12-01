@@ -56,4 +56,22 @@ public interface CreateSessionRequestOrBuilder extends
    * <code>optional .tensorflow.ConfigProto config = 2;</code>
    */
   org.tensorflow.framework.ConfigProtoOrBuilder getConfigOrBuilder();
+
+  /**
+   * <pre>
+   * The target string used from the client's perspective.
+   * </pre>
+   *
+   * <code>optional string target = 3;</code>
+   */
+  java.lang.String getTarget();
+  /**
+   * <pre>
+   * The target string used from the client's perspective.
+   * </pre>
+   *
+   * <code>optional string target = 3;</code>
+   */
+  com.google.protobuf.ByteString
+      getTargetBytes();
 }

@@ -32,6 +32,7 @@ public  final class TensorProto extends
     boolVal_ = java.util.Collections.emptyList();
     dcomplexVal_ = java.util.Collections.emptyList();
     resourceHandleVal_ = java.util.Collections.emptyList();
+    variantVal_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -266,11 +267,20 @@ public  final class TensorProto extends
           }
           case 114: {
             if (!((mutable_bitField0_ & 0x00002000) == 0x00002000)) {
-              resourceHandleVal_ = new java.util.ArrayList<org.tensorflow.framework.ResourceHandle>();
+              resourceHandleVal_ = new java.util.ArrayList<org.tensorflow.framework.ResourceHandleProto>();
               mutable_bitField0_ |= 0x00002000;
             }
             resourceHandleVal_.add(
-                input.readMessage(org.tensorflow.framework.ResourceHandle.parser(), extensionRegistry));
+                input.readMessage(org.tensorflow.framework.ResourceHandleProto.parser(), extensionRegistry));
+            break;
+          }
+          case 122: {
+            if (!((mutable_bitField0_ & 0x00004000) == 0x00004000)) {
+              variantVal_ = new java.util.ArrayList<org.tensorflow.framework.VariantTensorDataProto>();
+              mutable_bitField0_ |= 0x00004000;
+            }
+            variantVal_.add(
+                input.readMessage(org.tensorflow.framework.VariantTensorDataProto.parser(), extensionRegistry));
             break;
           }
         }
@@ -310,6 +320,9 @@ public  final class TensorProto extends
       }
       if (((mutable_bitField0_ & 0x00002000) == 0x00002000)) {
         resourceHandleVal_ = java.util.Collections.unmodifiableList(resourceHandleVal_);
+      }
+      if (((mutable_bitField0_ & 0x00004000) == 0x00004000)) {
+        variantVal_ = java.util.Collections.unmodifiableList(variantVal_);
       }
       makeExtensionsImmutable();
     }
@@ -733,15 +746,15 @@ public  final class TensorProto extends
   private int dcomplexValMemoizedSerializedSize = -1;
 
   public static final int RESOURCE_HANDLE_VAL_FIELD_NUMBER = 14;
-  private java.util.List<org.tensorflow.framework.ResourceHandle> resourceHandleVal_;
+  private java.util.List<org.tensorflow.framework.ResourceHandleProto> resourceHandleVal_;
   /**
    * <pre>
    * DT_RESOURCE
    * </pre>
    *
-   * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+   * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
    */
-  public java.util.List<org.tensorflow.framework.ResourceHandle> getResourceHandleValList() {
+  public java.util.List<org.tensorflow.framework.ResourceHandleProto> getResourceHandleValList() {
     return resourceHandleVal_;
   }
   /**
@@ -749,9 +762,9 @@ public  final class TensorProto extends
    * DT_RESOURCE
    * </pre>
    *
-   * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+   * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
    */
-  public java.util.List<? extends org.tensorflow.framework.ResourceHandleOrBuilder> 
+  public java.util.List<? extends org.tensorflow.framework.ResourceHandleProtoOrBuilder> 
       getResourceHandleValOrBuilderList() {
     return resourceHandleVal_;
   }
@@ -760,7 +773,7 @@ public  final class TensorProto extends
    * DT_RESOURCE
    * </pre>
    *
-   * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+   * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
    */
   public int getResourceHandleValCount() {
     return resourceHandleVal_.size();
@@ -770,9 +783,9 @@ public  final class TensorProto extends
    * DT_RESOURCE
    * </pre>
    *
-   * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+   * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
    */
-  public org.tensorflow.framework.ResourceHandle getResourceHandleVal(int index) {
+  public org.tensorflow.framework.ResourceHandleProto getResourceHandleVal(int index) {
     return resourceHandleVal_.get(index);
   }
   /**
@@ -780,11 +793,66 @@ public  final class TensorProto extends
    * DT_RESOURCE
    * </pre>
    *
-   * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+   * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
    */
-  public org.tensorflow.framework.ResourceHandleOrBuilder getResourceHandleValOrBuilder(
+  public org.tensorflow.framework.ResourceHandleProtoOrBuilder getResourceHandleValOrBuilder(
       int index) {
     return resourceHandleVal_.get(index);
+  }
+
+  public static final int VARIANT_VAL_FIELD_NUMBER = 15;
+  private java.util.List<org.tensorflow.framework.VariantTensorDataProto> variantVal_;
+  /**
+   * <pre>
+   * DT_VARIANT
+   * </pre>
+   *
+   * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+   */
+  public java.util.List<org.tensorflow.framework.VariantTensorDataProto> getVariantValList() {
+    return variantVal_;
+  }
+  /**
+   * <pre>
+   * DT_VARIANT
+   * </pre>
+   *
+   * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+   */
+  public java.util.List<? extends org.tensorflow.framework.VariantTensorDataProtoOrBuilder> 
+      getVariantValOrBuilderList() {
+    return variantVal_;
+  }
+  /**
+   * <pre>
+   * DT_VARIANT
+   * </pre>
+   *
+   * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+   */
+  public int getVariantValCount() {
+    return variantVal_.size();
+  }
+  /**
+   * <pre>
+   * DT_VARIANT
+   * </pre>
+   *
+   * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+   */
+  public org.tensorflow.framework.VariantTensorDataProto getVariantVal(int index) {
+    return variantVal_.get(index);
+  }
+  /**
+   * <pre>
+   * DT_VARIANT
+   * </pre>
+   *
+   * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+   */
+  public org.tensorflow.framework.VariantTensorDataProtoOrBuilder getVariantValOrBuilder(
+      int index) {
+    return variantVal_.get(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -873,6 +941,9 @@ public  final class TensorProto extends
     }
     for (int i = 0; i < resourceHandleVal_.size(); i++) {
       output.writeMessage(14, resourceHandleVal_.get(i));
+    }
+    for (int i = 0; i < variantVal_.size(); i++) {
+      output.writeMessage(15, variantVal_.get(i));
     }
   }
 
@@ -1007,6 +1078,10 @@ public  final class TensorProto extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(14, resourceHandleVal_.get(i));
     }
+    for (int i = 0; i < variantVal_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(15, variantVal_.get(i));
+    }
     memoizedSize = size;
     return size;
   }
@@ -1053,6 +1128,8 @@ public  final class TensorProto extends
         .equals(other.getDcomplexValList());
     result = result && getResourceHandleValList()
         .equals(other.getResourceHandleValList());
+    result = result && getVariantValList()
+        .equals(other.getVariantValList());
     return result;
   }
 
@@ -1112,6 +1189,10 @@ public  final class TensorProto extends
     if (getResourceHandleValCount() > 0) {
       hash = (37 * hash) + RESOURCE_HANDLE_VAL_FIELD_NUMBER;
       hash = (53 * hash) + getResourceHandleValList().hashCode();
+    }
+    if (getVariantValCount() > 0) {
+      hash = (37 * hash) + VARIANT_VAL_FIELD_NUMBER;
+      hash = (53 * hash) + getVariantValList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -1232,6 +1313,7 @@ public  final class TensorProto extends
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
         getResourceHandleValFieldBuilder();
+        getVariantValFieldBuilder();
       }
     }
     public Builder clear() {
@@ -1271,6 +1353,12 @@ public  final class TensorProto extends
         bitField0_ = (bitField0_ & ~0x00002000);
       } else {
         resourceHandleValBuilder_.clear();
+      }
+      if (variantValBuilder_ == null) {
+        variantVal_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00004000);
+      } else {
+        variantValBuilder_.clear();
       }
       return this;
     }
@@ -1357,6 +1445,15 @@ public  final class TensorProto extends
         result.resourceHandleVal_ = resourceHandleVal_;
       } else {
         result.resourceHandleVal_ = resourceHandleValBuilder_.build();
+      }
+      if (variantValBuilder_ == null) {
+        if (((bitField0_ & 0x00004000) == 0x00004000)) {
+          variantVal_ = java.util.Collections.unmodifiableList(variantVal_);
+          bitField0_ = (bitField0_ & ~0x00004000);
+        }
+        result.variantVal_ = variantVal_;
+      } else {
+        result.variantVal_ = variantValBuilder_.build();
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -1525,6 +1622,32 @@ public  final class TensorProto extends
                  getResourceHandleValFieldBuilder() : null;
           } else {
             resourceHandleValBuilder_.addAllMessages(other.resourceHandleVal_);
+          }
+        }
+      }
+      if (variantValBuilder_ == null) {
+        if (!other.variantVal_.isEmpty()) {
+          if (variantVal_.isEmpty()) {
+            variantVal_ = other.variantVal_;
+            bitField0_ = (bitField0_ & ~0x00004000);
+          } else {
+            ensureVariantValIsMutable();
+            variantVal_.addAll(other.variantVal_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.variantVal_.isEmpty()) {
+          if (variantValBuilder_.isEmpty()) {
+            variantValBuilder_.dispose();
+            variantValBuilder_ = null;
+            variantVal_ = other.variantVal_;
+            bitField0_ = (bitField0_ & ~0x00004000);
+            variantValBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getVariantValFieldBuilder() : null;
+          } else {
+            variantValBuilder_.addAllMessages(other.variantVal_);
           }
         }
       }
@@ -2725,26 +2848,26 @@ public  final class TensorProto extends
       return this;
     }
 
-    private java.util.List<org.tensorflow.framework.ResourceHandle> resourceHandleVal_ =
+    private java.util.List<org.tensorflow.framework.ResourceHandleProto> resourceHandleVal_ =
       java.util.Collections.emptyList();
     private void ensureResourceHandleValIsMutable() {
       if (!((bitField0_ & 0x00002000) == 0x00002000)) {
-        resourceHandleVal_ = new java.util.ArrayList<org.tensorflow.framework.ResourceHandle>(resourceHandleVal_);
+        resourceHandleVal_ = new java.util.ArrayList<org.tensorflow.framework.ResourceHandleProto>(resourceHandleVal_);
         bitField0_ |= 0x00002000;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        org.tensorflow.framework.ResourceHandle, org.tensorflow.framework.ResourceHandle.Builder, org.tensorflow.framework.ResourceHandleOrBuilder> resourceHandleValBuilder_;
+        org.tensorflow.framework.ResourceHandleProto, org.tensorflow.framework.ResourceHandleProto.Builder, org.tensorflow.framework.ResourceHandleProtoOrBuilder> resourceHandleValBuilder_;
 
     /**
      * <pre>
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
-    public java.util.List<org.tensorflow.framework.ResourceHandle> getResourceHandleValList() {
+    public java.util.List<org.tensorflow.framework.ResourceHandleProto> getResourceHandleValList() {
       if (resourceHandleValBuilder_ == null) {
         return java.util.Collections.unmodifiableList(resourceHandleVal_);
       } else {
@@ -2756,7 +2879,7 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
     public int getResourceHandleValCount() {
       if (resourceHandleValBuilder_ == null) {
@@ -2770,9 +2893,9 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
-    public org.tensorflow.framework.ResourceHandle getResourceHandleVal(int index) {
+    public org.tensorflow.framework.ResourceHandleProto getResourceHandleVal(int index) {
       if (resourceHandleValBuilder_ == null) {
         return resourceHandleVal_.get(index);
       } else {
@@ -2784,10 +2907,10 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
     public Builder setResourceHandleVal(
-        int index, org.tensorflow.framework.ResourceHandle value) {
+        int index, org.tensorflow.framework.ResourceHandleProto value) {
       if (resourceHandleValBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2805,10 +2928,10 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
     public Builder setResourceHandleVal(
-        int index, org.tensorflow.framework.ResourceHandle.Builder builderForValue) {
+        int index, org.tensorflow.framework.ResourceHandleProto.Builder builderForValue) {
       if (resourceHandleValBuilder_ == null) {
         ensureResourceHandleValIsMutable();
         resourceHandleVal_.set(index, builderForValue.build());
@@ -2823,9 +2946,9 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
-    public Builder addResourceHandleVal(org.tensorflow.framework.ResourceHandle value) {
+    public Builder addResourceHandleVal(org.tensorflow.framework.ResourceHandleProto value) {
       if (resourceHandleValBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2843,10 +2966,10 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
     public Builder addResourceHandleVal(
-        int index, org.tensorflow.framework.ResourceHandle value) {
+        int index, org.tensorflow.framework.ResourceHandleProto value) {
       if (resourceHandleValBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -2864,10 +2987,10 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
     public Builder addResourceHandleVal(
-        org.tensorflow.framework.ResourceHandle.Builder builderForValue) {
+        org.tensorflow.framework.ResourceHandleProto.Builder builderForValue) {
       if (resourceHandleValBuilder_ == null) {
         ensureResourceHandleValIsMutable();
         resourceHandleVal_.add(builderForValue.build());
@@ -2882,10 +3005,10 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
     public Builder addResourceHandleVal(
-        int index, org.tensorflow.framework.ResourceHandle.Builder builderForValue) {
+        int index, org.tensorflow.framework.ResourceHandleProto.Builder builderForValue) {
       if (resourceHandleValBuilder_ == null) {
         ensureResourceHandleValIsMutable();
         resourceHandleVal_.add(index, builderForValue.build());
@@ -2900,10 +3023,10 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
     public Builder addAllResourceHandleVal(
-        java.lang.Iterable<? extends org.tensorflow.framework.ResourceHandle> values) {
+        java.lang.Iterable<? extends org.tensorflow.framework.ResourceHandleProto> values) {
       if (resourceHandleValBuilder_ == null) {
         ensureResourceHandleValIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2919,7 +3042,7 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
     public Builder clearResourceHandleVal() {
       if (resourceHandleValBuilder_ == null) {
@@ -2936,7 +3059,7 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
     public Builder removeResourceHandleVal(int index) {
       if (resourceHandleValBuilder_ == null) {
@@ -2953,9 +3076,9 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
-    public org.tensorflow.framework.ResourceHandle.Builder getResourceHandleValBuilder(
+    public org.tensorflow.framework.ResourceHandleProto.Builder getResourceHandleValBuilder(
         int index) {
       return getResourceHandleValFieldBuilder().getBuilder(index);
     }
@@ -2964,9 +3087,9 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
-    public org.tensorflow.framework.ResourceHandleOrBuilder getResourceHandleValOrBuilder(
+    public org.tensorflow.framework.ResourceHandleProtoOrBuilder getResourceHandleValOrBuilder(
         int index) {
       if (resourceHandleValBuilder_ == null) {
         return resourceHandleVal_.get(index);  } else {
@@ -2978,9 +3101,9 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
-    public java.util.List<? extends org.tensorflow.framework.ResourceHandleOrBuilder> 
+    public java.util.List<? extends org.tensorflow.framework.ResourceHandleProtoOrBuilder> 
          getResourceHandleValOrBuilderList() {
       if (resourceHandleValBuilder_ != null) {
         return resourceHandleValBuilder_.getMessageOrBuilderList();
@@ -2993,41 +3116,41 @@ public  final class TensorProto extends
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
-    public org.tensorflow.framework.ResourceHandle.Builder addResourceHandleValBuilder() {
+    public org.tensorflow.framework.ResourceHandleProto.Builder addResourceHandleValBuilder() {
       return getResourceHandleValFieldBuilder().addBuilder(
-          org.tensorflow.framework.ResourceHandle.getDefaultInstance());
+          org.tensorflow.framework.ResourceHandleProto.getDefaultInstance());
     }
     /**
      * <pre>
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
-    public org.tensorflow.framework.ResourceHandle.Builder addResourceHandleValBuilder(
+    public org.tensorflow.framework.ResourceHandleProto.Builder addResourceHandleValBuilder(
         int index) {
       return getResourceHandleValFieldBuilder().addBuilder(
-          index, org.tensorflow.framework.ResourceHandle.getDefaultInstance());
+          index, org.tensorflow.framework.ResourceHandleProto.getDefaultInstance());
     }
     /**
      * <pre>
      * DT_RESOURCE
      * </pre>
      *
-     * <code>repeated .tensorflow.ResourceHandle resource_handle_val = 14;</code>
+     * <code>repeated .tensorflow.ResourceHandleProto resource_handle_val = 14;</code>
      */
-    public java.util.List<org.tensorflow.framework.ResourceHandle.Builder> 
+    public java.util.List<org.tensorflow.framework.ResourceHandleProto.Builder> 
          getResourceHandleValBuilderList() {
       return getResourceHandleValFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        org.tensorflow.framework.ResourceHandle, org.tensorflow.framework.ResourceHandle.Builder, org.tensorflow.framework.ResourceHandleOrBuilder> 
+        org.tensorflow.framework.ResourceHandleProto, org.tensorflow.framework.ResourceHandleProto.Builder, org.tensorflow.framework.ResourceHandleProtoOrBuilder> 
         getResourceHandleValFieldBuilder() {
       if (resourceHandleValBuilder_ == null) {
         resourceHandleValBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            org.tensorflow.framework.ResourceHandle, org.tensorflow.framework.ResourceHandle.Builder, org.tensorflow.framework.ResourceHandleOrBuilder>(
+            org.tensorflow.framework.ResourceHandleProto, org.tensorflow.framework.ResourceHandleProto.Builder, org.tensorflow.framework.ResourceHandleProtoOrBuilder>(
                 resourceHandleVal_,
                 ((bitField0_ & 0x00002000) == 0x00002000),
                 getParentForChildren(),
@@ -3035,6 +3158,318 @@ public  final class TensorProto extends
         resourceHandleVal_ = null;
       }
       return resourceHandleValBuilder_;
+    }
+
+    private java.util.List<org.tensorflow.framework.VariantTensorDataProto> variantVal_ =
+      java.util.Collections.emptyList();
+    private void ensureVariantValIsMutable() {
+      if (!((bitField0_ & 0x00004000) == 0x00004000)) {
+        variantVal_ = new java.util.ArrayList<org.tensorflow.framework.VariantTensorDataProto>(variantVal_);
+        bitField0_ |= 0x00004000;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        org.tensorflow.framework.VariantTensorDataProto, org.tensorflow.framework.VariantTensorDataProto.Builder, org.tensorflow.framework.VariantTensorDataProtoOrBuilder> variantValBuilder_;
+
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public java.util.List<org.tensorflow.framework.VariantTensorDataProto> getVariantValList() {
+      if (variantValBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(variantVal_);
+      } else {
+        return variantValBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public int getVariantValCount() {
+      if (variantValBuilder_ == null) {
+        return variantVal_.size();
+      } else {
+        return variantValBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public org.tensorflow.framework.VariantTensorDataProto getVariantVal(int index) {
+      if (variantValBuilder_ == null) {
+        return variantVal_.get(index);
+      } else {
+        return variantValBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public Builder setVariantVal(
+        int index, org.tensorflow.framework.VariantTensorDataProto value) {
+      if (variantValBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureVariantValIsMutable();
+        variantVal_.set(index, value);
+        onChanged();
+      } else {
+        variantValBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public Builder setVariantVal(
+        int index, org.tensorflow.framework.VariantTensorDataProto.Builder builderForValue) {
+      if (variantValBuilder_ == null) {
+        ensureVariantValIsMutable();
+        variantVal_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        variantValBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public Builder addVariantVal(org.tensorflow.framework.VariantTensorDataProto value) {
+      if (variantValBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureVariantValIsMutable();
+        variantVal_.add(value);
+        onChanged();
+      } else {
+        variantValBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public Builder addVariantVal(
+        int index, org.tensorflow.framework.VariantTensorDataProto value) {
+      if (variantValBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureVariantValIsMutable();
+        variantVal_.add(index, value);
+        onChanged();
+      } else {
+        variantValBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public Builder addVariantVal(
+        org.tensorflow.framework.VariantTensorDataProto.Builder builderForValue) {
+      if (variantValBuilder_ == null) {
+        ensureVariantValIsMutable();
+        variantVal_.add(builderForValue.build());
+        onChanged();
+      } else {
+        variantValBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public Builder addVariantVal(
+        int index, org.tensorflow.framework.VariantTensorDataProto.Builder builderForValue) {
+      if (variantValBuilder_ == null) {
+        ensureVariantValIsMutable();
+        variantVal_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        variantValBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public Builder addAllVariantVal(
+        java.lang.Iterable<? extends org.tensorflow.framework.VariantTensorDataProto> values) {
+      if (variantValBuilder_ == null) {
+        ensureVariantValIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, variantVal_);
+        onChanged();
+      } else {
+        variantValBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public Builder clearVariantVal() {
+      if (variantValBuilder_ == null) {
+        variantVal_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00004000);
+        onChanged();
+      } else {
+        variantValBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public Builder removeVariantVal(int index) {
+      if (variantValBuilder_ == null) {
+        ensureVariantValIsMutable();
+        variantVal_.remove(index);
+        onChanged();
+      } else {
+        variantValBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public org.tensorflow.framework.VariantTensorDataProto.Builder getVariantValBuilder(
+        int index) {
+      return getVariantValFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public org.tensorflow.framework.VariantTensorDataProtoOrBuilder getVariantValOrBuilder(
+        int index) {
+      if (variantValBuilder_ == null) {
+        return variantVal_.get(index);  } else {
+        return variantValBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public java.util.List<? extends org.tensorflow.framework.VariantTensorDataProtoOrBuilder> 
+         getVariantValOrBuilderList() {
+      if (variantValBuilder_ != null) {
+        return variantValBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(variantVal_);
+      }
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public org.tensorflow.framework.VariantTensorDataProto.Builder addVariantValBuilder() {
+      return getVariantValFieldBuilder().addBuilder(
+          org.tensorflow.framework.VariantTensorDataProto.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public org.tensorflow.framework.VariantTensorDataProto.Builder addVariantValBuilder(
+        int index) {
+      return getVariantValFieldBuilder().addBuilder(
+          index, org.tensorflow.framework.VariantTensorDataProto.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * DT_VARIANT
+     * </pre>
+     *
+     * <code>repeated .tensorflow.VariantTensorDataProto variant_val = 15;</code>
+     */
+    public java.util.List<org.tensorflow.framework.VariantTensorDataProto.Builder> 
+         getVariantValBuilderList() {
+      return getVariantValFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        org.tensorflow.framework.VariantTensorDataProto, org.tensorflow.framework.VariantTensorDataProto.Builder, org.tensorflow.framework.VariantTensorDataProtoOrBuilder> 
+        getVariantValFieldBuilder() {
+      if (variantValBuilder_ == null) {
+        variantValBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            org.tensorflow.framework.VariantTensorDataProto, org.tensorflow.framework.VariantTensorDataProto.Builder, org.tensorflow.framework.VariantTensorDataProtoOrBuilder>(
+                variantVal_,
+                ((bitField0_ & 0x00004000) == 0x00004000),
+                getParentForChildren(),
+                isClean());
+        variantVal_ = null;
+      }
+      return variantValBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

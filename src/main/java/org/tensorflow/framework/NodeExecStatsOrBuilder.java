@@ -142,4 +142,17 @@ public interface NodeExecStatsOrBuilder extends
    */
   org.tensorflow.framework.AllocationDescriptionOrBuilder getReferencedTensorOrBuilder(
       int index);
+
+  /**
+   * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+   */
+  boolean hasMemoryStats();
+  /**
+   * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+   */
+  org.tensorflow.framework.MemoryStats getMemoryStats();
+  /**
+   * <code>optional .tensorflow.MemoryStats memory_stats = 12;</code>
+   */
+  org.tensorflow.framework.MemoryStatsOrBuilder getMemoryStatsOrBuilder();
 }

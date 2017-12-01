@@ -18,6 +18,8 @@ public  final class AllocatorMemoryUsed extends
     allocatorName_ = "";
     totalBytes_ = 0L;
     peakBytes_ = 0L;
+    liveBytes_ = 0L;
+    allocatorBytesInUse_ = 0L;
   }
 
   @java.lang.Override
@@ -59,6 +61,16 @@ public  final class AllocatorMemoryUsed extends
           case 24: {
 
             peakBytes_ = input.readInt64();
+            break;
+          }
+          case 32: {
+
+            liveBytes_ = input.readInt64();
+            break;
+          }
+          case 40: {
+
+            allocatorBytesInUse_ = input.readInt64();
             break;
           }
         }
@@ -121,6 +133,10 @@ public  final class AllocatorMemoryUsed extends
   public static final int TOTAL_BYTES_FIELD_NUMBER = 2;
   private long totalBytes_;
   /**
+   * <pre>
+   * These are per-node allocator memory stats.
+   * </pre>
+   *
    * <code>optional int64 total_bytes = 2;</code>
    */
   public long getTotalBytes() {
@@ -134,6 +150,33 @@ public  final class AllocatorMemoryUsed extends
    */
   public long getPeakBytes() {
     return peakBytes_;
+  }
+
+  public static final int LIVE_BYTES_FIELD_NUMBER = 4;
+  private long liveBytes_;
+  /**
+   * <pre>
+   * The bytes that are not deallocated.
+   * </pre>
+   *
+   * <code>optional int64 live_bytes = 4;</code>
+   */
+  public long getLiveBytes() {
+    return liveBytes_;
+  }
+
+  public static final int ALLOCATOR_BYTES_IN_USE_FIELD_NUMBER = 5;
+  private long allocatorBytesInUse_;
+  /**
+   * <pre>
+   * These are snapshots of the overall allocator memory stats.
+   * The number of live bytes currently allocated by the allocator.
+   * </pre>
+   *
+   * <code>optional int64 allocator_bytes_in_use = 5;</code>
+   */
+  public long getAllocatorBytesInUse() {
+    return allocatorBytesInUse_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -157,6 +200,12 @@ public  final class AllocatorMemoryUsed extends
     if (peakBytes_ != 0L) {
       output.writeInt64(3, peakBytes_);
     }
+    if (liveBytes_ != 0L) {
+      output.writeInt64(4, liveBytes_);
+    }
+    if (allocatorBytesInUse_ != 0L) {
+      output.writeInt64(5, allocatorBytesInUse_);
+    }
   }
 
   public int getSerializedSize() {
@@ -174,6 +223,14 @@ public  final class AllocatorMemoryUsed extends
     if (peakBytes_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(3, peakBytes_);
+    }
+    if (liveBytes_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(4, liveBytes_);
+    }
+    if (allocatorBytesInUse_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(5, allocatorBytesInUse_);
     }
     memoizedSize = size;
     return size;
@@ -197,6 +254,10 @@ public  final class AllocatorMemoryUsed extends
         == other.getTotalBytes());
     result = result && (getPeakBytes()
         == other.getPeakBytes());
+    result = result && (getLiveBytes()
+        == other.getLiveBytes());
+    result = result && (getAllocatorBytesInUse()
+        == other.getAllocatorBytesInUse());
     return result;
   }
 
@@ -215,6 +276,12 @@ public  final class AllocatorMemoryUsed extends
     hash = (37 * hash) + PEAK_BYTES_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getPeakBytes());
+    hash = (37 * hash) + LIVE_BYTES_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getLiveBytes());
+    hash = (37 * hash) + ALLOCATOR_BYTES_IN_USE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getAllocatorBytesInUse());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -339,6 +406,10 @@ public  final class AllocatorMemoryUsed extends
 
       peakBytes_ = 0L;
 
+      liveBytes_ = 0L;
+
+      allocatorBytesInUse_ = 0L;
+
       return this;
     }
 
@@ -364,6 +435,8 @@ public  final class AllocatorMemoryUsed extends
       result.allocatorName_ = allocatorName_;
       result.totalBytes_ = totalBytes_;
       result.peakBytes_ = peakBytes_;
+      result.liveBytes_ = liveBytes_;
+      result.allocatorBytesInUse_ = allocatorBytesInUse_;
       onBuilt();
       return result;
     }
@@ -414,6 +487,12 @@ public  final class AllocatorMemoryUsed extends
       }
       if (other.getPeakBytes() != 0L) {
         setPeakBytes(other.getPeakBytes());
+      }
+      if (other.getLiveBytes() != 0L) {
+        setLiveBytes(other.getLiveBytes());
+      }
+      if (other.getAllocatorBytesInUse() != 0L) {
+        setAllocatorBytesInUse(other.getAllocatorBytesInUse());
       }
       onChanged();
       return this;
@@ -512,12 +591,20 @@ public  final class AllocatorMemoryUsed extends
 
     private long totalBytes_ ;
     /**
+     * <pre>
+     * These are per-node allocator memory stats.
+     * </pre>
+     *
      * <code>optional int64 total_bytes = 2;</code>
      */
     public long getTotalBytes() {
       return totalBytes_;
     }
     /**
+     * <pre>
+     * These are per-node allocator memory stats.
+     * </pre>
+     *
      * <code>optional int64 total_bytes = 2;</code>
      */
     public Builder setTotalBytes(long value) {
@@ -527,6 +614,10 @@ public  final class AllocatorMemoryUsed extends
       return this;
     }
     /**
+     * <pre>
+     * These are per-node allocator memory stats.
+     * </pre>
+     *
      * <code>optional int64 total_bytes = 2;</code>
      */
     public Builder clearTotalBytes() {
@@ -558,6 +649,85 @@ public  final class AllocatorMemoryUsed extends
     public Builder clearPeakBytes() {
       
       peakBytes_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long liveBytes_ ;
+    /**
+     * <pre>
+     * The bytes that are not deallocated.
+     * </pre>
+     *
+     * <code>optional int64 live_bytes = 4;</code>
+     */
+    public long getLiveBytes() {
+      return liveBytes_;
+    }
+    /**
+     * <pre>
+     * The bytes that are not deallocated.
+     * </pre>
+     *
+     * <code>optional int64 live_bytes = 4;</code>
+     */
+    public Builder setLiveBytes(long value) {
+      
+      liveBytes_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The bytes that are not deallocated.
+     * </pre>
+     *
+     * <code>optional int64 live_bytes = 4;</code>
+     */
+    public Builder clearLiveBytes() {
+      
+      liveBytes_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long allocatorBytesInUse_ ;
+    /**
+     * <pre>
+     * These are snapshots of the overall allocator memory stats.
+     * The number of live bytes currently allocated by the allocator.
+     * </pre>
+     *
+     * <code>optional int64 allocator_bytes_in_use = 5;</code>
+     */
+    public long getAllocatorBytesInUse() {
+      return allocatorBytesInUse_;
+    }
+    /**
+     * <pre>
+     * These are snapshots of the overall allocator memory stats.
+     * The number of live bytes currently allocated by the allocator.
+     * </pre>
+     *
+     * <code>optional int64 allocator_bytes_in_use = 5;</code>
+     */
+    public Builder setAllocatorBytesInUse(long value) {
+      
+      allocatorBytesInUse_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * These are snapshots of the overall allocator memory stats.
+     * The number of live bytes currently allocated by the allocator.
+     * </pre>
+     *
+     * <code>optional int64 allocator_bytes_in_use = 5;</code>
+     */
+    public Builder clearAllocatorBytesInUse() {
+      
+      allocatorBytesInUse_ = 0L;
       onChanged();
       return this;
     }

@@ -20,8 +20,10 @@ public  final class VariableDef extends
   }
   private VariableDef() {
     variableName_ = "";
+    initialValueName_ = "";
     initializerName_ = "";
     snapshotName_ = "";
+    isResource_ = false;
   }
 
   @java.lang.Override
@@ -78,6 +80,17 @@ public  final class VariableDef extends
               saveSliceInfoDef_ = subBuilder.buildPartial();
             }
 
+            break;
+          }
+          case 40: {
+
+            isResource_ = input.readBool();
+            break;
+          }
+          case 50: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            initialValueName_ = s;
             break;
           }
         }
@@ -139,6 +152,48 @@ public  final class VariableDef extends
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
       variableName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int INITIAL_VALUE_NAME_FIELD_NUMBER = 6;
+  private volatile java.lang.Object initialValueName_;
+  /**
+   * <pre>
+   * Name of the tensor holding the variable's initial value.
+   * </pre>
+   *
+   * <code>optional string initial_value_name = 6;</code>
+   */
+  public java.lang.String getInitialValueName() {
+    java.lang.Object ref = initialValueName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      initialValueName_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * Name of the tensor holding the variable's initial value.
+   * </pre>
+   *
+   * <code>optional string initial_value_name = 6;</code>
+   */
+  public com.google.protobuf.ByteString
+      getInitialValueNameBytes() {
+    java.lang.Object ref = initialValueName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      initialValueName_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -262,6 +317,19 @@ public  final class VariableDef extends
     return getSaveSliceInfoDef();
   }
 
+  public static final int IS_RESOURCE_FIELD_NUMBER = 5;
+  private boolean isResource_;
+  /**
+   * <pre>
+   * Whether to represent this as a ResourceVariable.
+   * </pre>
+   *
+   * <code>optional bool is_resource = 5;</code>
+   */
+  public boolean getIsResource() {
+    return isResource_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -286,6 +354,12 @@ public  final class VariableDef extends
     if (saveSliceInfoDef_ != null) {
       output.writeMessage(4, getSaveSliceInfoDef());
     }
+    if (isResource_ != false) {
+      output.writeBool(5, isResource_);
+    }
+    if (!getInitialValueNameBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, initialValueName_);
+    }
   }
 
   public int getSerializedSize() {
@@ -306,6 +380,13 @@ public  final class VariableDef extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, getSaveSliceInfoDef());
     }
+    if (isResource_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(5, isResource_);
+    }
+    if (!getInitialValueNameBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, initialValueName_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -324,6 +405,8 @@ public  final class VariableDef extends
     boolean result = true;
     result = result && getVariableName()
         .equals(other.getVariableName());
+    result = result && getInitialValueName()
+        .equals(other.getInitialValueName());
     result = result && getInitializerName()
         .equals(other.getInitializerName());
     result = result && getSnapshotName()
@@ -333,6 +416,8 @@ public  final class VariableDef extends
       result = result && getSaveSliceInfoDef()
           .equals(other.getSaveSliceInfoDef());
     }
+    result = result && (getIsResource()
+        == other.getIsResource());
     return result;
   }
 
@@ -345,6 +430,8 @@ public  final class VariableDef extends
     hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + VARIABLE_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getVariableName().hashCode();
+    hash = (37 * hash) + INITIAL_VALUE_NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getInitialValueName().hashCode();
     hash = (37 * hash) + INITIALIZER_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getInitializerName().hashCode();
     hash = (37 * hash) + SNAPSHOT_NAME_FIELD_NUMBER;
@@ -353,6 +440,9 @@ public  final class VariableDef extends
       hash = (37 * hash) + SAVE_SLICE_INFO_DEF_FIELD_NUMBER;
       hash = (53 * hash) + getSaveSliceInfoDef().hashCode();
     }
+    hash = (37 * hash) + IS_RESOURCE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getIsResource());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -477,6 +567,8 @@ public  final class VariableDef extends
       super.clear();
       variableName_ = "";
 
+      initialValueName_ = "";
+
       initializerName_ = "";
 
       snapshotName_ = "";
@@ -487,6 +579,8 @@ public  final class VariableDef extends
         saveSliceInfoDef_ = null;
         saveSliceInfoDefBuilder_ = null;
       }
+      isResource_ = false;
+
       return this;
     }
 
@@ -510,6 +604,7 @@ public  final class VariableDef extends
     public org.tensorflow.framework.VariableDef buildPartial() {
       org.tensorflow.framework.VariableDef result = new org.tensorflow.framework.VariableDef(this);
       result.variableName_ = variableName_;
+      result.initialValueName_ = initialValueName_;
       result.initializerName_ = initializerName_;
       result.snapshotName_ = snapshotName_;
       if (saveSliceInfoDefBuilder_ == null) {
@@ -517,6 +612,7 @@ public  final class VariableDef extends
       } else {
         result.saveSliceInfoDef_ = saveSliceInfoDefBuilder_.build();
       }
+      result.isResource_ = isResource_;
       onBuilt();
       return result;
     }
@@ -562,6 +658,10 @@ public  final class VariableDef extends
         variableName_ = other.variableName_;
         onChanged();
       }
+      if (!other.getInitialValueName().isEmpty()) {
+        initialValueName_ = other.initialValueName_;
+        onChanged();
+      }
       if (!other.getInitializerName().isEmpty()) {
         initializerName_ = other.initializerName_;
         onChanged();
@@ -572,6 +672,9 @@ public  final class VariableDef extends
       }
       if (other.hasSaveSliceInfoDef()) {
         mergeSaveSliceInfoDef(other.getSaveSliceInfoDef());
+      }
+      if (other.getIsResource() != false) {
+        setIsResource(other.getIsResource());
       }
       onChanged();
       return this;
@@ -684,6 +787,95 @@ public  final class VariableDef extends
   checkByteStringIsUtf8(value);
       
       variableName_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object initialValueName_ = "";
+    /**
+     * <pre>
+     * Name of the tensor holding the variable's initial value.
+     * </pre>
+     *
+     * <code>optional string initial_value_name = 6;</code>
+     */
+    public java.lang.String getInitialValueName() {
+      java.lang.Object ref = initialValueName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        initialValueName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Name of the tensor holding the variable's initial value.
+     * </pre>
+     *
+     * <code>optional string initial_value_name = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getInitialValueNameBytes() {
+      java.lang.Object ref = initialValueName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        initialValueName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Name of the tensor holding the variable's initial value.
+     * </pre>
+     *
+     * <code>optional string initial_value_name = 6;</code>
+     */
+    public Builder setInitialValueName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      initialValueName_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Name of the tensor holding the variable's initial value.
+     * </pre>
+     *
+     * <code>optional string initial_value_name = 6;</code>
+     */
+    public Builder clearInitialValueName() {
+      
+      initialValueName_ = getDefaultInstance().getInitialValueName();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Name of the tensor holding the variable's initial value.
+     * </pre>
+     *
+     * <code>optional string initial_value_name = 6;</code>
+     */
+    public Builder setInitialValueNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      initialValueName_ = value;
       onChanged();
       return this;
     }
@@ -1017,6 +1209,44 @@ public  final class VariableDef extends
         saveSliceInfoDef_ = null;
       }
       return saveSliceInfoDefBuilder_;
+    }
+
+    private boolean isResource_ ;
+    /**
+     * <pre>
+     * Whether to represent this as a ResourceVariable.
+     * </pre>
+     *
+     * <code>optional bool is_resource = 5;</code>
+     */
+    public boolean getIsResource() {
+      return isResource_;
+    }
+    /**
+     * <pre>
+     * Whether to represent this as a ResourceVariable.
+     * </pre>
+     *
+     * <code>optional bool is_resource = 5;</code>
+     */
+    public Builder setIsResource(boolean value) {
+      
+      isResource_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Whether to represent this as a ResourceVariable.
+     * </pre>
+     *
+     * <code>optional bool is_resource = 5;</code>
+     */
+    public Builder clearIsResource() {
+      
+      isResource_ = false;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

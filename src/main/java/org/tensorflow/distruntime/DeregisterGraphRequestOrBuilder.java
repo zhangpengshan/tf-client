@@ -9,6 +9,26 @@ public interface DeregisterGraphRequestOrBuilder extends
 
   /**
    * <pre>
+   * The session_handle used when registering the graph. If session_handle is
+   * empty, a single global namespace is used.
+   * </pre>
+   *
+   * <code>optional string session_handle = 2;</code>
+   */
+  java.lang.String getSessionHandle();
+  /**
+   * <pre>
+   * The session_handle used when registering the graph. If session_handle is
+   * empty, a single global namespace is used.
+   * </pre>
+   *
+   * <code>optional string session_handle = 2;</code>
+   */
+  com.google.protobuf.ByteString
+      getSessionHandleBytes();
+
+  /**
+   * <pre>
    * REQUIRED: graph_handle must be returned by a RegisterGraph call
    * to the same WorkerService.
    * </pre>

@@ -34,13 +34,14 @@ public final class DebugProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n$tensorflow/core/protobuf/debug.proto\022\n" +
-      "tensorflow\"a\n\020DebugTensorWatch\022\021\n\tnode_n" +
-      "ame\030\001 \001(\t\022\023\n\013output_slot\030\002 \001(\005\022\021\n\tdebug_" +
-      "ops\030\003 \003(\t\022\022\n\ndebug_urls\030\004 \003(\t\"M\n\014DebugOp" +
-      "tions\022=\n\027debug_tensor_watch_opts\030\004 \003(\0132\034" +
-      ".tensorflow.DebugTensorWatchB,\n\030org.tens" +
-      "orflow.frameworkB\013DebugProtosP\001\370\001\001b\006prot" +
-      "o3"
+      "tensorflow\"\216\001\n\020DebugTensorWatch\022\021\n\tnode_" +
+      "name\030\001 \001(\t\022\023\n\013output_slot\030\002 \001(\005\022\021\n\tdebug" +
+      "_ops\030\003 \003(\t\022\022\n\ndebug_urls\030\004 \003(\t\022+\n#tolera" +
+      "te_debug_op_creation_failures\030\005 \001(\010\"b\n\014D" +
+      "ebugOptions\022=\n\027debug_tensor_watch_opts\030\004" +
+      " \003(\0132\034.tensorflow.DebugTensorWatch\022\023\n\013gl" +
+      "obal_step\030\n \001(\003B,\n\030org.tensorflow.framew" +
+      "orkB\013DebugProtosP\001\370\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -59,13 +60,13 @@ public final class DebugProtos {
     internal_static_tensorflow_DebugTensorWatch_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_DebugTensorWatch_descriptor,
-        new java.lang.String[] { "NodeName", "OutputSlot", "DebugOps", "DebugUrls", });
+        new java.lang.String[] { "NodeName", "OutputSlot", "DebugOps", "DebugUrls", "TolerateDebugOpCreationFailures", });
     internal_static_tensorflow_DebugOptions_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_tensorflow_DebugOptions_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_DebugOptions_descriptor,
-        new java.lang.String[] { "DebugTensorWatchOpts", });
+        new java.lang.String[] { "DebugTensorWatchOpts", "GlobalStep", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

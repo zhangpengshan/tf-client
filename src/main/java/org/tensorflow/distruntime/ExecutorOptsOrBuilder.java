@@ -16,4 +16,9 @@ public interface ExecutorOptsOrBuilder extends
    * <code>optional bool record_timeline = 3;</code>
    */
   boolean getRecordTimeline();
+
+  /**
+   * <code>optional bool record_partition_graphs = 4;</code>
+   */
+  boolean getRecordPartitionGraphs();
 }

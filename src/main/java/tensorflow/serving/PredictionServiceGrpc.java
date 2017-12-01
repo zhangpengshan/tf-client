@@ -17,13 +17,14 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 
 /**
  * <pre>
+ * open source marker; do not remove
  * PredictionService provides access to machine-learned models loaded by
  * model_servers.
  * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.0.0)",
-    comments = "Source: prediction_service.proto")
+    comments = "Source: tensorflow_serving/apis/prediction_service.proto")
 public class PredictionServiceGrpc {
 
   private PredictionServiceGrpc() {}
@@ -31,6 +32,24 @@ public class PredictionServiceGrpc {
   public static final String SERVICE_NAME = "tensorflow.serving.PredictionService";
 
   // Static method descriptors that strictly reflect the proto.
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<tensorflow.serving.Classification.ClassificationRequest,
+      tensorflow.serving.Classification.ClassificationResponse> METHOD_CLASSIFY =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "tensorflow.serving.PredictionService", "Classify"),
+          io.grpc.protobuf.ProtoUtils.marshaller(tensorflow.serving.Classification.ClassificationRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(tensorflow.serving.Classification.ClassificationResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<tensorflow.serving.RegressionOuterClass.RegressionRequest,
+      tensorflow.serving.RegressionOuterClass.RegressionResponse> METHOD_REGRESS =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "tensorflow.serving.PredictionService", "Regress"),
+          io.grpc.protobuf.ProtoUtils.marshaller(tensorflow.serving.RegressionOuterClass.RegressionRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(tensorflow.serving.RegressionOuterClass.RegressionResponse.getDefaultInstance()));
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<tensorflow.serving.Predict.PredictRequest,
       tensorflow.serving.Predict.PredictResponse> METHOD_PREDICT =
@@ -40,6 +59,24 @@ public class PredictionServiceGrpc {
               "tensorflow.serving.PredictionService", "Predict"),
           io.grpc.protobuf.ProtoUtils.marshaller(tensorflow.serving.Predict.PredictRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(tensorflow.serving.Predict.PredictResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<tensorflow.serving.Inference.MultiInferenceRequest,
+      tensorflow.serving.Inference.MultiInferenceResponse> METHOD_MULTI_INFERENCE =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "tensorflow.serving.PredictionService", "MultiInference"),
+          io.grpc.protobuf.ProtoUtils.marshaller(tensorflow.serving.Inference.MultiInferenceRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(tensorflow.serving.Inference.MultiInferenceResponse.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<tensorflow.serving.GetModelMetadata.GetModelMetadataRequest,
+      tensorflow.serving.GetModelMetadata.GetModelMetadataResponse> METHOD_GET_MODEL_METADATA =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "tensorflow.serving.PredictionService", "GetModelMetadata"),
+          io.grpc.protobuf.ProtoUtils.marshaller(tensorflow.serving.GetModelMetadata.GetModelMetadataRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(tensorflow.serving.GetModelMetadata.GetModelMetadataResponse.getDefaultInstance()));
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -66,11 +103,32 @@ public class PredictionServiceGrpc {
 
   /**
    * <pre>
+   * open source marker; do not remove
    * PredictionService provides access to machine-learned models loaded by
    * model_servers.
    * </pre>
    */
   public static abstract class PredictionServiceImplBase implements io.grpc.BindableService {
+
+    /**
+     * <pre>
+     * Classify.
+     * </pre>
+     */
+    public void classify(tensorflow.serving.Classification.ClassificationRequest request,
+        io.grpc.stub.StreamObserver<tensorflow.serving.Classification.ClassificationResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_CLASSIFY, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Regress.
+     * </pre>
+     */
+    public void regress(tensorflow.serving.RegressionOuterClass.RegressionRequest request,
+        io.grpc.stub.StreamObserver<tensorflow.serving.RegressionOuterClass.RegressionResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_REGRESS, responseObserver);
+    }
 
     /**
      * <pre>
@@ -82,8 +140,42 @@ public class PredictionServiceGrpc {
       asyncUnimplementedUnaryCall(METHOD_PREDICT, responseObserver);
     }
 
+    /**
+     * <pre>
+     * MultiInference API for multi-headed models.
+     * </pre>
+     */
+    public void multiInference(tensorflow.serving.Inference.MultiInferenceRequest request,
+        io.grpc.stub.StreamObserver<tensorflow.serving.Inference.MultiInferenceResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_MULTI_INFERENCE, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * GetModelMetadata - provides access to metadata for loaded models.
+     * </pre>
+     */
+    public void getModelMetadata(tensorflow.serving.GetModelMetadata.GetModelMetadataRequest request,
+        io.grpc.stub.StreamObserver<tensorflow.serving.GetModelMetadata.GetModelMetadataResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GET_MODEL_METADATA, responseObserver);
+    }
+
     @java.lang.Override public io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+          .addMethod(
+            METHOD_CLASSIFY,
+            asyncUnaryCall(
+              new MethodHandlers<
+                tensorflow.serving.Classification.ClassificationRequest,
+                tensorflow.serving.Classification.ClassificationResponse>(
+                  this, METHODID_CLASSIFY)))
+          .addMethod(
+            METHOD_REGRESS,
+            asyncUnaryCall(
+              new MethodHandlers<
+                tensorflow.serving.RegressionOuterClass.RegressionRequest,
+                tensorflow.serving.RegressionOuterClass.RegressionResponse>(
+                  this, METHODID_REGRESS)))
           .addMethod(
             METHOD_PREDICT,
             asyncUnaryCall(
@@ -91,12 +183,27 @@ public class PredictionServiceGrpc {
                 tensorflow.serving.Predict.PredictRequest,
                 tensorflow.serving.Predict.PredictResponse>(
                   this, METHODID_PREDICT)))
+          .addMethod(
+            METHOD_MULTI_INFERENCE,
+            asyncUnaryCall(
+              new MethodHandlers<
+                tensorflow.serving.Inference.MultiInferenceRequest,
+                tensorflow.serving.Inference.MultiInferenceResponse>(
+                  this, METHODID_MULTI_INFERENCE)))
+          .addMethod(
+            METHOD_GET_MODEL_METADATA,
+            asyncUnaryCall(
+              new MethodHandlers<
+                tensorflow.serving.GetModelMetadata.GetModelMetadataRequest,
+                tensorflow.serving.GetModelMetadata.GetModelMetadataResponse>(
+                  this, METHODID_GET_MODEL_METADATA)))
           .build();
     }
   }
 
   /**
    * <pre>
+   * open source marker; do not remove
    * PredictionService provides access to machine-learned models loaded by
    * model_servers.
    * </pre>
@@ -119,6 +226,28 @@ public class PredictionServiceGrpc {
 
     /**
      * <pre>
+     * Classify.
+     * </pre>
+     */
+    public void classify(tensorflow.serving.Classification.ClassificationRequest request,
+        io.grpc.stub.StreamObserver<tensorflow.serving.Classification.ClassificationResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_CLASSIFY, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Regress.
+     * </pre>
+     */
+    public void regress(tensorflow.serving.RegressionOuterClass.RegressionRequest request,
+        io.grpc.stub.StreamObserver<tensorflow.serving.RegressionOuterClass.RegressionResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_REGRESS, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Predict -- provides access to loaded TensorFlow model.
      * </pre>
      */
@@ -127,10 +256,33 @@ public class PredictionServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(METHOD_PREDICT, getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * MultiInference API for multi-headed models.
+     * </pre>
+     */
+    public void multiInference(tensorflow.serving.Inference.MultiInferenceRequest request,
+        io.grpc.stub.StreamObserver<tensorflow.serving.Inference.MultiInferenceResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_MULTI_INFERENCE, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * GetModelMetadata - provides access to metadata for loaded models.
+     * </pre>
+     */
+    public void getModelMetadata(tensorflow.serving.GetModelMetadata.GetModelMetadataRequest request,
+        io.grpc.stub.StreamObserver<tensorflow.serving.GetModelMetadata.GetModelMetadataResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_GET_MODEL_METADATA, getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
    * <pre>
+   * open source marker; do not remove
    * PredictionService provides access to machine-learned models loaded by
    * model_servers.
    * </pre>
@@ -153,6 +305,26 @@ public class PredictionServiceGrpc {
 
     /**
      * <pre>
+     * Classify.
+     * </pre>
+     */
+    public tensorflow.serving.Classification.ClassificationResponse classify(tensorflow.serving.Classification.ClassificationRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_CLASSIFY, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Regress.
+     * </pre>
+     */
+    public tensorflow.serving.RegressionOuterClass.RegressionResponse regress(tensorflow.serving.RegressionOuterClass.RegressionRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_REGRESS, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Predict -- provides access to loaded TensorFlow model.
      * </pre>
      */
@@ -160,10 +332,31 @@ public class PredictionServiceGrpc {
       return blockingUnaryCall(
           getChannel(), METHOD_PREDICT, getCallOptions(), request);
     }
+
+    /**
+     * <pre>
+     * MultiInference API for multi-headed models.
+     * </pre>
+     */
+    public tensorflow.serving.Inference.MultiInferenceResponse multiInference(tensorflow.serving.Inference.MultiInferenceRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_MULTI_INFERENCE, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * GetModelMetadata - provides access to metadata for loaded models.
+     * </pre>
+     */
+    public tensorflow.serving.GetModelMetadata.GetModelMetadataResponse getModelMetadata(tensorflow.serving.GetModelMetadata.GetModelMetadataRequest request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_GET_MODEL_METADATA, getCallOptions(), request);
+    }
   }
 
   /**
    * <pre>
+   * open source marker; do not remove
    * PredictionService provides access to machine-learned models loaded by
    * model_servers.
    * </pre>
@@ -186,6 +379,28 @@ public class PredictionServiceGrpc {
 
     /**
      * <pre>
+     * Classify.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.Classification.ClassificationResponse> classify(
+        tensorflow.serving.Classification.ClassificationRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_CLASSIFY, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Regress.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.RegressionOuterClass.RegressionResponse> regress(
+        tensorflow.serving.RegressionOuterClass.RegressionRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_REGRESS, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * Predict -- provides access to loaded TensorFlow model.
      * </pre>
      */
@@ -194,9 +409,35 @@ public class PredictionServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_PREDICT, getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * MultiInference API for multi-headed models.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.Inference.MultiInferenceResponse> multiInference(
+        tensorflow.serving.Inference.MultiInferenceRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_MULTI_INFERENCE, getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * GetModelMetadata - provides access to metadata for loaded models.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.GetModelMetadata.GetModelMetadataResponse> getModelMetadata(
+        tensorflow.serving.GetModelMetadata.GetModelMetadataRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_GET_MODEL_METADATA, getCallOptions()), request);
+    }
   }
 
-  private static final int METHODID_PREDICT = 0;
+  private static final int METHODID_CLASSIFY = 0;
+  private static final int METHODID_REGRESS = 1;
+  private static final int METHODID_PREDICT = 2;
+  private static final int METHODID_MULTI_INFERENCE = 3;
+  private static final int METHODID_GET_MODEL_METADATA = 4;
 
   private static class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -215,9 +456,25 @@ public class PredictionServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_CLASSIFY:
+          serviceImpl.classify((tensorflow.serving.Classification.ClassificationRequest) request,
+              (io.grpc.stub.StreamObserver<tensorflow.serving.Classification.ClassificationResponse>) responseObserver);
+          break;
+        case METHODID_REGRESS:
+          serviceImpl.regress((tensorflow.serving.RegressionOuterClass.RegressionRequest) request,
+              (io.grpc.stub.StreamObserver<tensorflow.serving.RegressionOuterClass.RegressionResponse>) responseObserver);
+          break;
         case METHODID_PREDICT:
           serviceImpl.predict((tensorflow.serving.Predict.PredictRequest) request,
               (io.grpc.stub.StreamObserver<tensorflow.serving.Predict.PredictResponse>) responseObserver);
+          break;
+        case METHODID_MULTI_INFERENCE:
+          serviceImpl.multiInference((tensorflow.serving.Inference.MultiInferenceRequest) request,
+              (io.grpc.stub.StreamObserver<tensorflow.serving.Inference.MultiInferenceResponse>) responseObserver);
+          break;
+        case METHODID_GET_MODEL_METADATA:
+          serviceImpl.getModelMetadata((tensorflow.serving.GetModelMetadata.GetModelMetadataRequest) request,
+              (io.grpc.stub.StreamObserver<tensorflow.serving.GetModelMetadata.GetModelMetadataResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -237,7 +494,11 @@ public class PredictionServiceGrpc {
 
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     return new io.grpc.ServiceDescriptor(SERVICE_NAME,
-        METHOD_PREDICT);
+        METHOD_CLASSIFY,
+        METHOD_REGRESS,
+        METHOD_PREDICT,
+        METHOD_MULTI_INFERENCE,
+        METHOD_GET_MODEL_METADATA);
   }
 
 }

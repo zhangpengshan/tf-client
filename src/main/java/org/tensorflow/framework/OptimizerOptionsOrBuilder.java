@@ -35,10 +35,20 @@ public interface OptimizerOptionsOrBuilder extends
   boolean getDoFunctionInlining();
 
   /**
+   * <pre>
+   * Overall optimization level. The actual optimizations applied will be the
+   * logical OR of the flags that this level implies and any flags already set.
+   * </pre>
+   *
    * <code>optional .tensorflow.OptimizerOptions.Level opt_level = 3;</code>
    */
   int getOptLevelValue();
   /**
+   * <pre>
+   * Overall optimization level. The actual optimizations applied will be the
+   * logical OR of the flags that this level implies and any flags already set.
+   * </pre>
+   *
    * <code>optional .tensorflow.OptimizerOptions.Level opt_level = 3;</code>
    */
   org.tensorflow.framework.OptimizerOptions.Level getOptLevel();

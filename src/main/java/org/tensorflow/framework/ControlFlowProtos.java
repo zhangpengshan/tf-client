@@ -51,15 +51,16 @@ public final class ControlFlowProtos {
       "\030\002 \001(\t:\0028\001\"\210\001\n\016CondContextDef\022\024\n\014context" +
       "_name\030\001 \001(\t\022\021\n\tpred_name\030\002 \001(\t\022\022\n\npivot_" +
       "name\030\003 \001(\t\022\016\n\006branch\030\004 \001(\005\022)\n\nvalues_def" +
-      "\030\005 \001(\0132\025.tensorflow.ValuesDef\"\376\001\n\017WhileC" +
+      "\030\005 \001(\0132\025.tensorflow.ValuesDef\"\230\002\n\017WhileC" +
       "ontextDef\022\024\n\014context_name\030\001 \001(\t\022\033\n\023paral",
       "lel_iterations\030\002 \001(\005\022\021\n\tback_prop\030\003 \001(\010\022" +
       "\023\n\013swap_memory\030\004 \001(\010\022\022\n\npivot_name\030\005 \001(\t" +
       "\022\033\n\023pivot_for_pred_name\030\006 \001(\t\022\033\n\023pivot_f" +
       "or_body_name\030\007 \001(\t\022\027\n\017loop_exit_names\030\010 " +
-      "\003(\t\022)\n\nvalues_def\030\t \001(\0132\025.tensorflow.Val" +
-      "uesDefB2\n\030org.tensorflow.frameworkB\021Cont" +
-      "rolFlowProtosP\001\370\001\001b\006proto3"
+      "\003(\t\022\030\n\020loop_enter_names\030\n \003(\t\022)\n\nvalues_" +
+      "def\030\t \001(\0132\025.tensorflow.ValuesDefB2\n\030org." +
+      "tensorflow.frameworkB\021ControlFlowProtosP" +
+      "\001\370\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -96,7 +97,7 @@ public final class ControlFlowProtos {
     internal_static_tensorflow_WhileContextDef_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_WhileContextDef_descriptor,
-        new java.lang.String[] { "ContextName", "ParallelIterations", "BackProp", "SwapMemory", "PivotName", "PivotForPredName", "PivotForBodyName", "LoopExitNames", "ValuesDef", });
+        new java.lang.String[] { "ContextName", "ParallelIterations", "BackProp", "SwapMemory", "PivotName", "PivotForPredName", "PivotForBodyName", "LoopExitNames", "LoopEnterNames", "ValuesDef", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

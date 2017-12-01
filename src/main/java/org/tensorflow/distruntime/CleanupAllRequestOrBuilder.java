@@ -10,7 +10,7 @@ public interface CleanupAllRequestOrBuilder extends
   /**
    * <pre>
    * A list of container names.
-   * If 'container' is not empty, releases resoures in the given
+   * If 'container' is not empty, releases resources in the given
    * containers in all devices.
    * If 'container' is empty, releases resources in the default
    * container in all devices.
@@ -23,7 +23,7 @@ public interface CleanupAllRequestOrBuilder extends
   /**
    * <pre>
    * A list of container names.
-   * If 'container' is not empty, releases resoures in the given
+   * If 'container' is not empty, releases resources in the given
    * containers in all devices.
    * If 'container' is empty, releases resources in the default
    * container in all devices.
@@ -35,7 +35,7 @@ public interface CleanupAllRequestOrBuilder extends
   /**
    * <pre>
    * A list of container names.
-   * If 'container' is not empty, releases resoures in the given
+   * If 'container' is not empty, releases resources in the given
    * containers in all devices.
    * If 'container' is empty, releases resources in the default
    * container in all devices.
@@ -47,7 +47,7 @@ public interface CleanupAllRequestOrBuilder extends
   /**
    * <pre>
    * A list of container names.
-   * If 'container' is not empty, releases resoures in the given
+   * If 'container' is not empty, releases resources in the given
    * containers in all devices.
    * If 'container' is empty, releases resources in the default
    * container in all devices.

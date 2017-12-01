@@ -15,6 +15,7 @@ public  final class RunGraphRequest extends
     super(builder);
   }
   private RunGraphRequest() {
+    sessionHandle_ = "";
     graphHandle_ = "";
     stepId_ = 0L;
     send_ = java.util.Collections.emptyList();
@@ -60,19 +61,19 @@ public  final class RunGraphRequest extends
             break;
           }
           case 26: {
-            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-              send_ = new java.util.ArrayList<org.tensorflow.distruntime.NamedTensor>();
-              mutable_bitField0_ |= 0x00000008;
+            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+              send_ = new java.util.ArrayList<org.tensorflow.framework.NamedTensorProto>();
+              mutable_bitField0_ |= 0x00000010;
             }
             send_.add(
-                input.readMessage(org.tensorflow.distruntime.NamedTensor.parser(), extensionRegistry));
+                input.readMessage(org.tensorflow.framework.NamedTensorProto.parser(), extensionRegistry));
             break;
           }
           case 34: {
             java.lang.String s = input.readStringRequireUtf8();
-            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+            if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
               recvKey_ = new com.google.protobuf.LazyStringArrayList();
-              mutable_bitField0_ |= 0x00000010;
+              mutable_bitField0_ |= 0x00000020;
             }
             recvKey_.add(s);
             break;
@@ -100,6 +101,12 @@ public  final class RunGraphRequest extends
             isLastPartialRun_ = input.readBool();
             break;
           }
+          case 66: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            sessionHandle_ = s;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -108,10 +115,10 @@ public  final class RunGraphRequest extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
         send_ = java.util.Collections.unmodifiableList(send_);
       }
-      if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
         recvKey_ = recvKey_.getUnmodifiableView();
       }
       makeExtensionsImmutable();
@@ -130,6 +137,54 @@ public  final class RunGraphRequest extends
   }
 
   private int bitField0_;
+  public static final int SESSION_HANDLE_FIELD_NUMBER = 8;
+  private volatile java.lang.Object sessionHandle_;
+  /**
+   * <pre>
+   * session_handle is the master-generated unique id for this session.
+   * If session_handle is non-empty, it must be the same as used when
+   * registering the graph. If it is empty, a single global namespace is used to
+   * search for the graph_handle.
+   * </pre>
+   *
+   * <code>optional string session_handle = 8;</code>
+   */
+  public java.lang.String getSessionHandle() {
+    java.lang.Object ref = sessionHandle_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      sessionHandle_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * session_handle is the master-generated unique id for this session.
+   * If session_handle is non-empty, it must be the same as used when
+   * registering the graph. If it is empty, a single global namespace is used to
+   * search for the graph_handle.
+   * </pre>
+   *
+   * <code>optional string session_handle = 8;</code>
+   */
+  public com.google.protobuf.ByteString
+      getSessionHandleBytes() {
+    java.lang.Object ref = sessionHandle_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      sessionHandle_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   public static final int GRAPH_HANDLE_FIELD_NUMBER = 1;
   private volatile java.lang.Object graphHandle_;
   /**
@@ -225,7 +280,7 @@ public  final class RunGraphRequest extends
   }
 
   public static final int SEND_FIELD_NUMBER = 3;
-  private java.util.List<org.tensorflow.distruntime.NamedTensor> send_;
+  private java.util.List<org.tensorflow.framework.NamedTensorProto> send_;
   /**
    * <pre>
    * Runs the graph.
@@ -233,9 +288,9 @@ public  final class RunGraphRequest extends
    * fetches the keys into `RunGraphResponse.recv` after the run.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+   * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
    */
-  public java.util.List<org.tensorflow.distruntime.NamedTensor> getSendList() {
+  public java.util.List<org.tensorflow.framework.NamedTensorProto> getSendList() {
     return send_;
   }
   /**
@@ -245,9 +300,9 @@ public  final class RunGraphRequest extends
    * fetches the keys into `RunGraphResponse.recv` after the run.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+   * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
    */
-  public java.util.List<? extends org.tensorflow.distruntime.NamedTensorOrBuilder> 
+  public java.util.List<? extends org.tensorflow.framework.NamedTensorProtoOrBuilder> 
       getSendOrBuilderList() {
     return send_;
   }
@@ -258,7 +313,7 @@ public  final class RunGraphRequest extends
    * fetches the keys into `RunGraphResponse.recv` after the run.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+   * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
    */
   public int getSendCount() {
     return send_.size();
@@ -270,9 +325,9 @@ public  final class RunGraphRequest extends
    * fetches the keys into `RunGraphResponse.recv` after the run.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+   * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
    */
-  public org.tensorflow.distruntime.NamedTensor getSend(int index) {
+  public org.tensorflow.framework.NamedTensorProto getSend(int index) {
     return send_.get(index);
   }
   /**
@@ -282,9 +337,9 @@ public  final class RunGraphRequest extends
    * fetches the keys into `RunGraphResponse.recv` after the run.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+   * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
    */
-  public org.tensorflow.distruntime.NamedTensorOrBuilder getSendOrBuilder(
+  public org.tensorflow.framework.NamedTensorProtoOrBuilder getSendOrBuilder(
       int index) {
     return send_.get(index);
   }
@@ -377,6 +432,9 @@ public  final class RunGraphRequest extends
     if (isLastPartialRun_ != false) {
       output.writeBool(7, isLastPartialRun_);
     }
+    if (!getSessionHandleBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 8, sessionHandle_);
+    }
   }
 
   public int getSerializedSize() {
@@ -415,6 +473,9 @@ public  final class RunGraphRequest extends
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(7, isLastPartialRun_);
     }
+    if (!getSessionHandleBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, sessionHandle_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -431,6 +492,8 @@ public  final class RunGraphRequest extends
     org.tensorflow.distruntime.RunGraphRequest other = (org.tensorflow.distruntime.RunGraphRequest) obj;
 
     boolean result = true;
+    result = result && getSessionHandle()
+        .equals(other.getSessionHandle());
     result = result && getGraphHandle()
         .equals(other.getGraphHandle());
     result = result && (getStepId()
@@ -458,6 +521,8 @@ public  final class RunGraphRequest extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (37 * hash) + SESSION_HANDLE_FIELD_NUMBER;
+    hash = (53 * hash) + getSessionHandle().hashCode();
     hash = (37 * hash) + GRAPH_HANDLE_FIELD_NUMBER;
     hash = (53 * hash) + getGraphHandle().hashCode();
     hash = (37 * hash) + STEP_ID_FIELD_NUMBER;
@@ -600,6 +665,8 @@ public  final class RunGraphRequest extends
     }
     public Builder clear() {
       super.clear();
+      sessionHandle_ = "";
+
       graphHandle_ = "";
 
       stepId_ = 0L;
@@ -612,12 +679,12 @@ public  final class RunGraphRequest extends
       }
       if (sendBuilder_ == null) {
         send_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
       } else {
         sendBuilder_.clear();
       }
       recvKey_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000020);
       isPartial_ = false;
 
       isLastPartialRun_ = false;
@@ -646,6 +713,7 @@ public  final class RunGraphRequest extends
       org.tensorflow.distruntime.RunGraphRequest result = new org.tensorflow.distruntime.RunGraphRequest(this);
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
+      result.sessionHandle_ = sessionHandle_;
       result.graphHandle_ = graphHandle_;
       result.stepId_ = stepId_;
       if (execOptsBuilder_ == null) {
@@ -654,17 +722,17 @@ public  final class RunGraphRequest extends
         result.execOpts_ = execOptsBuilder_.build();
       }
       if (sendBuilder_ == null) {
-        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
           send_ = java.util.Collections.unmodifiableList(send_);
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000010);
         }
         result.send_ = send_;
       } else {
         result.send_ = sendBuilder_.build();
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
         recvKey_ = recvKey_.getUnmodifiableView();
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
       }
       result.recvKey_ = recvKey_;
       result.isPartial_ = isPartial_;
@@ -711,6 +779,10 @@ public  final class RunGraphRequest extends
 
     public Builder mergeFrom(org.tensorflow.distruntime.RunGraphRequest other) {
       if (other == org.tensorflow.distruntime.RunGraphRequest.getDefaultInstance()) return this;
+      if (!other.getSessionHandle().isEmpty()) {
+        sessionHandle_ = other.sessionHandle_;
+        onChanged();
+      }
       if (!other.getGraphHandle().isEmpty()) {
         graphHandle_ = other.graphHandle_;
         onChanged();
@@ -725,7 +797,7 @@ public  final class RunGraphRequest extends
         if (!other.send_.isEmpty()) {
           if (send_.isEmpty()) {
             send_ = other.send_;
-            bitField0_ = (bitField0_ & ~0x00000008);
+            bitField0_ = (bitField0_ & ~0x00000010);
           } else {
             ensureSendIsMutable();
             send_.addAll(other.send_);
@@ -738,7 +810,7 @@ public  final class RunGraphRequest extends
             sendBuilder_.dispose();
             sendBuilder_ = null;
             send_ = other.send_;
-            bitField0_ = (bitField0_ & ~0x00000008);
+            bitField0_ = (bitField0_ & ~0x00000010);
             sendBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getSendFieldBuilder() : null;
@@ -750,7 +822,7 @@ public  final class RunGraphRequest extends
       if (!other.recvKey_.isEmpty()) {
         if (recvKey_.isEmpty()) {
           recvKey_ = other.recvKey_;
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000020);
         } else {
           ensureRecvKeyIsMutable();
           recvKey_.addAll(other.recvKey_);
@@ -789,6 +861,110 @@ public  final class RunGraphRequest extends
       return this;
     }
     private int bitField0_;
+
+    private java.lang.Object sessionHandle_ = "";
+    /**
+     * <pre>
+     * session_handle is the master-generated unique id for this session.
+     * If session_handle is non-empty, it must be the same as used when
+     * registering the graph. If it is empty, a single global namespace is used to
+     * search for the graph_handle.
+     * </pre>
+     *
+     * <code>optional string session_handle = 8;</code>
+     */
+    public java.lang.String getSessionHandle() {
+      java.lang.Object ref = sessionHandle_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sessionHandle_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * session_handle is the master-generated unique id for this session.
+     * If session_handle is non-empty, it must be the same as used when
+     * registering the graph. If it is empty, a single global namespace is used to
+     * search for the graph_handle.
+     * </pre>
+     *
+     * <code>optional string session_handle = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSessionHandleBytes() {
+      java.lang.Object ref = sessionHandle_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionHandle_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * session_handle is the master-generated unique id for this session.
+     * If session_handle is non-empty, it must be the same as used when
+     * registering the graph. If it is empty, a single global namespace is used to
+     * search for the graph_handle.
+     * </pre>
+     *
+     * <code>optional string session_handle = 8;</code>
+     */
+    public Builder setSessionHandle(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      sessionHandle_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * session_handle is the master-generated unique id for this session.
+     * If session_handle is non-empty, it must be the same as used when
+     * registering the graph. If it is empty, a single global namespace is used to
+     * search for the graph_handle.
+     * </pre>
+     *
+     * <code>optional string session_handle = 8;</code>
+     */
+    public Builder clearSessionHandle() {
+      
+      sessionHandle_ = getDefaultInstance().getSessionHandle();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * session_handle is the master-generated unique id for this session.
+     * If session_handle is non-empty, it must be the same as used when
+     * registering the graph. If it is empty, a single global namespace is used to
+     * search for the graph_handle.
+     * </pre>
+     *
+     * <code>optional string session_handle = 8;</code>
+     */
+    public Builder setSessionHandleBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      sessionHandle_ = value;
+      onChanged();
+      return this;
+    }
 
     private java.lang.Object graphHandle_ = "";
     /**
@@ -1087,17 +1263,17 @@ public  final class RunGraphRequest extends
       return execOptsBuilder_;
     }
 
-    private java.util.List<org.tensorflow.distruntime.NamedTensor> send_ =
+    private java.util.List<org.tensorflow.framework.NamedTensorProto> send_ =
       java.util.Collections.emptyList();
     private void ensureSendIsMutable() {
-      if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-        send_ = new java.util.ArrayList<org.tensorflow.distruntime.NamedTensor>(send_);
-        bitField0_ |= 0x00000008;
+      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+        send_ = new java.util.ArrayList<org.tensorflow.framework.NamedTensorProto>(send_);
+        bitField0_ |= 0x00000010;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        org.tensorflow.distruntime.NamedTensor, org.tensorflow.distruntime.NamedTensor.Builder, org.tensorflow.distruntime.NamedTensorOrBuilder> sendBuilder_;
+        org.tensorflow.framework.NamedTensorProto, org.tensorflow.framework.NamedTensorProto.Builder, org.tensorflow.framework.NamedTensorProtoOrBuilder> sendBuilder_;
 
     /**
      * <pre>
@@ -1106,9 +1282,9 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
-    public java.util.List<org.tensorflow.distruntime.NamedTensor> getSendList() {
+    public java.util.List<org.tensorflow.framework.NamedTensorProto> getSendList() {
       if (sendBuilder_ == null) {
         return java.util.Collections.unmodifiableList(send_);
       } else {
@@ -1122,7 +1298,7 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
     public int getSendCount() {
       if (sendBuilder_ == null) {
@@ -1138,9 +1314,9 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
-    public org.tensorflow.distruntime.NamedTensor getSend(int index) {
+    public org.tensorflow.framework.NamedTensorProto getSend(int index) {
       if (sendBuilder_ == null) {
         return send_.get(index);
       } else {
@@ -1154,10 +1330,10 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
     public Builder setSend(
-        int index, org.tensorflow.distruntime.NamedTensor value) {
+        int index, org.tensorflow.framework.NamedTensorProto value) {
       if (sendBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1177,10 +1353,10 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
     public Builder setSend(
-        int index, org.tensorflow.distruntime.NamedTensor.Builder builderForValue) {
+        int index, org.tensorflow.framework.NamedTensorProto.Builder builderForValue) {
       if (sendBuilder_ == null) {
         ensureSendIsMutable();
         send_.set(index, builderForValue.build());
@@ -1197,9 +1373,9 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
-    public Builder addSend(org.tensorflow.distruntime.NamedTensor value) {
+    public Builder addSend(org.tensorflow.framework.NamedTensorProto value) {
       if (sendBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1219,10 +1395,10 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
     public Builder addSend(
-        int index, org.tensorflow.distruntime.NamedTensor value) {
+        int index, org.tensorflow.framework.NamedTensorProto value) {
       if (sendBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1242,10 +1418,10 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
     public Builder addSend(
-        org.tensorflow.distruntime.NamedTensor.Builder builderForValue) {
+        org.tensorflow.framework.NamedTensorProto.Builder builderForValue) {
       if (sendBuilder_ == null) {
         ensureSendIsMutable();
         send_.add(builderForValue.build());
@@ -1262,10 +1438,10 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
     public Builder addSend(
-        int index, org.tensorflow.distruntime.NamedTensor.Builder builderForValue) {
+        int index, org.tensorflow.framework.NamedTensorProto.Builder builderForValue) {
       if (sendBuilder_ == null) {
         ensureSendIsMutable();
         send_.add(index, builderForValue.build());
@@ -1282,10 +1458,10 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
     public Builder addAllSend(
-        java.lang.Iterable<? extends org.tensorflow.distruntime.NamedTensor> values) {
+        java.lang.Iterable<? extends org.tensorflow.framework.NamedTensorProto> values) {
       if (sendBuilder_ == null) {
         ensureSendIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -1303,12 +1479,12 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
     public Builder clearSend() {
       if (sendBuilder_ == null) {
         send_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
       } else {
         sendBuilder_.clear();
@@ -1322,7 +1498,7 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
     public Builder removeSend(int index) {
       if (sendBuilder_ == null) {
@@ -1341,9 +1517,9 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
-    public org.tensorflow.distruntime.NamedTensor.Builder getSendBuilder(
+    public org.tensorflow.framework.NamedTensorProto.Builder getSendBuilder(
         int index) {
       return getSendFieldBuilder().getBuilder(index);
     }
@@ -1354,9 +1530,9 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
-    public org.tensorflow.distruntime.NamedTensorOrBuilder getSendOrBuilder(
+    public org.tensorflow.framework.NamedTensorProtoOrBuilder getSendOrBuilder(
         int index) {
       if (sendBuilder_ == null) {
         return send_.get(index);  } else {
@@ -1370,9 +1546,9 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
-    public java.util.List<? extends org.tensorflow.distruntime.NamedTensorOrBuilder> 
+    public java.util.List<? extends org.tensorflow.framework.NamedTensorProtoOrBuilder> 
          getSendOrBuilderList() {
       if (sendBuilder_ != null) {
         return sendBuilder_.getMessageOrBuilderList();
@@ -1387,11 +1563,11 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
-    public org.tensorflow.distruntime.NamedTensor.Builder addSendBuilder() {
+    public org.tensorflow.framework.NamedTensorProto.Builder addSendBuilder() {
       return getSendFieldBuilder().addBuilder(
-          org.tensorflow.distruntime.NamedTensor.getDefaultInstance());
+          org.tensorflow.framework.NamedTensorProto.getDefaultInstance());
     }
     /**
      * <pre>
@@ -1400,12 +1576,12 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
-    public org.tensorflow.distruntime.NamedTensor.Builder addSendBuilder(
+    public org.tensorflow.framework.NamedTensorProto.Builder addSendBuilder(
         int index) {
       return getSendFieldBuilder().addBuilder(
-          index, org.tensorflow.distruntime.NamedTensor.getDefaultInstance());
+          index, org.tensorflow.framework.NamedTensorProto.getDefaultInstance());
     }
     /**
      * <pre>
@@ -1414,20 +1590,20 @@ public  final class RunGraphRequest extends
      * fetches the keys into `RunGraphResponse.recv` after the run.
      * </pre>
      *
-     * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+     * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
      */
-    public java.util.List<org.tensorflow.distruntime.NamedTensor.Builder> 
+    public java.util.List<org.tensorflow.framework.NamedTensorProto.Builder> 
          getSendBuilderList() {
       return getSendFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        org.tensorflow.distruntime.NamedTensor, org.tensorflow.distruntime.NamedTensor.Builder, org.tensorflow.distruntime.NamedTensorOrBuilder> 
+        org.tensorflow.framework.NamedTensorProto, org.tensorflow.framework.NamedTensorProto.Builder, org.tensorflow.framework.NamedTensorProtoOrBuilder> 
         getSendFieldBuilder() {
       if (sendBuilder_ == null) {
         sendBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            org.tensorflow.distruntime.NamedTensor, org.tensorflow.distruntime.NamedTensor.Builder, org.tensorflow.distruntime.NamedTensorOrBuilder>(
+            org.tensorflow.framework.NamedTensorProto, org.tensorflow.framework.NamedTensorProto.Builder, org.tensorflow.framework.NamedTensorProtoOrBuilder>(
                 send_,
-                ((bitField0_ & 0x00000008) == 0x00000008),
+                ((bitField0_ & 0x00000010) == 0x00000010),
                 getParentForChildren(),
                 isClean());
         send_ = null;
@@ -1437,9 +1613,9 @@ public  final class RunGraphRequest extends
 
     private com.google.protobuf.LazyStringList recvKey_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     private void ensureRecvKeyIsMutable() {
-      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (!((bitField0_ & 0x00000020) == 0x00000020)) {
         recvKey_ = new com.google.protobuf.LazyStringArrayList(recvKey_);
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
        }
     }
     /**
@@ -1510,7 +1686,7 @@ public  final class RunGraphRequest extends
      */
     public Builder clearRecvKey() {
       recvKey_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000020);
       onChanged();
       return this;
     }

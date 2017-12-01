@@ -7,6 +7,7 @@ package org.tensorflow.framework;
  * <pre>
  * Defines an operation. A NodeDef in a GraphDef specifies an Op by
  * using the "op" field which should match the name of a OpDef.
+ * LINT.IfChange
  * </pre>
  *
  * Protobuf type {@code tensorflow.OpDef}
@@ -4030,6 +4031,7 @@ public  final class OpDef extends
    * <pre>
    * Defines an operation. A NodeDef in a GraphDef specifies an Op by
    * using the "op" field which should match the name of a OpDef.
+   * LINT.IfChange
    * </pre>
    *
    * Protobuf type {@code tensorflow.OpDef}

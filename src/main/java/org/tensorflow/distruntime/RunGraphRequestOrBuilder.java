@@ -9,6 +9,30 @@ public interface RunGraphRequestOrBuilder extends
 
   /**
    * <pre>
+   * session_handle is the master-generated unique id for this session.
+   * If session_handle is non-empty, it must be the same as used when
+   * registering the graph. If it is empty, a single global namespace is used to
+   * search for the graph_handle.
+   * </pre>
+   *
+   * <code>optional string session_handle = 8;</code>
+   */
+  java.lang.String getSessionHandle();
+  /**
+   * <pre>
+   * session_handle is the master-generated unique id for this session.
+   * If session_handle is non-empty, it must be the same as used when
+   * registering the graph. If it is empty, a single global namespace is used to
+   * search for the graph_handle.
+   * </pre>
+   *
+   * <code>optional string session_handle = 8;</code>
+   */
+  com.google.protobuf.ByteString
+      getSessionHandleBytes();
+
+  /**
+   * <pre>
    * REQUIRED: graph_handle must be returned by a RegisterGraph call
    * to the same WorkerService.
    * </pre>
@@ -72,9 +96,9 @@ public interface RunGraphRequestOrBuilder extends
    * fetches the keys into `RunGraphResponse.recv` after the run.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+   * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
    */
-  java.util.List<org.tensorflow.distruntime.NamedTensor> 
+  java.util.List<org.tensorflow.framework.NamedTensorProto> 
       getSendList();
   /**
    * <pre>
@@ -83,9 +107,9 @@ public interface RunGraphRequestOrBuilder extends
    * fetches the keys into `RunGraphResponse.recv` after the run.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+   * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
    */
-  org.tensorflow.distruntime.NamedTensor getSend(int index);
+  org.tensorflow.framework.NamedTensorProto getSend(int index);
   /**
    * <pre>
    * Runs the graph.
@@ -93,7 +117,7 @@ public interface RunGraphRequestOrBuilder extends
    * fetches the keys into `RunGraphResponse.recv` after the run.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+   * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
    */
   int getSendCount();
   /**
@@ -103,9 +127,9 @@ public interface RunGraphRequestOrBuilder extends
    * fetches the keys into `RunGraphResponse.recv` after the run.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+   * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
    */
-  java.util.List<? extends org.tensorflow.distruntime.NamedTensorOrBuilder> 
+  java.util.List<? extends org.tensorflow.framework.NamedTensorProtoOrBuilder> 
       getSendOrBuilderList();
   /**
    * <pre>
@@ -114,9 +138,9 @@ public interface RunGraphRequestOrBuilder extends
    * fetches the keys into `RunGraphResponse.recv` after the run.
    * </pre>
    *
-   * <code>repeated .tensorflow.NamedTensor send = 3;</code>
+   * <code>repeated .tensorflow.NamedTensorProto send = 3;</code>
    */
-  org.tensorflow.distruntime.NamedTensorOrBuilder getSendOrBuilder(
+  org.tensorflow.framework.NamedTensorProtoOrBuilder getSendOrBuilder(
       int index);
 
   /**

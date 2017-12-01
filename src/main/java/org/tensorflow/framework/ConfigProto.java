@@ -160,6 +160,19 @@ public  final class ConfigProto extends
 
             break;
           }
+          case 114: {
+            org.tensorflow.distruntime.ClusterDef.Builder subBuilder = null;
+            if (clusterDef_ != null) {
+              subBuilder = clusterDef_.toBuilder();
+            }
+            clusterDef_ = input.readMessage(org.tensorflow.distruntime.ClusterDef.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(clusterDef_);
+              clusterDef_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -362,11 +375,22 @@ public  final class ConfigProto extends
   /**
    * <pre>
    * This option is experimental - it may be replaced with a different mechanism
-   * in the future. The intended use is for when some session invocations need
-   * to run in a background pool limited to a small number of threads.
+   * in the future.
    * Configures session thread pools. If this is configured, then RunOptions for
    * a Run call can select the thread pool to use.
-   * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+   * The intended use is for when some session invocations need to run in a
+   * background pool limited to a small number of threads:
+   * - For example, a session may be configured to have one large pool (for
+   * regular compute) and one small pool (for periodic, low priority work);
+   * using the small pool is currently the mechanism for limiting the inter-op
+   * parallelism of the low priority work.  Note that it does not limit the
+   * parallelism of work spawned by a single op kernel implementation.
+   * - Using this setting is normally not needed in training, but may help some
+   * serving use cases.
+   * - It is also generally recommended to set the global_name field of this
+   * proto, to avoid creating multiple large pools. It is typically better to
+   * run the non-low-priority work, even across sessions, in a single large
+   * pool.
    * </pre>
    *
    * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -377,11 +401,22 @@ public  final class ConfigProto extends
   /**
    * <pre>
    * This option is experimental - it may be replaced with a different mechanism
-   * in the future. The intended use is for when some session invocations need
-   * to run in a background pool limited to a small number of threads.
+   * in the future.
    * Configures session thread pools. If this is configured, then RunOptions for
    * a Run call can select the thread pool to use.
-   * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+   * The intended use is for when some session invocations need to run in a
+   * background pool limited to a small number of threads:
+   * - For example, a session may be configured to have one large pool (for
+   * regular compute) and one small pool (for periodic, low priority work);
+   * using the small pool is currently the mechanism for limiting the inter-op
+   * parallelism of the low priority work.  Note that it does not limit the
+   * parallelism of work spawned by a single op kernel implementation.
+   * - Using this setting is normally not needed in training, but may help some
+   * serving use cases.
+   * - It is also generally recommended to set the global_name field of this
+   * proto, to avoid creating multiple large pools. It is typically better to
+   * run the non-low-priority work, even across sessions, in a single large
+   * pool.
    * </pre>
    *
    * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -393,11 +428,22 @@ public  final class ConfigProto extends
   /**
    * <pre>
    * This option is experimental - it may be replaced with a different mechanism
-   * in the future. The intended use is for when some session invocations need
-   * to run in a background pool limited to a small number of threads.
+   * in the future.
    * Configures session thread pools. If this is configured, then RunOptions for
    * a Run call can select the thread pool to use.
-   * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+   * The intended use is for when some session invocations need to run in a
+   * background pool limited to a small number of threads:
+   * - For example, a session may be configured to have one large pool (for
+   * regular compute) and one small pool (for periodic, low priority work);
+   * using the small pool is currently the mechanism for limiting the inter-op
+   * parallelism of the low priority work.  Note that it does not limit the
+   * parallelism of work spawned by a single op kernel implementation.
+   * - Using this setting is normally not needed in training, but may help some
+   * serving use cases.
+   * - It is also generally recommended to set the global_name field of this
+   * proto, to avoid creating multiple large pools. It is typically better to
+   * run the non-low-priority work, even across sessions, in a single large
+   * pool.
    * </pre>
    *
    * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -408,11 +454,22 @@ public  final class ConfigProto extends
   /**
    * <pre>
    * This option is experimental - it may be replaced with a different mechanism
-   * in the future. The intended use is for when some session invocations need
-   * to run in a background pool limited to a small number of threads.
+   * in the future.
    * Configures session thread pools. If this is configured, then RunOptions for
    * a Run call can select the thread pool to use.
-   * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+   * The intended use is for when some session invocations need to run in a
+   * background pool limited to a small number of threads:
+   * - For example, a session may be configured to have one large pool (for
+   * regular compute) and one small pool (for periodic, low priority work);
+   * using the small pool is currently the mechanism for limiting the inter-op
+   * parallelism of the low priority work.  Note that it does not limit the
+   * parallelism of work spawned by a single op kernel implementation.
+   * - Using this setting is normally not needed in training, but may help some
+   * serving use cases.
+   * - It is also generally recommended to set the global_name field of this
+   * proto, to avoid creating multiple large pools. It is typically better to
+   * run the non-low-priority work, even across sessions, in a single large
+   * pool.
    * </pre>
    *
    * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -423,11 +480,22 @@ public  final class ConfigProto extends
   /**
    * <pre>
    * This option is experimental - it may be replaced with a different mechanism
-   * in the future. The intended use is for when some session invocations need
-   * to run in a background pool limited to a small number of threads.
+   * in the future.
    * Configures session thread pools. If this is configured, then RunOptions for
    * a Run call can select the thread pool to use.
-   * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+   * The intended use is for when some session invocations need to run in a
+   * background pool limited to a small number of threads:
+   * - For example, a session may be configured to have one large pool (for
+   * regular compute) and one small pool (for periodic, low priority work);
+   * using the small pool is currently the mechanism for limiting the inter-op
+   * parallelism of the low priority work.  Note that it does not limit the
+   * parallelism of work spawned by a single op kernel implementation.
+   * - Using this setting is normally not needed in training, but may help some
+   * serving use cases.
+   * - It is also generally recommended to set the global_name field of this
+   * proto, to avoid creating multiple large pools. It is typically better to
+   * run the non-low-priority work, even across sessions, in a single large
+   * pool.
    * </pre>
    *
    * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -651,6 +719,39 @@ public  final class ConfigProto extends
     return getRpcOptions();
   }
 
+  public static final int CLUSTER_DEF_FIELD_NUMBER = 14;
+  private org.tensorflow.distruntime.ClusterDef clusterDef_;
+  /**
+   * <pre>
+   * Optional list of all workers to use in this session.
+   * </pre>
+   *
+   * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+   */
+  public boolean hasClusterDef() {
+    return clusterDef_ != null;
+  }
+  /**
+   * <pre>
+   * Optional list of all workers to use in this session.
+   * </pre>
+   *
+   * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+   */
+  public org.tensorflow.distruntime.ClusterDef getClusterDef() {
+    return clusterDef_ == null ? org.tensorflow.distruntime.ClusterDef.getDefaultInstance() : clusterDef_;
+  }
+  /**
+   * <pre>
+   * Optional list of all workers to use in this session.
+   * </pre>
+   *
+   * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+   */
+  public org.tensorflow.distruntime.ClusterDefOrBuilder getClusterDefOrBuilder() {
+    return getClusterDef();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -707,6 +808,9 @@ public  final class ConfigProto extends
     }
     if (rpcOptions_ != null) {
       output.writeMessage(13, getRpcOptions());
+    }
+    if (clusterDef_ != null) {
+      output.writeMessage(14, getClusterDef());
     }
   }
 
@@ -777,6 +881,10 @@ public  final class ConfigProto extends
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(13, getRpcOptions());
     }
+    if (clusterDef_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(14, getClusterDef());
+    }
     memoizedSize = size;
     return size;
   }
@@ -827,6 +935,11 @@ public  final class ConfigProto extends
     if (hasRpcOptions()) {
       result = result && getRpcOptions()
           .equals(other.getRpcOptions());
+    }
+    result = result && (hasClusterDef() == other.hasClusterDef());
+    if (hasClusterDef()) {
+      result = result && getClusterDef()
+          .equals(other.getClusterDef());
     }
     return result;
   }
@@ -879,6 +992,10 @@ public  final class ConfigProto extends
     if (hasRpcOptions()) {
       hash = (37 * hash) + RPC_OPTIONS_FIELD_NUMBER;
       hash = (53 * hash) + getRpcOptions().hashCode();
+    }
+    if (hasClusterDef()) {
+      hash = (37 * hash) + CLUSTER_DEF_FIELD_NUMBER;
+      hash = (53 * hash) + getClusterDef().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -1067,6 +1184,12 @@ public  final class ConfigProto extends
         rpcOptions_ = null;
         rpcOptionsBuilder_ = null;
       }
+      if (clusterDefBuilder_ == null) {
+        clusterDef_ = null;
+      } else {
+        clusterDef_ = null;
+        clusterDefBuilder_ = null;
+      }
       return this;
     }
 
@@ -1128,6 +1251,11 @@ public  final class ConfigProto extends
         result.rpcOptions_ = rpcOptions_;
       } else {
         result.rpcOptions_ = rpcOptionsBuilder_.build();
+      }
+      if (clusterDefBuilder_ == null) {
+        result.clusterDef_ = clusterDef_;
+      } else {
+        result.clusterDef_ = clusterDefBuilder_.build();
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -1238,6 +1366,9 @@ public  final class ConfigProto extends
       }
       if (other.hasRpcOptions()) {
         mergeRpcOptions(other.getRpcOptions());
+      }
+      if (other.hasClusterDef()) {
+        mergeClusterDef(other.getClusterDef());
       }
       onChanged();
       return this;
@@ -1602,11 +1733,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1621,11 +1763,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1640,11 +1793,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1659,11 +1823,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1685,11 +1860,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1708,11 +1894,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1733,11 +1930,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1759,11 +1967,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1782,11 +2001,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1805,11 +2035,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1829,11 +2070,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1851,11 +2103,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1873,11 +2136,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1889,11 +2163,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1908,11 +2193,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1928,11 +2224,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1944,11 +2251,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -1961,11 +2279,22 @@ public  final class ConfigProto extends
     /**
      * <pre>
      * This option is experimental - it may be replaced with a different mechanism
-     * in the future. The intended use is for when some session invocations need
-     * to run in a background pool limited to a small number of threads.
+     * in the future.
      * Configures session thread pools. If this is configured, then RunOptions for
      * a Run call can select the thread pool to use.
-     * If a pool's num_threads is 0, then inter_op_parallelism_threads is used.
+     * The intended use is for when some session invocations need to run in a
+     * background pool limited to a small number of threads:
+     * - For example, a session may be configured to have one large pool (for
+     * regular compute) and one small pool (for periodic, low priority work);
+     * using the small pool is currently the mechanism for limiting the inter-op
+     * parallelism of the low priority work.  Note that it does not limit the
+     * parallelism of work spawned by a single op kernel implementation.
+     * - Using this setting is normally not needed in training, but may help some
+     * serving use cases.
+     * - It is also generally recommended to set the global_name field of this
+     * proto, to avoid creating multiple large pools. It is typically better to
+     * run the non-low-priority work, even across sessions, in a single large
+     * pool.
      * </pre>
      *
      * <code>repeated .tensorflow.ThreadPoolOptionProto session_inter_op_thread_pool = 12;</code>
@@ -2776,6 +3105,159 @@ public  final class ConfigProto extends
         rpcOptions_ = null;
       }
       return rpcOptionsBuilder_;
+    }
+
+    private org.tensorflow.distruntime.ClusterDef clusterDef_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.tensorflow.distruntime.ClusterDef, org.tensorflow.distruntime.ClusterDef.Builder, org.tensorflow.distruntime.ClusterDefOrBuilder> clusterDefBuilder_;
+    /**
+     * <pre>
+     * Optional list of all workers to use in this session.
+     * </pre>
+     *
+     * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+     */
+    public boolean hasClusterDef() {
+      return clusterDefBuilder_ != null || clusterDef_ != null;
+    }
+    /**
+     * <pre>
+     * Optional list of all workers to use in this session.
+     * </pre>
+     *
+     * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+     */
+    public org.tensorflow.distruntime.ClusterDef getClusterDef() {
+      if (clusterDefBuilder_ == null) {
+        return clusterDef_ == null ? org.tensorflow.distruntime.ClusterDef.getDefaultInstance() : clusterDef_;
+      } else {
+        return clusterDefBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Optional list of all workers to use in this session.
+     * </pre>
+     *
+     * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+     */
+    public Builder setClusterDef(org.tensorflow.distruntime.ClusterDef value) {
+      if (clusterDefBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        clusterDef_ = value;
+        onChanged();
+      } else {
+        clusterDefBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional list of all workers to use in this session.
+     * </pre>
+     *
+     * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+     */
+    public Builder setClusterDef(
+        org.tensorflow.distruntime.ClusterDef.Builder builderForValue) {
+      if (clusterDefBuilder_ == null) {
+        clusterDef_ = builderForValue.build();
+        onChanged();
+      } else {
+        clusterDefBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional list of all workers to use in this session.
+     * </pre>
+     *
+     * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+     */
+    public Builder mergeClusterDef(org.tensorflow.distruntime.ClusterDef value) {
+      if (clusterDefBuilder_ == null) {
+        if (clusterDef_ != null) {
+          clusterDef_ =
+            org.tensorflow.distruntime.ClusterDef.newBuilder(clusterDef_).mergeFrom(value).buildPartial();
+        } else {
+          clusterDef_ = value;
+        }
+        onChanged();
+      } else {
+        clusterDefBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional list of all workers to use in this session.
+     * </pre>
+     *
+     * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+     */
+    public Builder clearClusterDef() {
+      if (clusterDefBuilder_ == null) {
+        clusterDef_ = null;
+        onChanged();
+      } else {
+        clusterDef_ = null;
+        clusterDefBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional list of all workers to use in this session.
+     * </pre>
+     *
+     * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+     */
+    public org.tensorflow.distruntime.ClusterDef.Builder getClusterDefBuilder() {
+      
+      onChanged();
+      return getClusterDefFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Optional list of all workers to use in this session.
+     * </pre>
+     *
+     * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+     */
+    public org.tensorflow.distruntime.ClusterDefOrBuilder getClusterDefOrBuilder() {
+      if (clusterDefBuilder_ != null) {
+        return clusterDefBuilder_.getMessageOrBuilder();
+      } else {
+        return clusterDef_ == null ?
+            org.tensorflow.distruntime.ClusterDef.getDefaultInstance() : clusterDef_;
+      }
+    }
+    /**
+     * <pre>
+     * Optional list of all workers to use in this session.
+     * </pre>
+     *
+     * <code>optional .tensorflow.ClusterDef cluster_def = 14;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.tensorflow.distruntime.ClusterDef, org.tensorflow.distruntime.ClusterDef.Builder, org.tensorflow.distruntime.ClusterDefOrBuilder> 
+        getClusterDefFieldBuilder() {
+      if (clusterDefBuilder_ == null) {
+        clusterDefBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            org.tensorflow.distruntime.ClusterDef, org.tensorflow.distruntime.ClusterDef.Builder, org.tensorflow.distruntime.ClusterDefOrBuilder>(
+                getClusterDef(),
+                getParentForChildren(),
+                isClean());
+        clusterDef_ = null;
+      }
+      return clusterDefBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

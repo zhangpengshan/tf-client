@@ -87,6 +87,19 @@ public  final class RecvTensorRequest extends
 
             break;
           }
+          case 50: {
+            com.google.protobuf.Any.Builder subBuilder = null;
+            if (transportOptions_ != null) {
+              subBuilder = transportOptions_.toBuilder();
+            }
+            transportOptions_ = input.readMessage(com.google.protobuf.Any.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(transportOptions_);
+              transportOptions_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -247,6 +260,39 @@ public  final class RecvTensorRequest extends
     return getServerLocality();
   }
 
+  public static final int TRANSPORT_OPTIONS_FIELD_NUMBER = 6;
+  private com.google.protobuf.Any transportOptions_;
+  /**
+   * <pre>
+   * Optional information needed by the RPC subsystem.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Any transport_options = 6;</code>
+   */
+  public boolean hasTransportOptions() {
+    return transportOptions_ != null;
+  }
+  /**
+   * <pre>
+   * Optional information needed by the RPC subsystem.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Any transport_options = 6;</code>
+   */
+  public com.google.protobuf.Any getTransportOptions() {
+    return transportOptions_ == null ? com.google.protobuf.Any.getDefaultInstance() : transportOptions_;
+  }
+  /**
+   * <pre>
+   * Optional information needed by the RPC subsystem.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Any transport_options = 6;</code>
+   */
+  public com.google.protobuf.AnyOrBuilder getTransportOptionsOrBuilder() {
+    return getTransportOptions();
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -274,6 +320,9 @@ public  final class RecvTensorRequest extends
     if (serverLocality_ != null) {
       output.writeMessage(5, getServerLocality());
     }
+    if (transportOptions_ != null) {
+      output.writeMessage(6, getTransportOptions());
+    }
   }
 
   public int getSerializedSize() {
@@ -299,6 +348,10 @@ public  final class RecvTensorRequest extends
     if (serverLocality_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(5, getServerLocality());
+    }
+    if (transportOptions_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(6, getTransportOptions());
     }
     memoizedSize = size;
     return size;
@@ -332,6 +385,11 @@ public  final class RecvTensorRequest extends
       result = result && getServerLocality()
           .equals(other.getServerLocality());
     }
+    result = result && (hasTransportOptions() == other.hasTransportOptions());
+    if (hasTransportOptions()) {
+      result = result && getTransportOptions()
+          .equals(other.getTransportOptions());
+    }
     return result;
   }
 
@@ -357,6 +415,10 @@ public  final class RecvTensorRequest extends
     if (hasServerLocality()) {
       hash = (37 * hash) + SERVER_LOCALITY_FIELD_NUMBER;
       hash = (53 * hash) + getServerLocality().hashCode();
+    }
+    if (hasTransportOptions()) {
+      hash = (37 * hash) + TRANSPORT_OPTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getTransportOptions().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -494,6 +556,12 @@ public  final class RecvTensorRequest extends
         serverLocality_ = null;
         serverLocalityBuilder_ = null;
       }
+      if (transportOptionsBuilder_ == null) {
+        transportOptions_ = null;
+      } else {
+        transportOptions_ = null;
+        transportOptionsBuilder_ = null;
+      }
       return this;
     }
 
@@ -528,6 +596,11 @@ public  final class RecvTensorRequest extends
         result.serverLocality_ = serverLocality_;
       } else {
         result.serverLocality_ = serverLocalityBuilder_.build();
+      }
+      if (transportOptionsBuilder_ == null) {
+        result.transportOptions_ = transportOptions_;
+      } else {
+        result.transportOptions_ = transportOptionsBuilder_.build();
       }
       onBuilt();
       return result;
@@ -585,6 +658,9 @@ public  final class RecvTensorRequest extends
       }
       if (other.hasServerLocality()) {
         mergeServerLocality(other.getServerLocality());
+      }
+      if (other.hasTransportOptions()) {
+        mergeTransportOptions(other.getTransportOptions());
       }
       onChanged();
       return this;
@@ -1090,6 +1166,159 @@ public  final class RecvTensorRequest extends
         serverLocality_ = null;
       }
       return serverLocalityBuilder_;
+    }
+
+    private com.google.protobuf.Any transportOptions_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> transportOptionsBuilder_;
+    /**
+     * <pre>
+     * Optional information needed by the RPC subsystem.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Any transport_options = 6;</code>
+     */
+    public boolean hasTransportOptions() {
+      return transportOptionsBuilder_ != null || transportOptions_ != null;
+    }
+    /**
+     * <pre>
+     * Optional information needed by the RPC subsystem.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Any transport_options = 6;</code>
+     */
+    public com.google.protobuf.Any getTransportOptions() {
+      if (transportOptionsBuilder_ == null) {
+        return transportOptions_ == null ? com.google.protobuf.Any.getDefaultInstance() : transportOptions_;
+      } else {
+        return transportOptionsBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Optional information needed by the RPC subsystem.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Any transport_options = 6;</code>
+     */
+    public Builder setTransportOptions(com.google.protobuf.Any value) {
+      if (transportOptionsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        transportOptions_ = value;
+        onChanged();
+      } else {
+        transportOptionsBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional information needed by the RPC subsystem.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Any transport_options = 6;</code>
+     */
+    public Builder setTransportOptions(
+        com.google.protobuf.Any.Builder builderForValue) {
+      if (transportOptionsBuilder_ == null) {
+        transportOptions_ = builderForValue.build();
+        onChanged();
+      } else {
+        transportOptionsBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional information needed by the RPC subsystem.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Any transport_options = 6;</code>
+     */
+    public Builder mergeTransportOptions(com.google.protobuf.Any value) {
+      if (transportOptionsBuilder_ == null) {
+        if (transportOptions_ != null) {
+          transportOptions_ =
+            com.google.protobuf.Any.newBuilder(transportOptions_).mergeFrom(value).buildPartial();
+        } else {
+          transportOptions_ = value;
+        }
+        onChanged();
+      } else {
+        transportOptionsBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional information needed by the RPC subsystem.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Any transport_options = 6;</code>
+     */
+    public Builder clearTransportOptions() {
+      if (transportOptionsBuilder_ == null) {
+        transportOptions_ = null;
+        onChanged();
+      } else {
+        transportOptions_ = null;
+        transportOptionsBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional information needed by the RPC subsystem.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Any transport_options = 6;</code>
+     */
+    public com.google.protobuf.Any.Builder getTransportOptionsBuilder() {
+      
+      onChanged();
+      return getTransportOptionsFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Optional information needed by the RPC subsystem.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Any transport_options = 6;</code>
+     */
+    public com.google.protobuf.AnyOrBuilder getTransportOptionsOrBuilder() {
+      if (transportOptionsBuilder_ != null) {
+        return transportOptionsBuilder_.getMessageOrBuilder();
+      } else {
+        return transportOptions_ == null ?
+            com.google.protobuf.Any.getDefaultInstance() : transportOptions_;
+      }
+    }
+    /**
+     * <pre>
+     * Optional information needed by the RPC subsystem.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Any transport_options = 6;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
+        getTransportOptionsFieldBuilder() {
+      if (transportOptionsBuilder_ == null) {
+        transportOptionsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
+                getTransportOptions(),
+                getParentForChildren(),
+                isClean());
+        transportOptions_ = null;
+      }
+      return transportOptionsBuilder_;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

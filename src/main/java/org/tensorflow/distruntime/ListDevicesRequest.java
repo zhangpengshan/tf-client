@@ -15,6 +15,7 @@ public  final class ListDevicesRequest extends
     super(builder);
   }
   private ListDevicesRequest() {
+    sessionHandle_ = "";
   }
 
   @java.lang.Override
@@ -27,6 +28,7 @@ public  final class ListDevicesRequest extends
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    int mutable_bitField0_ = 0;
     try {
       boolean done = false;
       while (!done) {
@@ -39,6 +41,12 @@ public  final class ListDevicesRequest extends
             if (!input.skipField(tag)) {
               done = true;
             }
+            break;
+          }
+          case 10: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            sessionHandle_ = s;
             break;
           }
         }
@@ -64,6 +72,60 @@ public  final class ListDevicesRequest extends
             org.tensorflow.distruntime.ListDevicesRequest.class, org.tensorflow.distruntime.ListDevicesRequest.Builder.class);
   }
 
+  public static final int SESSION_HANDLE_FIELD_NUMBER = 1;
+  private volatile java.lang.Object sessionHandle_;
+  /**
+   * <pre>
+   * Optional: session_handle must be returned by a CreateSession call to the
+   * same master service.
+   * When session_handle is empty, the ClusterSpec provided when the master was
+   * started is used to compute the available devices. If the session_handle is
+   * provided but not recognized, an error is returned. Finally, if a valid
+   * session_handle is provided, the cluster configuration for that session is
+   * used when computing the response.
+   * </pre>
+   *
+   * <code>optional string session_handle = 1;</code>
+   */
+  public java.lang.String getSessionHandle() {
+    java.lang.Object ref = sessionHandle_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      sessionHandle_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * Optional: session_handle must be returned by a CreateSession call to the
+   * same master service.
+   * When session_handle is empty, the ClusterSpec provided when the master was
+   * started is used to compute the available devices. If the session_handle is
+   * provided but not recognized, an error is returned. Finally, if a valid
+   * session_handle is provided, the cluster configuration for that session is
+   * used when computing the response.
+   * </pre>
+   *
+   * <code>optional string session_handle = 1;</code>
+   */
+  public com.google.protobuf.ByteString
+      getSessionHandleBytes() {
+    java.lang.Object ref = sessionHandle_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      sessionHandle_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -76,6 +138,9 @@ public  final class ListDevicesRequest extends
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (!getSessionHandleBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sessionHandle_);
+    }
   }
 
   public int getSerializedSize() {
@@ -83,6 +148,9 @@ public  final class ListDevicesRequest extends
     if (size != -1) return size;
 
     size = 0;
+    if (!getSessionHandleBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sessionHandle_);
+    }
     memoizedSize = size;
     return size;
   }
@@ -99,6 +167,8 @@ public  final class ListDevicesRequest extends
     org.tensorflow.distruntime.ListDevicesRequest other = (org.tensorflow.distruntime.ListDevicesRequest) obj;
 
     boolean result = true;
+    result = result && getSessionHandle()
+        .equals(other.getSessionHandle());
     return result;
   }
 
@@ -109,6 +179,8 @@ public  final class ListDevicesRequest extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (37 * hash) + SESSION_HANDLE_FIELD_NUMBER;
+    hash = (53 * hash) + getSessionHandle().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -227,6 +299,8 @@ public  final class ListDevicesRequest extends
     }
     public Builder clear() {
       super.clear();
+      sessionHandle_ = "";
+
       return this;
     }
 
@@ -249,6 +323,7 @@ public  final class ListDevicesRequest extends
 
     public org.tensorflow.distruntime.ListDevicesRequest buildPartial() {
       org.tensorflow.distruntime.ListDevicesRequest result = new org.tensorflow.distruntime.ListDevicesRequest(this);
+      result.sessionHandle_ = sessionHandle_;
       onBuilt();
       return result;
     }
@@ -290,6 +365,10 @@ public  final class ListDevicesRequest extends
 
     public Builder mergeFrom(org.tensorflow.distruntime.ListDevicesRequest other) {
       if (other == org.tensorflow.distruntime.ListDevicesRequest.getDefaultInstance()) return this;
+      if (!other.getSessionHandle().isEmpty()) {
+        sessionHandle_ = other.sessionHandle_;
+        onChanged();
+      }
       onChanged();
       return this;
     }
@@ -313,6 +392,125 @@ public  final class ListDevicesRequest extends
           mergeFrom(parsedMessage);
         }
       }
+      return this;
+    }
+
+    private java.lang.Object sessionHandle_ = "";
+    /**
+     * <pre>
+     * Optional: session_handle must be returned by a CreateSession call to the
+     * same master service.
+     * When session_handle is empty, the ClusterSpec provided when the master was
+     * started is used to compute the available devices. If the session_handle is
+     * provided but not recognized, an error is returned. Finally, if a valid
+     * session_handle is provided, the cluster configuration for that session is
+     * used when computing the response.
+     * </pre>
+     *
+     * <code>optional string session_handle = 1;</code>
+     */
+    public java.lang.String getSessionHandle() {
+      java.lang.Object ref = sessionHandle_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sessionHandle_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Optional: session_handle must be returned by a CreateSession call to the
+     * same master service.
+     * When session_handle is empty, the ClusterSpec provided when the master was
+     * started is used to compute the available devices. If the session_handle is
+     * provided but not recognized, an error is returned. Finally, if a valid
+     * session_handle is provided, the cluster configuration for that session is
+     * used when computing the response.
+     * </pre>
+     *
+     * <code>optional string session_handle = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSessionHandleBytes() {
+      java.lang.Object ref = sessionHandle_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionHandle_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * Optional: session_handle must be returned by a CreateSession call to the
+     * same master service.
+     * When session_handle is empty, the ClusterSpec provided when the master was
+     * started is used to compute the available devices. If the session_handle is
+     * provided but not recognized, an error is returned. Finally, if a valid
+     * session_handle is provided, the cluster configuration for that session is
+     * used when computing the response.
+     * </pre>
+     *
+     * <code>optional string session_handle = 1;</code>
+     */
+    public Builder setSessionHandle(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      sessionHandle_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional: session_handle must be returned by a CreateSession call to the
+     * same master service.
+     * When session_handle is empty, the ClusterSpec provided when the master was
+     * started is used to compute the available devices. If the session_handle is
+     * provided but not recognized, an error is returned. Finally, if a valid
+     * session_handle is provided, the cluster configuration for that session is
+     * used when computing the response.
+     * </pre>
+     *
+     * <code>optional string session_handle = 1;</code>
+     */
+    public Builder clearSessionHandle() {
+      
+      sessionHandle_ = getDefaultInstance().getSessionHandle();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Optional: session_handle must be returned by a CreateSession call to the
+     * same master service.
+     * When session_handle is empty, the ClusterSpec provided when the master was
+     * started is used to compute the available devices. If the session_handle is
+     * provided but not recognized, an error is returned. Finally, if a valid
+     * session_handle is provided, the cluster configuration for that session is
+     * used when computing the response.
+     * </pre>
+     *
+     * <code>optional string session_handle = 1;</code>
+     */
+    public Builder setSessionHandleBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      sessionHandle_ = value;
+      onChanged();
       return this;
     }
     public final Builder setUnknownFields(

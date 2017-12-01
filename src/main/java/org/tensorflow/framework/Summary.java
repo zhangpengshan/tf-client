@@ -1656,11 +1656,7 @@ public  final class Summary extends
 
     /**
      * <pre>
-     * Name of the node that output this summary; in general, the name of a
-     * TensorSummary node. If the node in question has multiple outputs, then
-     * a ":&#92;d+" suffix will be appended, like "some_op:13".
-     * Might not be set for legacy summaries (i.e. those not using the tensor
-     * value field)
+     * This field is deprecated and will not be set.
      * </pre>
      *
      * <code>optional string node_name = 7;</code>
@@ -1668,11 +1664,7 @@ public  final class Summary extends
     java.lang.String getNodeName();
     /**
      * <pre>
-     * Name of the node that output this summary; in general, the name of a
-     * TensorSummary node. If the node in question has multiple outputs, then
-     * a ":&#92;d+" suffix will be appended, like "some_op:13".
-     * Might not be set for legacy summaries (i.e. those not using the tensor
-     * value field)
+     * This field is deprecated and will not be set.
      * </pre>
      *
      * <code>optional string node_name = 7;</code>
@@ -1682,12 +1674,9 @@ public  final class Summary extends
 
     /**
      * <pre>
-     * Tag name for the data.  Will only be used by legacy summaries
-     * (ie. those not using the tensor value field)
-     * For legacy summaries, will be used as the title of the graph
-     * in the visualizer.
-     * Tag is usually "op_name:value_name", where "op_name" itself can have
-     * structure to indicate grouping.
+     * Tag name for the data. Used by TensorBoard plugins to organize data. Tags
+     * are often organized by scope (which contains slashes to convey
+     * hierarchy). For example: foo/bar/0
      * </pre>
      *
      * <code>optional string tag = 1;</code>
@@ -1695,18 +1684,52 @@ public  final class Summary extends
     java.lang.String getTag();
     /**
      * <pre>
-     * Tag name for the data.  Will only be used by legacy summaries
-     * (ie. those not using the tensor value field)
-     * For legacy summaries, will be used as the title of the graph
-     * in the visualizer.
-     * Tag is usually "op_name:value_name", where "op_name" itself can have
-     * structure to indicate grouping.
+     * Tag name for the data. Used by TensorBoard plugins to organize data. Tags
+     * are often organized by scope (which contains slashes to convey
+     * hierarchy). For example: foo/bar/0
      * </pre>
      *
      * <code>optional string tag = 1;</code>
      */
     com.google.protobuf.ByteString
         getTagBytes();
+
+    /**
+     * <pre>
+     * Contains metadata on the summary value such as which plugins may use it.
+     * Take note that many summary values may lack a metadata field. This is
+     * because the FileWriter only keeps a metadata object on the first summary
+     * value with a certain tag for each tag. TensorBoard then remembers which
+     * tags are associated with which plugins. This saves space.
+     * </pre>
+     *
+     * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+     */
+    boolean hasMetadata();
+    /**
+     * <pre>
+     * Contains metadata on the summary value such as which plugins may use it.
+     * Take note that many summary values may lack a metadata field. This is
+     * because the FileWriter only keeps a metadata object on the first summary
+     * value with a certain tag for each tag. TensorBoard then remembers which
+     * tags are associated with which plugins. This saves space.
+     * </pre>
+     *
+     * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+     */
+    org.tensorflow.framework.SummaryMetadata getMetadata();
+    /**
+     * <pre>
+     * Contains metadata on the summary value such as which plugins may use it.
+     * Take note that many summary values may lack a metadata field. This is
+     * because the FileWriter only keeps a metadata object on the first summary
+     * value with a certain tag for each tag. TensorBoard then remembers which
+     * tags are associated with which plugins. This saves space.
+     * </pre>
+     *
+     * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+     */
+    org.tensorflow.framework.SummaryMetadataOrBuilder getMetadataOrBuilder();
 
     /**
      * <code>optional float simple_value = 2;</code>
@@ -1875,6 +1898,19 @@ public  final class Summary extends
               valueCase_ = 8;
               break;
             }
+            case 74: {
+              org.tensorflow.framework.SummaryMetadata.Builder subBuilder = null;
+              if (metadata_ != null) {
+                subBuilder = metadata_.toBuilder();
+              }
+              metadata_ = input.readMessage(org.tensorflow.framework.SummaryMetadata.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(metadata_);
+                metadata_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1948,11 +1984,7 @@ public  final class Summary extends
     private volatile java.lang.Object nodeName_;
     /**
      * <pre>
-     * Name of the node that output this summary; in general, the name of a
-     * TensorSummary node. If the node in question has multiple outputs, then
-     * a ":&#92;d+" suffix will be appended, like "some_op:13".
-     * Might not be set for legacy summaries (i.e. those not using the tensor
-     * value field)
+     * This field is deprecated and will not be set.
      * </pre>
      *
      * <code>optional string node_name = 7;</code>
@@ -1971,11 +2003,7 @@ public  final class Summary extends
     }
     /**
      * <pre>
-     * Name of the node that output this summary; in general, the name of a
-     * TensorSummary node. If the node in question has multiple outputs, then
-     * a ":&#92;d+" suffix will be appended, like "some_op:13".
-     * Might not be set for legacy summaries (i.e. those not using the tensor
-     * value field)
+     * This field is deprecated and will not be set.
      * </pre>
      *
      * <code>optional string node_name = 7;</code>
@@ -1998,12 +2026,9 @@ public  final class Summary extends
     private volatile java.lang.Object tag_;
     /**
      * <pre>
-     * Tag name for the data.  Will only be used by legacy summaries
-     * (ie. those not using the tensor value field)
-     * For legacy summaries, will be used as the title of the graph
-     * in the visualizer.
-     * Tag is usually "op_name:value_name", where "op_name" itself can have
-     * structure to indicate grouping.
+     * Tag name for the data. Used by TensorBoard plugins to organize data. Tags
+     * are often organized by scope (which contains slashes to convey
+     * hierarchy). For example: foo/bar/0
      * </pre>
      *
      * <code>optional string tag = 1;</code>
@@ -2022,12 +2047,9 @@ public  final class Summary extends
     }
     /**
      * <pre>
-     * Tag name for the data.  Will only be used by legacy summaries
-     * (ie. those not using the tensor value field)
-     * For legacy summaries, will be used as the title of the graph
-     * in the visualizer.
-     * Tag is usually "op_name:value_name", where "op_name" itself can have
-     * structure to indicate grouping.
+     * Tag name for the data. Used by TensorBoard plugins to organize data. Tags
+     * are often organized by scope (which contains slashes to convey
+     * hierarchy). For example: foo/bar/0
      * </pre>
      *
      * <code>optional string tag = 1;</code>
@@ -2044,6 +2066,51 @@ public  final class Summary extends
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    public static final int METADATA_FIELD_NUMBER = 9;
+    private org.tensorflow.framework.SummaryMetadata metadata_;
+    /**
+     * <pre>
+     * Contains metadata on the summary value such as which plugins may use it.
+     * Take note that many summary values may lack a metadata field. This is
+     * because the FileWriter only keeps a metadata object on the first summary
+     * value with a certain tag for each tag. TensorBoard then remembers which
+     * tags are associated with which plugins. This saves space.
+     * </pre>
+     *
+     * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+     */
+    public boolean hasMetadata() {
+      return metadata_ != null;
+    }
+    /**
+     * <pre>
+     * Contains metadata on the summary value such as which plugins may use it.
+     * Take note that many summary values may lack a metadata field. This is
+     * because the FileWriter only keeps a metadata object on the first summary
+     * value with a certain tag for each tag. TensorBoard then remembers which
+     * tags are associated with which plugins. This saves space.
+     * </pre>
+     *
+     * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+     */
+    public org.tensorflow.framework.SummaryMetadata getMetadata() {
+      return metadata_ == null ? org.tensorflow.framework.SummaryMetadata.getDefaultInstance() : metadata_;
+    }
+    /**
+     * <pre>
+     * Contains metadata on the summary value such as which plugins may use it.
+     * Take note that many summary values may lack a metadata field. This is
+     * because the FileWriter only keeps a metadata object on the first summary
+     * value with a certain tag for each tag. TensorBoard then remembers which
+     * tags are associated with which plugins. This saves space.
+     * </pre>
+     *
+     * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+     */
+    public org.tensorflow.framework.SummaryMetadataOrBuilder getMetadataOrBuilder() {
+      return getMetadata();
     }
 
     public static final int SIMPLE_VALUE_FIELD_NUMBER = 2;
@@ -2186,6 +2253,9 @@ public  final class Summary extends
       if (valueCase_ == 8) {
         output.writeMessage(8, (org.tensorflow.framework.TensorProto) value_);
       }
+      if (metadata_ != null) {
+        output.writeMessage(9, getMetadata());
+      }
     }
 
     public int getSerializedSize() {
@@ -2225,6 +2295,10 @@ public  final class Summary extends
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(8, (org.tensorflow.framework.TensorProto) value_);
       }
+      if (metadata_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, getMetadata());
+      }
       memoizedSize = size;
       return size;
     }
@@ -2245,6 +2319,11 @@ public  final class Summary extends
           .equals(other.getNodeName());
       result = result && getTag()
           .equals(other.getTag());
+      result = result && (hasMetadata() == other.hasMetadata());
+      if (hasMetadata()) {
+        result = result && getMetadata()
+            .equals(other.getMetadata());
+      }
       result = result && getValueCase().equals(
           other.getValueCase());
       if (!result) return false;
@@ -2292,6 +2371,10 @@ public  final class Summary extends
       hash = (53 * hash) + getNodeName().hashCode();
       hash = (37 * hash) + TAG_FIELD_NUMBER;
       hash = (53 * hash) + getTag().hashCode();
+      if (hasMetadata()) {
+        hash = (37 * hash) + METADATA_FIELD_NUMBER;
+        hash = (53 * hash) + getMetadata().hashCode();
+      }
       switch (valueCase_) {
         case 2:
           hash = (37 * hash) + SIMPLE_VALUE_FIELD_NUMBER;
@@ -2443,6 +2526,12 @@ public  final class Summary extends
 
         tag_ = "";
 
+        if (metadataBuilder_ == null) {
+          metadata_ = null;
+        } else {
+          metadata_ = null;
+          metadataBuilder_ = null;
+        }
         valueCase_ = 0;
         value_ = null;
         return this;
@@ -2469,6 +2558,11 @@ public  final class Summary extends
         org.tensorflow.framework.Summary.Value result = new org.tensorflow.framework.Summary.Value(this);
         result.nodeName_ = nodeName_;
         result.tag_ = tag_;
+        if (metadataBuilder_ == null) {
+          result.metadata_ = metadata_;
+        } else {
+          result.metadata_ = metadataBuilder_.build();
+        }
         if (valueCase_ == 2) {
           result.value_ = value_;
         }
@@ -2553,6 +2647,9 @@ public  final class Summary extends
           tag_ = other.tag_;
           onChanged();
         }
+        if (other.hasMetadata()) {
+          mergeMetadata(other.getMetadata());
+        }
         switch (other.getValueCase()) {
           case SIMPLE_VALUE: {
             setSimpleValue(other.getSimpleValue());
@@ -2626,11 +2723,7 @@ public  final class Summary extends
       private java.lang.Object nodeName_ = "";
       /**
        * <pre>
-       * Name of the node that output this summary; in general, the name of a
-       * TensorSummary node. If the node in question has multiple outputs, then
-       * a ":&#92;d+" suffix will be appended, like "some_op:13".
-       * Might not be set for legacy summaries (i.e. those not using the tensor
-       * value field)
+       * This field is deprecated and will not be set.
        * </pre>
        *
        * <code>optional string node_name = 7;</code>
@@ -2649,11 +2742,7 @@ public  final class Summary extends
       }
       /**
        * <pre>
-       * Name of the node that output this summary; in general, the name of a
-       * TensorSummary node. If the node in question has multiple outputs, then
-       * a ":&#92;d+" suffix will be appended, like "some_op:13".
-       * Might not be set for legacy summaries (i.e. those not using the tensor
-       * value field)
+       * This field is deprecated and will not be set.
        * </pre>
        *
        * <code>optional string node_name = 7;</code>
@@ -2673,11 +2762,7 @@ public  final class Summary extends
       }
       /**
        * <pre>
-       * Name of the node that output this summary; in general, the name of a
-       * TensorSummary node. If the node in question has multiple outputs, then
-       * a ":&#92;d+" suffix will be appended, like "some_op:13".
-       * Might not be set for legacy summaries (i.e. those not using the tensor
-       * value field)
+       * This field is deprecated and will not be set.
        * </pre>
        *
        * <code>optional string node_name = 7;</code>
@@ -2694,11 +2779,7 @@ public  final class Summary extends
       }
       /**
        * <pre>
-       * Name of the node that output this summary; in general, the name of a
-       * TensorSummary node. If the node in question has multiple outputs, then
-       * a ":&#92;d+" suffix will be appended, like "some_op:13".
-       * Might not be set for legacy summaries (i.e. those not using the tensor
-       * value field)
+       * This field is deprecated and will not be set.
        * </pre>
        *
        * <code>optional string node_name = 7;</code>
@@ -2711,11 +2792,7 @@ public  final class Summary extends
       }
       /**
        * <pre>
-       * Name of the node that output this summary; in general, the name of a
-       * TensorSummary node. If the node in question has multiple outputs, then
-       * a ":&#92;d+" suffix will be appended, like "some_op:13".
-       * Might not be set for legacy summaries (i.e. those not using the tensor
-       * value field)
+       * This field is deprecated and will not be set.
        * </pre>
        *
        * <code>optional string node_name = 7;</code>
@@ -2735,12 +2812,9 @@ public  final class Summary extends
       private java.lang.Object tag_ = "";
       /**
        * <pre>
-       * Tag name for the data.  Will only be used by legacy summaries
-       * (ie. those not using the tensor value field)
-       * For legacy summaries, will be used as the title of the graph
-       * in the visualizer.
-       * Tag is usually "op_name:value_name", where "op_name" itself can have
-       * structure to indicate grouping.
+       * Tag name for the data. Used by TensorBoard plugins to organize data. Tags
+       * are often organized by scope (which contains slashes to convey
+       * hierarchy). For example: foo/bar/0
        * </pre>
        *
        * <code>optional string tag = 1;</code>
@@ -2759,12 +2833,9 @@ public  final class Summary extends
       }
       /**
        * <pre>
-       * Tag name for the data.  Will only be used by legacy summaries
-       * (ie. those not using the tensor value field)
-       * For legacy summaries, will be used as the title of the graph
-       * in the visualizer.
-       * Tag is usually "op_name:value_name", where "op_name" itself can have
-       * structure to indicate grouping.
+       * Tag name for the data. Used by TensorBoard plugins to organize data. Tags
+       * are often organized by scope (which contains slashes to convey
+       * hierarchy). For example: foo/bar/0
        * </pre>
        *
        * <code>optional string tag = 1;</code>
@@ -2784,12 +2855,9 @@ public  final class Summary extends
       }
       /**
        * <pre>
-       * Tag name for the data.  Will only be used by legacy summaries
-       * (ie. those not using the tensor value field)
-       * For legacy summaries, will be used as the title of the graph
-       * in the visualizer.
-       * Tag is usually "op_name:value_name", where "op_name" itself can have
-       * structure to indicate grouping.
+       * Tag name for the data. Used by TensorBoard plugins to organize data. Tags
+       * are often organized by scope (which contains slashes to convey
+       * hierarchy). For example: foo/bar/0
        * </pre>
        *
        * <code>optional string tag = 1;</code>
@@ -2806,12 +2874,9 @@ public  final class Summary extends
       }
       /**
        * <pre>
-       * Tag name for the data.  Will only be used by legacy summaries
-       * (ie. those not using the tensor value field)
-       * For legacy summaries, will be used as the title of the graph
-       * in the visualizer.
-       * Tag is usually "op_name:value_name", where "op_name" itself can have
-       * structure to indicate grouping.
+       * Tag name for the data. Used by TensorBoard plugins to organize data. Tags
+       * are often organized by scope (which contains slashes to convey
+       * hierarchy). For example: foo/bar/0
        * </pre>
        *
        * <code>optional string tag = 1;</code>
@@ -2824,12 +2889,9 @@ public  final class Summary extends
       }
       /**
        * <pre>
-       * Tag name for the data.  Will only be used by legacy summaries
-       * (ie. those not using the tensor value field)
-       * For legacy summaries, will be used as the title of the graph
-       * in the visualizer.
-       * Tag is usually "op_name:value_name", where "op_name" itself can have
-       * structure to indicate grouping.
+       * Tag name for the data. Used by TensorBoard plugins to organize data. Tags
+       * are often organized by scope (which contains slashes to convey
+       * hierarchy). For example: foo/bar/0
        * </pre>
        *
        * <code>optional string tag = 1;</code>
@@ -2844,6 +2906,195 @@ public  final class Summary extends
         tag_ = value;
         onChanged();
         return this;
+      }
+
+      private org.tensorflow.framework.SummaryMetadata metadata_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tensorflow.framework.SummaryMetadata, org.tensorflow.framework.SummaryMetadata.Builder, org.tensorflow.framework.SummaryMetadataOrBuilder> metadataBuilder_;
+      /**
+       * <pre>
+       * Contains metadata on the summary value such as which plugins may use it.
+       * Take note that many summary values may lack a metadata field. This is
+       * because the FileWriter only keeps a metadata object on the first summary
+       * value with a certain tag for each tag. TensorBoard then remembers which
+       * tags are associated with which plugins. This saves space.
+       * </pre>
+       *
+       * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+       */
+      public boolean hasMetadata() {
+        return metadataBuilder_ != null || metadata_ != null;
+      }
+      /**
+       * <pre>
+       * Contains metadata on the summary value such as which plugins may use it.
+       * Take note that many summary values may lack a metadata field. This is
+       * because the FileWriter only keeps a metadata object on the first summary
+       * value with a certain tag for each tag. TensorBoard then remembers which
+       * tags are associated with which plugins. This saves space.
+       * </pre>
+       *
+       * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+       */
+      public org.tensorflow.framework.SummaryMetadata getMetadata() {
+        if (metadataBuilder_ == null) {
+          return metadata_ == null ? org.tensorflow.framework.SummaryMetadata.getDefaultInstance() : metadata_;
+        } else {
+          return metadataBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * Contains metadata on the summary value such as which plugins may use it.
+       * Take note that many summary values may lack a metadata field. This is
+       * because the FileWriter only keeps a metadata object on the first summary
+       * value with a certain tag for each tag. TensorBoard then remembers which
+       * tags are associated with which plugins. This saves space.
+       * </pre>
+       *
+       * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+       */
+      public Builder setMetadata(org.tensorflow.framework.SummaryMetadata value) {
+        if (metadataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          metadata_ = value;
+          onChanged();
+        } else {
+          metadataBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Contains metadata on the summary value such as which plugins may use it.
+       * Take note that many summary values may lack a metadata field. This is
+       * because the FileWriter only keeps a metadata object on the first summary
+       * value with a certain tag for each tag. TensorBoard then remembers which
+       * tags are associated with which plugins. This saves space.
+       * </pre>
+       *
+       * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+       */
+      public Builder setMetadata(
+          org.tensorflow.framework.SummaryMetadata.Builder builderForValue) {
+        if (metadataBuilder_ == null) {
+          metadata_ = builderForValue.build();
+          onChanged();
+        } else {
+          metadataBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Contains metadata on the summary value such as which plugins may use it.
+       * Take note that many summary values may lack a metadata field. This is
+       * because the FileWriter only keeps a metadata object on the first summary
+       * value with a certain tag for each tag. TensorBoard then remembers which
+       * tags are associated with which plugins. This saves space.
+       * </pre>
+       *
+       * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+       */
+      public Builder mergeMetadata(org.tensorflow.framework.SummaryMetadata value) {
+        if (metadataBuilder_ == null) {
+          if (metadata_ != null) {
+            metadata_ =
+              org.tensorflow.framework.SummaryMetadata.newBuilder(metadata_).mergeFrom(value).buildPartial();
+          } else {
+            metadata_ = value;
+          }
+          onChanged();
+        } else {
+          metadataBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Contains metadata on the summary value such as which plugins may use it.
+       * Take note that many summary values may lack a metadata field. This is
+       * because the FileWriter only keeps a metadata object on the first summary
+       * value with a certain tag for each tag. TensorBoard then remembers which
+       * tags are associated with which plugins. This saves space.
+       * </pre>
+       *
+       * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+       */
+      public Builder clearMetadata() {
+        if (metadataBuilder_ == null) {
+          metadata_ = null;
+          onChanged();
+        } else {
+          metadata_ = null;
+          metadataBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Contains metadata on the summary value such as which plugins may use it.
+       * Take note that many summary values may lack a metadata field. This is
+       * because the FileWriter only keeps a metadata object on the first summary
+       * value with a certain tag for each tag. TensorBoard then remembers which
+       * tags are associated with which plugins. This saves space.
+       * </pre>
+       *
+       * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+       */
+      public org.tensorflow.framework.SummaryMetadata.Builder getMetadataBuilder() {
+        
+        onChanged();
+        return getMetadataFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Contains metadata on the summary value such as which plugins may use it.
+       * Take note that many summary values may lack a metadata field. This is
+       * because the FileWriter only keeps a metadata object on the first summary
+       * value with a certain tag for each tag. TensorBoard then remembers which
+       * tags are associated with which plugins. This saves space.
+       * </pre>
+       *
+       * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+       */
+      public org.tensorflow.framework.SummaryMetadataOrBuilder getMetadataOrBuilder() {
+        if (metadataBuilder_ != null) {
+          return metadataBuilder_.getMessageOrBuilder();
+        } else {
+          return metadata_ == null ?
+              org.tensorflow.framework.SummaryMetadata.getDefaultInstance() : metadata_;
+        }
+      }
+      /**
+       * <pre>
+       * Contains metadata on the summary value such as which plugins may use it.
+       * Take note that many summary values may lack a metadata field. This is
+       * because the FileWriter only keeps a metadata object on the first summary
+       * value with a certain tag for each tag. TensorBoard then remembers which
+       * tags are associated with which plugins. This saves space.
+       * </pre>
+       *
+       * <code>optional .tensorflow.SummaryMetadata metadata = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tensorflow.framework.SummaryMetadata, org.tensorflow.framework.SummaryMetadata.Builder, org.tensorflow.framework.SummaryMetadataOrBuilder> 
+          getMetadataFieldBuilder() {
+        if (metadataBuilder_ == null) {
+          metadataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.tensorflow.framework.SummaryMetadata, org.tensorflow.framework.SummaryMetadata.Builder, org.tensorflow.framework.SummaryMetadataOrBuilder>(
+                  getMetadata(),
+                  getParentForChildren(),
+                  isClean());
+          metadata_ = null;
+        }
+        return metadataBuilder_;
       }
 
       /**

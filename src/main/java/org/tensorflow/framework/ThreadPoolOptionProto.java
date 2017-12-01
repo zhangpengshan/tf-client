@@ -16,6 +16,7 @@ public  final class ThreadPoolOptionProto extends
   }
   private ThreadPoolOptionProto() {
     numThreads_ = 0;
+    globalName_ = "";
   }
 
   @java.lang.Override
@@ -46,6 +47,12 @@ public  final class ThreadPoolOptionProto extends
           case 8: {
 
             numThreads_ = input.readInt32();
+            break;
+          }
+          case 18: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            globalName_ = s;
             break;
           }
         }
@@ -86,6 +93,72 @@ public  final class ThreadPoolOptionProto extends
     return numThreads_;
   }
 
+  public static final int GLOBAL_NAME_FIELD_NUMBER = 2;
+  private volatile java.lang.Object globalName_;
+  /**
+   * <pre>
+   * The global name of the threadpool.
+   * If empty, then the threadpool is made and used according to the scope it's
+   * in - e.g., for a session threadpool, it is used by that session only.
+   * If non-empty, then:
+   * - a global threadpool associated with this name is looked
+   *   up or created. This allows, for example, sharing one threadpool across
+   *   many sessions (e.g., like the default behavior, if
+   *   inter_op_parallelism_threads is not configured), but still partitioning
+   *   into a large and small pool.
+   * - if the threadpool for this global_name already exists, then it is an
+   *   error if the existing pool was created using a different num_threads
+   *   value as is specified on this call.
+   * - threadpools created this way are never garbage collected.
+   * </pre>
+   *
+   * <code>optional string global_name = 2;</code>
+   */
+  public java.lang.String getGlobalName() {
+    java.lang.Object ref = globalName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      globalName_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * The global name of the threadpool.
+   * If empty, then the threadpool is made and used according to the scope it's
+   * in - e.g., for a session threadpool, it is used by that session only.
+   * If non-empty, then:
+   * - a global threadpool associated with this name is looked
+   *   up or created. This allows, for example, sharing one threadpool across
+   *   many sessions (e.g., like the default behavior, if
+   *   inter_op_parallelism_threads is not configured), but still partitioning
+   *   into a large and small pool.
+   * - if the threadpool for this global_name already exists, then it is an
+   *   error if the existing pool was created using a different num_threads
+   *   value as is specified on this call.
+   * - threadpools created this way are never garbage collected.
+   * </pre>
+   *
+   * <code>optional string global_name = 2;</code>
+   */
+  public com.google.protobuf.ByteString
+      getGlobalNameBytes() {
+    java.lang.Object ref = globalName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      globalName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -101,6 +174,9 @@ public  final class ThreadPoolOptionProto extends
     if (numThreads_ != 0) {
       output.writeInt32(1, numThreads_);
     }
+    if (!getGlobalNameBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, globalName_);
+    }
   }
 
   public int getSerializedSize() {
@@ -111,6 +187,9 @@ public  final class ThreadPoolOptionProto extends
     if (numThreads_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, numThreads_);
+    }
+    if (!getGlobalNameBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, globalName_);
     }
     memoizedSize = size;
     return size;
@@ -130,6 +209,8 @@ public  final class ThreadPoolOptionProto extends
     boolean result = true;
     result = result && (getNumThreads()
         == other.getNumThreads());
+    result = result && getGlobalName()
+        .equals(other.getGlobalName());
     return result;
   }
 
@@ -142,6 +223,8 @@ public  final class ThreadPoolOptionProto extends
     hash = (19 * hash) + getDescriptorForType().hashCode();
     hash = (37 * hash) + NUM_THREADS_FIELD_NUMBER;
     hash = (53 * hash) + getNumThreads();
+    hash = (37 * hash) + GLOBAL_NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getGlobalName().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -262,6 +345,8 @@ public  final class ThreadPoolOptionProto extends
       super.clear();
       numThreads_ = 0;
 
+      globalName_ = "";
+
       return this;
     }
 
@@ -285,6 +370,7 @@ public  final class ThreadPoolOptionProto extends
     public org.tensorflow.framework.ThreadPoolOptionProto buildPartial() {
       org.tensorflow.framework.ThreadPoolOptionProto result = new org.tensorflow.framework.ThreadPoolOptionProto(this);
       result.numThreads_ = numThreads_;
+      result.globalName_ = globalName_;
       onBuilt();
       return result;
     }
@@ -328,6 +414,10 @@ public  final class ThreadPoolOptionProto extends
       if (other == org.tensorflow.framework.ThreadPoolOptionProto.getDefaultInstance()) return this;
       if (other.getNumThreads() != 0) {
         setNumThreads(other.getNumThreads());
+      }
+      if (!other.getGlobalName().isEmpty()) {
+        globalName_ = other.globalName_;
+        onChanged();
       }
       onChanged();
       return this;
@@ -395,6 +485,155 @@ public  final class ThreadPoolOptionProto extends
     public Builder clearNumThreads() {
       
       numThreads_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object globalName_ = "";
+    /**
+     * <pre>
+     * The global name of the threadpool.
+     * If empty, then the threadpool is made and used according to the scope it's
+     * in - e.g., for a session threadpool, it is used by that session only.
+     * If non-empty, then:
+     * - a global threadpool associated with this name is looked
+     *   up or created. This allows, for example, sharing one threadpool across
+     *   many sessions (e.g., like the default behavior, if
+     *   inter_op_parallelism_threads is not configured), but still partitioning
+     *   into a large and small pool.
+     * - if the threadpool for this global_name already exists, then it is an
+     *   error if the existing pool was created using a different num_threads
+     *   value as is specified on this call.
+     * - threadpools created this way are never garbage collected.
+     * </pre>
+     *
+     * <code>optional string global_name = 2;</code>
+     */
+    public java.lang.String getGlobalName() {
+      java.lang.Object ref = globalName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        globalName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * The global name of the threadpool.
+     * If empty, then the threadpool is made and used according to the scope it's
+     * in - e.g., for a session threadpool, it is used by that session only.
+     * If non-empty, then:
+     * - a global threadpool associated with this name is looked
+     *   up or created. This allows, for example, sharing one threadpool across
+     *   many sessions (e.g., like the default behavior, if
+     *   inter_op_parallelism_threads is not configured), but still partitioning
+     *   into a large and small pool.
+     * - if the threadpool for this global_name already exists, then it is an
+     *   error if the existing pool was created using a different num_threads
+     *   value as is specified on this call.
+     * - threadpools created this way are never garbage collected.
+     * </pre>
+     *
+     * <code>optional string global_name = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getGlobalNameBytes() {
+      java.lang.Object ref = globalName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        globalName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * The global name of the threadpool.
+     * If empty, then the threadpool is made and used according to the scope it's
+     * in - e.g., for a session threadpool, it is used by that session only.
+     * If non-empty, then:
+     * - a global threadpool associated with this name is looked
+     *   up or created. This allows, for example, sharing one threadpool across
+     *   many sessions (e.g., like the default behavior, if
+     *   inter_op_parallelism_threads is not configured), but still partitioning
+     *   into a large and small pool.
+     * - if the threadpool for this global_name already exists, then it is an
+     *   error if the existing pool was created using a different num_threads
+     *   value as is specified on this call.
+     * - threadpools created this way are never garbage collected.
+     * </pre>
+     *
+     * <code>optional string global_name = 2;</code>
+     */
+    public Builder setGlobalName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      globalName_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The global name of the threadpool.
+     * If empty, then the threadpool is made and used according to the scope it's
+     * in - e.g., for a session threadpool, it is used by that session only.
+     * If non-empty, then:
+     * - a global threadpool associated with this name is looked
+     *   up or created. This allows, for example, sharing one threadpool across
+     *   many sessions (e.g., like the default behavior, if
+     *   inter_op_parallelism_threads is not configured), but still partitioning
+     *   into a large and small pool.
+     * - if the threadpool for this global_name already exists, then it is an
+     *   error if the existing pool was created using a different num_threads
+     *   value as is specified on this call.
+     * - threadpools created this way are never garbage collected.
+     * </pre>
+     *
+     * <code>optional string global_name = 2;</code>
+     */
+    public Builder clearGlobalName() {
+      
+      globalName_ = getDefaultInstance().getGlobalName();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The global name of the threadpool.
+     * If empty, then the threadpool is made and used according to the scope it's
+     * in - e.g., for a session threadpool, it is used by that session only.
+     * If non-empty, then:
+     * - a global threadpool associated with this name is looked
+     *   up or created. This allows, for example, sharing one threadpool across
+     *   many sessions (e.g., like the default behavior, if
+     *   inter_op_parallelism_threads is not configured), but still partitioning
+     *   into a large and small pool.
+     * - if the threadpool for this global_name already exists, then it is an
+     *   error if the existing pool was created using a different num_threads
+     *   value as is specified on this call.
+     * - threadpools created this way are never garbage collected.
+     * </pre>
+     *
+     * <code>optional string global_name = 2;</code>
+     */
+    public Builder setGlobalNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      globalName_ = value;
       onChanged();
       return this;
     }

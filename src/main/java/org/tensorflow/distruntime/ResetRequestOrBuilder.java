@@ -57,4 +57,47 @@ public interface ResetRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getContainerBytes(int index);
+
+  /**
+   * <pre>
+   * When any filters are present, only devices that match the filters
+   * will be reset. Each filter can be partially specified,
+   * e.g. "/job:ps" "/job:worker/replica:3", etc.
+   * </pre>
+   *
+   * <code>repeated string device_filters = 2;</code>
+   */
+  java.util.List<java.lang.String>
+      getDeviceFiltersList();
+  /**
+   * <pre>
+   * When any filters are present, only devices that match the filters
+   * will be reset. Each filter can be partially specified,
+   * e.g. "/job:ps" "/job:worker/replica:3", etc.
+   * </pre>
+   *
+   * <code>repeated string device_filters = 2;</code>
+   */
+  int getDeviceFiltersCount();
+  /**
+   * <pre>
+   * When any filters are present, only devices that match the filters
+   * will be reset. Each filter can be partially specified,
+   * e.g. "/job:ps" "/job:worker/replica:3", etc.
+   * </pre>
+   *
+   * <code>repeated string device_filters = 2;</code>
+   */
+  java.lang.String getDeviceFilters(int index);
+  /**
+   * <pre>
+   * When any filters are present, only devices that match the filters
+   * will be reset. Each filter can be partially specified,
+   * e.g. "/job:ps" "/job:worker/replica:3", etc.
+   * </pre>
+   *
+   * <code>repeated string device_filters = 2;</code>
+   */
+  com.google.protobuf.ByteString
+      getDeviceFiltersBytes(int index);
 }

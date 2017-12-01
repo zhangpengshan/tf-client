@@ -180,7 +180,9 @@ public class MasterServiceGrpc {
 
     /**
      * <pre>
-     * Close all existing sessions.
+     * Close and abandon all existing sessions.  Ongoing computations
+     * will no longer affect fresh ones via the resources in containers listed in
+     * the ResetRequest.  See ResetRequest for more details.
      * </pre>
      */
     public void reset(org.tensorflow.distruntime.ResetRequest request,
@@ -329,7 +331,9 @@ public class MasterServiceGrpc {
 
     /**
      * <pre>
-     * Close all existing sessions.
+     * Close and abandon all existing sessions.  Ongoing computations
+     * will no longer affect fresh ones via the resources in containers listed in
+     * the ResetRequest.  See ResetRequest for more details.
      * </pre>
      */
     public void reset(org.tensorflow.distruntime.ResetRequest request,
@@ -419,7 +423,9 @@ public class MasterServiceGrpc {
 
     /**
      * <pre>
-     * Close all existing sessions.
+     * Close and abandon all existing sessions.  Ongoing computations
+     * will no longer affect fresh ones via the resources in containers listed in
+     * the ResetRequest.  See ResetRequest for more details.
      * </pre>
      */
     public org.tensorflow.distruntime.ResetResponse reset(org.tensorflow.distruntime.ResetRequest request) {
@@ -514,7 +520,9 @@ public class MasterServiceGrpc {
 
     /**
      * <pre>
-     * Close all existing sessions.
+     * Close and abandon all existing sessions.  Ongoing computations
+     * will no longer affect fresh ones via the resources in containers listed in
+     * the ResetRequest.  See ResetRequest for more details.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<org.tensorflow.distruntime.ResetResponse> reset(

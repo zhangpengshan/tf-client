@@ -140,6 +140,14 @@ public enum DataType
   DT_RESOURCE(20),
   /**
    * <pre>
+   * Arbitrary C++ data types
+   * </pre>
+   *
+   * <code>DT_VARIANT = 21;</code>
+   */
+  DT_VARIANT(21),
+  /**
+   * <pre>
    * Do not use!  These are only for parameters.  Every enum above
    * should have a corresponding value below (verified by types_test).
    * </pre>
@@ -223,6 +231,10 @@ public enum DataType
    * <code>DT_RESOURCE_REF = 120;</code>
    */
   DT_RESOURCE_REF(120),
+  /**
+   * <code>DT_VARIANT_REF = 121;</code>
+   */
+  DT_VARIANT_REF(121),
   UNRECOGNIZED(-1),
   ;
 
@@ -354,6 +366,14 @@ public enum DataType
   public static final int DT_RESOURCE_VALUE = 20;
   /**
    * <pre>
+   * Arbitrary C++ data types
+   * </pre>
+   *
+   * <code>DT_VARIANT = 21;</code>
+   */
+  public static final int DT_VARIANT_VALUE = 21;
+  /**
+   * <pre>
    * Do not use!  These are only for parameters.  Every enum above
    * should have a corresponding value below (verified by types_test).
    * </pre>
@@ -437,6 +457,10 @@ public enum DataType
    * <code>DT_RESOURCE_REF = 120;</code>
    */
   public static final int DT_RESOURCE_REF_VALUE = 120;
+  /**
+   * <code>DT_VARIANT_REF = 121;</code>
+   */
+  public static final int DT_VARIANT_REF_VALUE = 121;
 
 
   public final int getNumber() {
@@ -478,6 +502,7 @@ public enum DataType
       case 18: return DT_COMPLEX128;
       case 19: return DT_HALF;
       case 20: return DT_RESOURCE;
+      case 21: return DT_VARIANT;
       case 101: return DT_FLOAT_REF;
       case 102: return DT_DOUBLE_REF;
       case 103: return DT_INT32_REF;
@@ -498,6 +523,7 @@ public enum DataType
       case 118: return DT_COMPLEX128_REF;
       case 119: return DT_HALF_REF;
       case 120: return DT_RESOURCE_REF;
+      case 121: return DT_VARIANT_REF;
       default: return null;
     }
   }

@@ -46,22 +46,26 @@ public final class CostGraphProtos {
       "\n*tensorflow/core/framework/cost_graph.p" +
       "roto\022\ntensorflow\032,tensorflow/core/framew" +
       "ork/tensor_shape.proto\032%tensorflow/core/" +
-      "framework/types.proto\"\216\004\n\014CostGraphDef\022+" +
+      "framework/types.proto\"\305\005\n\014CostGraphDef\022+" +
       "\n\004node\030\001 \003(\0132\035.tensorflow.CostGraphDef.N" +
-      "ode\032\320\003\n\004Node\022\014\n\004name\030\001 \001(\t\022\016\n\006device\030\002 \001" +
+      "ode\032\207\005\n\004Node\022\014\n\004name\030\001 \001(\t\022\016\n\006device\030\002 \001" +
       "(\t\022\n\n\002id\030\003 \001(\005\022;\n\ninput_info\030\004 \003(\0132\'.ten" +
       "sorflow.CostGraphDef.Node.InputInfo\022=\n\013o" +
       "utput_info\030\005 \003(\0132(.tensorflow.CostGraphD" +
       "ef.Node.OutputInfo\022\035\n\025temporary_memory_s",
-      "ize\030\006 \001(\003\022\024\n\014compute_cost\030\t \001(\003\022\020\n\010is_fi" +
-      "nal\030\007 \001(\010\022\025\n\rcontrol_input\030\010 \003(\005\032;\n\tInpu" +
-      "tInfo\022\026\n\016preceding_node\030\001 \001(\005\022\026\n\016precedi" +
-      "ng_port\030\002 \001(\005\032\206\001\n\nOutputInfo\022\014\n\004size\030\001 \001" +
-      "(\003\022\030\n\020alias_input_port\030\002 \001(\003\022+\n\005shape\030\003 " +
-      "\001(\0132\034.tensorflow.TensorShapeProto\022#\n\005dty" +
-      "pe\030\004 \001(\0162\024.tensorflow.DataTypeB0\n\030org.te" +
-      "nsorflow.frameworkB\017CostGraphProtosP\001\370\001\001" +
-      "b\006proto3"
+      "ize\030\006 \001(\003\022\035\n\025host_temp_memory_size\030\n \001(\003" +
+      "\022\037\n\027device_temp_memory_size\030\013 \001(\003\022#\n\033hos" +
+      "t_persistent_memory_size\030\014 \001(\003\022%\n\035device" +
+      "_persistent_memory_size\030\020 \001(\003\022\024\n\014compute" +
+      "_cost\030\t \001(\003\022\024\n\014compute_time\030\016 \001(\003\022\023\n\013mem" +
+      "ory_time\030\017 \001(\003\022\020\n\010is_final\030\007 \001(\010\022\025\n\rcont" +
+      "rol_input\030\010 \003(\005\032;\n\tInputInfo\022\026\n\016precedin" +
+      "g_node\030\001 \001(\005\022\026\n\016preceding_port\030\002 \001(\005\032\206\001\n" +
+      "\nOutputInfo\022\014\n\004size\030\001 \001(\003\022\030\n\020alias_input" +
+      "_port\030\002 \001(\003\022+\n\005shape\030\003 \001(\0132\034.tensorflow.",
+      "TensorShapeProto\022#\n\005dtype\030\004 \001(\0162\024.tensor" +
+      "flow.DataTypeB0\n\030org.tensorflow.framewor" +
+      "kB\017CostGraphProtosP\001\370\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -88,7 +92,7 @@ public final class CostGraphProtos {
     internal_static_tensorflow_CostGraphDef_Node_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_CostGraphDef_Node_descriptor,
-        new java.lang.String[] { "Name", "Device", "Id", "InputInfo", "OutputInfo", "TemporaryMemorySize", "ComputeCost", "IsFinal", "ControlInput", });
+        new java.lang.String[] { "Name", "Device", "Id", "InputInfo", "OutputInfo", "TemporaryMemorySize", "HostTempMemorySize", "DeviceTempMemorySize", "HostPersistentMemorySize", "DevicePersistentMemorySize", "ComputeCost", "ComputeTime", "MemoryTime", "IsFinal", "ControlInput", });
     internal_static_tensorflow_CostGraphDef_Node_InputInfo_descriptor =
       internal_static_tensorflow_CostGraphDef_Node_descriptor.getNestedTypes().get(0);
     internal_static_tensorflow_CostGraphDef_Node_InputInfo_fieldAccessorTable = new

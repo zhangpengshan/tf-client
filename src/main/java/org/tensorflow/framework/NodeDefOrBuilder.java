@@ -105,17 +105,15 @@ public interface NodeDefOrBuilder extends
    * A (possibly partial) specification for the device on which this
    * node should be placed.
    * The expected syntax for this string is as follows:
-   * DEVICE_SPEC ::= COLOCATED_NODE | PARTIAL_SPEC
-   * COLOCATED_NODE ::= "&#64;" NODE_NAME  // See NodeDef.name above.
+   * DEVICE_SPEC ::= PARTIAL_SPEC
    * PARTIAL_SPEC ::= ("/" CONSTRAINT) *
    * CONSTRAINT ::= ("job:" JOB_NAME)
    *              | ("replica:" [1-9][0-9]*)
    *              | ("task:" [1-9][0-9]*)
    *              | ( ("gpu" | "cpu") ":" ([1-9][0-9]* | "*") )
    * Valid values for this string include:
-   * * "&#64;other/node"                         (colocate with "other/node")
-   * * "/job:worker/replica:0/task:1/gpu:3"  (full specification)
-   * * "/job:worker/gpu:3"                   (partial specification)
+   * * "/job:worker/replica:0/task:1/device:GPU:3"  (full specification)
+   * * "/job:worker/device:GPU:3"                   (partial specification)
    * * ""                                    (no specification)
    * If the constraints do not resolve to a single device (or if this
    * field is empty or not present), the runtime will attempt to
@@ -130,17 +128,15 @@ public interface NodeDefOrBuilder extends
    * A (possibly partial) specification for the device on which this
    * node should be placed.
    * The expected syntax for this string is as follows:
-   * DEVICE_SPEC ::= COLOCATED_NODE | PARTIAL_SPEC
-   * COLOCATED_NODE ::= "&#64;" NODE_NAME  // See NodeDef.name above.
+   * DEVICE_SPEC ::= PARTIAL_SPEC
    * PARTIAL_SPEC ::= ("/" CONSTRAINT) *
    * CONSTRAINT ::= ("job:" JOB_NAME)
    *              | ("replica:" [1-9][0-9]*)
    *              | ("task:" [1-9][0-9]*)
    *              | ( ("gpu" | "cpu") ":" ([1-9][0-9]* | "*") )
    * Valid values for this string include:
-   * * "&#64;other/node"                         (colocate with "other/node")
-   * * "/job:worker/replica:0/task:1/gpu:3"  (full specification)
-   * * "/job:worker/gpu:3"                   (partial specification)
+   * * "/job:worker/replica:0/task:1/device:GPU:3"  (full specification)
+   * * "/job:worker/device:GPU:3"                   (partial specification)
    * * ""                                    (no specification)
    * If the constraints do not resolve to a single device (or if this
    * field is empty or not present), the runtime will attempt to

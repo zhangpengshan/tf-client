@@ -4,6 +4,22 @@
 package org.tensorflow.distruntime;
 
 /**
+ * <pre>
+ * Reset() allows misbehaving or slow sessions to be aborted and closed, and
+ * causes their resources eventually to be released.  Reset() does not wait
+ * for the computations in old sessions to cease; it merely starts the
+ * process of tearing them down.  However, if a new session is started after
+ * a Reset(), the new session is isolated from changes that old sessions
+ * (started prior to the Reset()) may continue to make to resources, provided
+ * all those resources are in containers listed in "containers".
+ * Old sessions may continue to have side-effects on resources not in
+ * containers listed in "containers", and thus may affect future
+ * sessions' results in ways that are hard to predict.  Thus, if well-defined
+ * behavior is desired, is it recommended that all containers be listed in
+ * "containers".  Similarly, if a device_filter is specified, results may be
+ * hard to predict.
+ * </pre>
+ *
  * Protobuf type {@code tensorflow.ResetRequest}
  */
 public  final class ResetRequest extends
@@ -16,6 +32,7 @@ public  final class ResetRequest extends
   }
   private ResetRequest() {
     container_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    deviceFilters_ = com.google.protobuf.LazyStringArrayList.EMPTY;
   }
 
   @java.lang.Override
@@ -52,6 +69,15 @@ public  final class ResetRequest extends
             container_.add(s);
             break;
           }
+          case 18: {
+            java.lang.String s = input.readStringRequireUtf8();
+            if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              deviceFilters_ = new com.google.protobuf.LazyStringArrayList();
+              mutable_bitField0_ |= 0x00000002;
+            }
+            deviceFilters_.add(s);
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -62,6 +88,9 @@ public  final class ResetRequest extends
     } finally {
       if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
         container_ = container_.getUnmodifiableView();
+      }
+      if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        deviceFilters_ = deviceFilters_.getUnmodifiableView();
       }
       makeExtensionsImmutable();
     }
@@ -139,6 +168,59 @@ public  final class ResetRequest extends
     return container_.getByteString(index);
   }
 
+  public static final int DEVICE_FILTERS_FIELD_NUMBER = 2;
+  private com.google.protobuf.LazyStringList deviceFilters_;
+  /**
+   * <pre>
+   * When any filters are present, only devices that match the filters
+   * will be reset. Each filter can be partially specified,
+   * e.g. "/job:ps" "/job:worker/replica:3", etc.
+   * </pre>
+   *
+   * <code>repeated string device_filters = 2;</code>
+   */
+  public com.google.protobuf.ProtocolStringList
+      getDeviceFiltersList() {
+    return deviceFilters_;
+  }
+  /**
+   * <pre>
+   * When any filters are present, only devices that match the filters
+   * will be reset. Each filter can be partially specified,
+   * e.g. "/job:ps" "/job:worker/replica:3", etc.
+   * </pre>
+   *
+   * <code>repeated string device_filters = 2;</code>
+   */
+  public int getDeviceFiltersCount() {
+    return deviceFilters_.size();
+  }
+  /**
+   * <pre>
+   * When any filters are present, only devices that match the filters
+   * will be reset. Each filter can be partially specified,
+   * e.g. "/job:ps" "/job:worker/replica:3", etc.
+   * </pre>
+   *
+   * <code>repeated string device_filters = 2;</code>
+   */
+  public java.lang.String getDeviceFilters(int index) {
+    return deviceFilters_.get(index);
+  }
+  /**
+   * <pre>
+   * When any filters are present, only devices that match the filters
+   * will be reset. Each filter can be partially specified,
+   * e.g. "/job:ps" "/job:worker/replica:3", etc.
+   * </pre>
+   *
+   * <code>repeated string device_filters = 2;</code>
+   */
+  public com.google.protobuf.ByteString
+      getDeviceFiltersBytes(int index) {
+    return deviceFilters_.getByteString(index);
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -154,6 +236,9 @@ public  final class ResetRequest extends
     for (int i = 0; i < container_.size(); i++) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, container_.getRaw(i));
     }
+    for (int i = 0; i < deviceFilters_.size(); i++) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, deviceFilters_.getRaw(i));
+    }
   }
 
   public int getSerializedSize() {
@@ -168,6 +253,14 @@ public  final class ResetRequest extends
       }
       size += dataSize;
       size += 1 * getContainerList().size();
+    }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < deviceFilters_.size(); i++) {
+        dataSize += computeStringSizeNoTag(deviceFilters_.getRaw(i));
+      }
+      size += dataSize;
+      size += 1 * getDeviceFiltersList().size();
     }
     memoizedSize = size;
     return size;
@@ -187,6 +280,8 @@ public  final class ResetRequest extends
     boolean result = true;
     result = result && getContainerList()
         .equals(other.getContainerList());
+    result = result && getDeviceFiltersList()
+        .equals(other.getDeviceFiltersList());
     return result;
   }
 
@@ -200,6 +295,10 @@ public  final class ResetRequest extends
     if (getContainerCount() > 0) {
       hash = (37 * hash) + CONTAINER_FIELD_NUMBER;
       hash = (53 * hash) + getContainerList().hashCode();
+    }
+    if (getDeviceFiltersCount() > 0) {
+      hash = (37 * hash) + DEVICE_FILTERS_FIELD_NUMBER;
+      hash = (53 * hash) + getDeviceFiltersList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -284,6 +383,22 @@ public  final class ResetRequest extends
     return builder;
   }
   /**
+   * <pre>
+   * Reset() allows misbehaving or slow sessions to be aborted and closed, and
+   * causes their resources eventually to be released.  Reset() does not wait
+   * for the computations in old sessions to cease; it merely starts the
+   * process of tearing them down.  However, if a new session is started after
+   * a Reset(), the new session is isolated from changes that old sessions
+   * (started prior to the Reset()) may continue to make to resources, provided
+   * all those resources are in containers listed in "containers".
+   * Old sessions may continue to have side-effects on resources not in
+   * containers listed in "containers", and thus may affect future
+   * sessions' results in ways that are hard to predict.  Thus, if well-defined
+   * behavior is desired, is it recommended that all containers be listed in
+   * "containers".  Similarly, if a device_filter is specified, results may be
+   * hard to predict.
+   * </pre>
+   *
    * Protobuf type {@code tensorflow.ResetRequest}
    */
   public static final class Builder extends
@@ -321,6 +436,8 @@ public  final class ResetRequest extends
       super.clear();
       container_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       bitField0_ = (bitField0_ & ~0x00000001);
+      deviceFilters_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000002);
       return this;
     }
 
@@ -349,6 +466,11 @@ public  final class ResetRequest extends
         bitField0_ = (bitField0_ & ~0x00000001);
       }
       result.container_ = container_;
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        deviceFilters_ = deviceFilters_.getUnmodifiableView();
+        bitField0_ = (bitField0_ & ~0x00000002);
+      }
+      result.deviceFilters_ = deviceFilters_;
       onBuilt();
       return result;
     }
@@ -397,6 +519,16 @@ public  final class ResetRequest extends
         } else {
           ensureContainerIsMutable();
           container_.addAll(other.container_);
+        }
+        onChanged();
+      }
+      if (!other.deviceFilters_.isEmpty()) {
+        if (deviceFilters_.isEmpty()) {
+          deviceFilters_ = other.deviceFilters_;
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          ensureDeviceFiltersIsMutable();
+          deviceFilters_.addAll(other.deviceFilters_);
         }
         onChanged();
       }
@@ -589,6 +721,154 @@ public  final class ResetRequest extends
   checkByteStringIsUtf8(value);
       ensureContainerIsMutable();
       container_.add(value);
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.LazyStringList deviceFilters_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private void ensureDeviceFiltersIsMutable() {
+      if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        deviceFilters_ = new com.google.protobuf.LazyStringArrayList(deviceFilters_);
+        bitField0_ |= 0x00000002;
+       }
+    }
+    /**
+     * <pre>
+     * When any filters are present, only devices that match the filters
+     * will be reset. Each filter can be partially specified,
+     * e.g. "/job:ps" "/job:worker/replica:3", etc.
+     * </pre>
+     *
+     * <code>repeated string device_filters = 2;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getDeviceFiltersList() {
+      return deviceFilters_.getUnmodifiableView();
+    }
+    /**
+     * <pre>
+     * When any filters are present, only devices that match the filters
+     * will be reset. Each filter can be partially specified,
+     * e.g. "/job:ps" "/job:worker/replica:3", etc.
+     * </pre>
+     *
+     * <code>repeated string device_filters = 2;</code>
+     */
+    public int getDeviceFiltersCount() {
+      return deviceFilters_.size();
+    }
+    /**
+     * <pre>
+     * When any filters are present, only devices that match the filters
+     * will be reset. Each filter can be partially specified,
+     * e.g. "/job:ps" "/job:worker/replica:3", etc.
+     * </pre>
+     *
+     * <code>repeated string device_filters = 2;</code>
+     */
+    public java.lang.String getDeviceFilters(int index) {
+      return deviceFilters_.get(index);
+    }
+    /**
+     * <pre>
+     * When any filters are present, only devices that match the filters
+     * will be reset. Each filter can be partially specified,
+     * e.g. "/job:ps" "/job:worker/replica:3", etc.
+     * </pre>
+     *
+     * <code>repeated string device_filters = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDeviceFiltersBytes(int index) {
+      return deviceFilters_.getByteString(index);
+    }
+    /**
+     * <pre>
+     * When any filters are present, only devices that match the filters
+     * will be reset. Each filter can be partially specified,
+     * e.g. "/job:ps" "/job:worker/replica:3", etc.
+     * </pre>
+     *
+     * <code>repeated string device_filters = 2;</code>
+     */
+    public Builder setDeviceFilters(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureDeviceFiltersIsMutable();
+      deviceFilters_.set(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * When any filters are present, only devices that match the filters
+     * will be reset. Each filter can be partially specified,
+     * e.g. "/job:ps" "/job:worker/replica:3", etc.
+     * </pre>
+     *
+     * <code>repeated string device_filters = 2;</code>
+     */
+    public Builder addDeviceFilters(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureDeviceFiltersIsMutable();
+      deviceFilters_.add(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * When any filters are present, only devices that match the filters
+     * will be reset. Each filter can be partially specified,
+     * e.g. "/job:ps" "/job:worker/replica:3", etc.
+     * </pre>
+     *
+     * <code>repeated string device_filters = 2;</code>
+     */
+    public Builder addAllDeviceFilters(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureDeviceFiltersIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, deviceFilters_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * When any filters are present, only devices that match the filters
+     * will be reset. Each filter can be partially specified,
+     * e.g. "/job:ps" "/job:worker/replica:3", etc.
+     * </pre>
+     *
+     * <code>repeated string device_filters = 2;</code>
+     */
+    public Builder clearDeviceFilters() {
+      deviceFilters_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000002);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * When any filters are present, only devices that match the filters
+     * will be reset. Each filter can be partially specified,
+     * e.g. "/job:ps" "/job:worker/replica:3", etc.
+     * </pre>
+     *
+     * <code>repeated string device_filters = 2;</code>
+     */
+    public Builder addDeviceFiltersBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureDeviceFiltersIsMutable();
+      deviceFilters_.add(value);
       onChanged();
       return this;
     }

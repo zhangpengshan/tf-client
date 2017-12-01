@@ -34,14 +34,16 @@ public final class VariableProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n(tensorflow/core/framework/variable.pro" +
-      "to\022\ntensorflow\"\220\001\n\013VariableDef\022\025\n\rvariab" +
-      "le_name\030\001 \001(\t\022\030\n\020initializer_name\030\002 \001(\t\022" +
-      "\025\n\rsnapshot_name\030\003 \001(\t\0229\n\023save_slice_inf" +
-      "o_def\030\004 \001(\0132\034.tensorflow.SaveSliceInfoDe" +
-      "f\"`\n\020SaveSliceInfoDef\022\021\n\tfull_name\030\001 \001(\t" +
-      "\022\022\n\nfull_shape\030\002 \003(\003\022\022\n\nvar_offset\030\003 \003(\003" +
-      "\022\021\n\tvar_shape\030\004 \003(\003B/\n\030org.tensorflow.fr" +
-      "ameworkB\016VariableProtosP\001\370\001\001b\006proto3"
+      "to\022\ntensorflow\"\301\001\n\013VariableDef\022\025\n\rvariab" +
+      "le_name\030\001 \001(\t\022\032\n\022initial_value_name\030\006 \001(" +
+      "\t\022\030\n\020initializer_name\030\002 \001(\t\022\025\n\rsnapshot_" +
+      "name\030\003 \001(\t\0229\n\023save_slice_info_def\030\004 \001(\0132" +
+      "\034.tensorflow.SaveSliceInfoDef\022\023\n\013is_reso" +
+      "urce\030\005 \001(\010\"`\n\020SaveSliceInfoDef\022\021\n\tfull_n" +
+      "ame\030\001 \001(\t\022\022\n\nfull_shape\030\002 \003(\003\022\022\n\nvar_off" +
+      "set\030\003 \003(\003\022\021\n\tvar_shape\030\004 \003(\003B/\n\030org.tens" +
+      "orflow.frameworkB\016VariableProtosP\001\370\001\001b\006p",
+      "roto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -60,7 +62,7 @@ public final class VariableProtos {
     internal_static_tensorflow_VariableDef_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_VariableDef_descriptor,
-        new java.lang.String[] { "VariableName", "InitializerName", "SnapshotName", "SaveSliceInfoDef", });
+        new java.lang.String[] { "VariableName", "InitialValueName", "InitializerName", "SnapshotName", "SaveSliceInfoDef", "IsResource", });
     internal_static_tensorflow_SaveSliceInfoDef_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_tensorflow_SaveSliceInfoDef_fieldAccessorTable = new

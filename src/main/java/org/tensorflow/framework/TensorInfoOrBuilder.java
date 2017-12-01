@@ -8,14 +8,45 @@ public interface TensorInfoOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * For dense `Tensor`s, the name of the tensor in the graph.
+   * </pre>
+   *
    * <code>optional string name = 1;</code>
    */
   java.lang.String getName();
   /**
+   * <pre>
+   * For dense `Tensor`s, the name of the tensor in the graph.
+   * </pre>
+   *
    * <code>optional string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
+
+  /**
+   * <pre>
+   * There are many possible encodings of sparse matrices
+   * (https://en.wikipedia.org/wiki/Sparse_matrix).  Currently, TensorFlow
+   * uses only the COO encoding.  This is supported and documented in the
+   * SparseTensor Python class.
+   * </pre>
+   *
+   * <code>optional .tensorflow.TensorInfo.CooSparse coo_sparse = 4;</code>
+   */
+  org.tensorflow.framework.TensorInfo.CooSparse getCooSparse();
+  /**
+   * <pre>
+   * There are many possible encodings of sparse matrices
+   * (https://en.wikipedia.org/wiki/Sparse_matrix).  Currently, TensorFlow
+   * uses only the COO encoding.  This is supported and documented in the
+   * SparseTensor Python class.
+   * </pre>
+   *
+   * <code>optional .tensorflow.TensorInfo.CooSparse coo_sparse = 4;</code>
+   */
+  org.tensorflow.framework.TensorInfo.CooSparseOrBuilder getCooSparseOrBuilder();
 
   /**
    * <code>optional .tensorflow.DataType dtype = 2;</code>
@@ -27,15 +58,35 @@ public interface TensorInfoOrBuilder extends
   org.tensorflow.framework.DataType getDtype();
 
   /**
+   * <pre>
+   * The static shape should be recorded here, to the extent that it can
+   * be known in advance.  In the case of a SparseTensor, this field describes
+   * the logical shape of the represented tensor (aka dense_shape).
+   * </pre>
+   *
    * <code>optional .tensorflow.TensorShapeProto tensor_shape = 3;</code>
    */
   boolean hasTensorShape();
   /**
+   * <pre>
+   * The static shape should be recorded here, to the extent that it can
+   * be known in advance.  In the case of a SparseTensor, this field describes
+   * the logical shape of the represented tensor (aka dense_shape).
+   * </pre>
+   *
    * <code>optional .tensorflow.TensorShapeProto tensor_shape = 3;</code>
    */
   org.tensorflow.framework.TensorShapeProto getTensorShape();
   /**
+   * <pre>
+   * The static shape should be recorded here, to the extent that it can
+   * be known in advance.  In the case of a SparseTensor, this field describes
+   * the logical shape of the represented tensor (aka dense_shape).
+   * </pre>
+   *
    * <code>optional .tensorflow.TensorShapeProto tensor_shape = 3;</code>
    */
   org.tensorflow.framework.TensorShapeProtoOrBuilder getTensorShapeOrBuilder();
+
+  public org.tensorflow.framework.TensorInfo.EncodingCase getEncodingCase();
 }

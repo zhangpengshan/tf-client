@@ -87,4 +87,29 @@ public interface RegisterGraphRequestOrBuilder extends
    * <code>optional .tensorflow.GraphOptions graph_options = 4;</code>
    */
   org.tensorflow.framework.GraphOptionsOrBuilder getGraphOptionsOrBuilder();
+
+  /**
+   * <pre>
+   * Field(s) used by TensorFlow Debugger (tfdbg).
+   * </pre>
+   *
+   * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+   */
+  boolean hasDebugOptions();
+  /**
+   * <pre>
+   * Field(s) used by TensorFlow Debugger (tfdbg).
+   * </pre>
+   *
+   * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+   */
+  org.tensorflow.framework.DebugOptions getDebugOptions();
+  /**
+   * <pre>
+   * Field(s) used by TensorFlow Debugger (tfdbg).
+   * </pre>
+   *
+   * <code>optional .tensorflow.DebugOptions debug_options = 5;</code>
+   */
+  org.tensorflow.framework.DebugOptionsOrBuilder getDebugOptionsOrBuilder();
 }

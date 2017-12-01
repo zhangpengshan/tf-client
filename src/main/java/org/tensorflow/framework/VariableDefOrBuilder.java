@@ -27,6 +27,24 @@ public interface VariableDefOrBuilder extends
 
   /**
    * <pre>
+   * Name of the tensor holding the variable's initial value.
+   * </pre>
+   *
+   * <code>optional string initial_value_name = 6;</code>
+   */
+  java.lang.String getInitialValueName();
+  /**
+   * <pre>
+   * Name of the tensor holding the variable's initial value.
+   * </pre>
+   *
+   * <code>optional string initial_value_name = 6;</code>
+   */
+  com.google.protobuf.ByteString
+      getInitialValueNameBytes();
+
+  /**
+   * <pre>
    * Name of the initializer op.
    * </pre>
    *
@@ -85,4 +103,13 @@ public interface VariableDefOrBuilder extends
    * <code>optional .tensorflow.SaveSliceInfoDef save_slice_info_def = 4;</code>
    */
   org.tensorflow.framework.SaveSliceInfoDefOrBuilder getSaveSliceInfoDefOrBuilder();
+
+  /**
+   * <pre>
+   * Whether to represent this as a ResourceVariable.
+   * </pre>
+   *
+   * <code>optional bool is_resource = 5;</code>
+   */
+  boolean getIsResource();
 }

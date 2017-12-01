@@ -25,6 +25,11 @@ public final class StepStatsProtos {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_tensorflow_NodeOutput_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tensorflow_MemoryStats_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_tensorflow_MemoryStats_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_tensorflow_NodeExecStats_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -52,25 +57,34 @@ public final class StepStatsProtos {
       "roto\022\ntensorflow\0326tensorflow/core/framew" +
       "ork/allocation_description.proto\0322tensor" +
       "flow/core/framework/tensor_description.p" +
-      "roto\"V\n\023AllocatorMemoryUsed\022\026\n\016allocator" +
-      "_name\030\001 \001(\t\022\023\n\013total_bytes\030\002 \001(\003\022\022\n\npeak" +
-      "_bytes\030\003 \001(\003\"U\n\nNodeOutput\022\014\n\004slot\030\001 \001(\005" +
-      "\0229\n\022tensor_description\030\003 \001(\0132\035.tensorflo" +
-      "w.TensorDescription\"\354\002\n\rNodeExecStats\022\021\n" +
-      "\tnode_name\030\001 \001(\t\022\030\n\020all_start_micros\030\002 \001",
-      "(\003\022\033\n\023op_start_rel_micros\030\003 \001(\003\022\031\n\021op_en" +
-      "d_rel_micros\030\004 \001(\003\022\032\n\022all_end_rel_micros" +
-      "\030\005 \001(\003\022/\n\006memory\030\006 \003(\0132\037.tensorflow.Allo" +
-      "catorMemoryUsed\022&\n\006output\030\007 \003(\0132\026.tensor" +
-      "flow.NodeOutput\022\026\n\016timeline_label\030\010 \001(\t\022" +
-      "\030\n\020scheduled_micros\030\t \001(\003\022\021\n\tthread_id\030\n" +
-      " \001(\r\022<\n\021referenced_tensor\030\013 \003(\0132!.tensor" +
-      "flow.AllocationDescription\"P\n\017DeviceStep" +
-      "Stats\022\016\n\006device\030\001 \001(\t\022-\n\nnode_stats\030\002 \003(" +
-      "\0132\031.tensorflow.NodeExecStats\";\n\tStepStat",
-      "s\022.\n\tdev_stats\030\001 \003(\0132\033.tensorflow.Device" +
-      "StepStatsB0\n\030org.tensorflow.frameworkB\017S" +
-      "tepStatsProtosP\001\370\001\001b\006proto3"
+      "roto\"\212\001\n\023AllocatorMemoryUsed\022\026\n\016allocato" +
+      "r_name\030\001 \001(\t\022\023\n\013total_bytes\030\002 \001(\003\022\022\n\npea" +
+      "k_bytes\030\003 \001(\003\022\022\n\nlive_bytes\030\004 \001(\003\022\036\n\026all" +
+      "ocator_bytes_in_use\030\005 \001(\003\"U\n\nNodeOutput\022" +
+      "\014\n\004slot\030\001 \001(\005\0229\n\022tensor_description\030\003 \001(" +
+      "\0132\035.tensorflow.TensorDescription\"\357\001\n\013Mem",
+      "oryStats\022\035\n\025host_temp_memory_size\030\001 \001(\003\022" +
+      "\037\n\027device_temp_memory_size\030\002 \001(\003\022#\n\033host" +
+      "_persistent_memory_size\030\003 \001(\003\022%\n\035device_" +
+      "persistent_memory_size\030\004 \001(\003\022(\n host_per" +
+      "sistent_tensor_alloc_ids\030\005 \003(\003\022*\n\"device" +
+      "_persistent_tensor_alloc_ids\030\006 \003(\003\"\233\003\n\rN" +
+      "odeExecStats\022\021\n\tnode_name\030\001 \001(\t\022\030\n\020all_s" +
+      "tart_micros\030\002 \001(\003\022\033\n\023op_start_rel_micros" +
+      "\030\003 \001(\003\022\031\n\021op_end_rel_micros\030\004 \001(\003\022\032\n\022all" +
+      "_end_rel_micros\030\005 \001(\003\022/\n\006memory\030\006 \003(\0132\037.",
+      "tensorflow.AllocatorMemoryUsed\022&\n\006output" +
+      "\030\007 \003(\0132\026.tensorflow.NodeOutput\022\026\n\016timeli" +
+      "ne_label\030\010 \001(\t\022\030\n\020scheduled_micros\030\t \001(\003" +
+      "\022\021\n\tthread_id\030\n \001(\r\022<\n\021referenced_tensor" +
+      "\030\013 \003(\0132!.tensorflow.AllocationDescriptio" +
+      "n\022-\n\014memory_stats\030\014 \001(\0132\027.tensorflow.Mem" +
+      "oryStats\"P\n\017DeviceStepStats\022\016\n\006device\030\001 " +
+      "\001(\t\022-\n\nnode_stats\030\002 \003(\0132\031.tensorflow.Nod" +
+      "eExecStats\";\n\tStepStats\022.\n\tdev_stats\030\001 \003" +
+      "(\0132\033.tensorflow.DeviceStepStatsB0\n\030org.t",
+      "ensorflow.frameworkB\017StepStatsProtosP\001\370\001" +
+      "\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -91,27 +105,33 @@ public final class StepStatsProtos {
     internal_static_tensorflow_AllocatorMemoryUsed_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_AllocatorMemoryUsed_descriptor,
-        new java.lang.String[] { "AllocatorName", "TotalBytes", "PeakBytes", });
+        new java.lang.String[] { "AllocatorName", "TotalBytes", "PeakBytes", "LiveBytes", "AllocatorBytesInUse", });
     internal_static_tensorflow_NodeOutput_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_tensorflow_NodeOutput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_NodeOutput_descriptor,
         new java.lang.String[] { "Slot", "TensorDescription", });
-    internal_static_tensorflow_NodeExecStats_descriptor =
+    internal_static_tensorflow_MemoryStats_descriptor =
       getDescriptor().getMessageTypes().get(2);
+    internal_static_tensorflow_MemoryStats_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_tensorflow_MemoryStats_descriptor,
+        new java.lang.String[] { "HostTempMemorySize", "DeviceTempMemorySize", "HostPersistentMemorySize", "DevicePersistentMemorySize", "HostPersistentTensorAllocIds", "DevicePersistentTensorAllocIds", });
+    internal_static_tensorflow_NodeExecStats_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_tensorflow_NodeExecStats_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_NodeExecStats_descriptor,
-        new java.lang.String[] { "NodeName", "AllStartMicros", "OpStartRelMicros", "OpEndRelMicros", "AllEndRelMicros", "Memory", "Output", "TimelineLabel", "ScheduledMicros", "ThreadId", "ReferencedTensor", });
+        new java.lang.String[] { "NodeName", "AllStartMicros", "OpStartRelMicros", "OpEndRelMicros", "AllEndRelMicros", "Memory", "Output", "TimelineLabel", "ScheduledMicros", "ThreadId", "ReferencedTensor", "MemoryStats", });
     internal_static_tensorflow_DeviceStepStats_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_tensorflow_DeviceStepStats_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_DeviceStepStats_descriptor,
         new java.lang.String[] { "Device", "NodeStats", });
     internal_static_tensorflow_StepStats_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_tensorflow_StepStats_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_StepStats_descriptor,

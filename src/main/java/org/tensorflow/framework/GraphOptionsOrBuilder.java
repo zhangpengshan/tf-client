@@ -105,4 +105,35 @@ public interface GraphOptionsOrBuilder extends
    * <code>optional int32 timeline_step = 8;</code>
    */
   int getTimelineStep();
+
+  /**
+   * <pre>
+   * Options that control the type and amount of graph rewriting.
+   * Not currently configurable via the public Python API (i.e. there is no API
+   * stability guarantee if you import RewriterConfig explicitly).
+   * </pre>
+   *
+   * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+   */
+  boolean hasRewriteOptions();
+  /**
+   * <pre>
+   * Options that control the type and amount of graph rewriting.
+   * Not currently configurable via the public Python API (i.e. there is no API
+   * stability guarantee if you import RewriterConfig explicitly).
+   * </pre>
+   *
+   * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+   */
+  org.tensorflow.framework.RewriterConfig getRewriteOptions();
+  /**
+   * <pre>
+   * Options that control the type and amount of graph rewriting.
+   * Not currently configurable via the public Python API (i.e. there is no API
+   * stability guarantee if you import RewriterConfig explicitly).
+   * </pre>
+   *
+   * <code>optional .tensorflow.RewriterConfig rewrite_options = 10;</code>
+   */
+  org.tensorflow.framework.RewriterConfigOrBuilder getRewriteOptionsOrBuilder();
 }

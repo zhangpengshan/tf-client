@@ -15,6 +15,7 @@ public  final class DeregisterGraphRequest extends
     super(builder);
   }
   private DeregisterGraphRequest() {
+    sessionHandle_ = "";
     graphHandle_ = "";
   }
 
@@ -49,6 +50,12 @@ public  final class DeregisterGraphRequest extends
             graphHandle_ = s;
             break;
           }
+          case 18: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            sessionHandle_ = s;
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -70,6 +77,50 @@ public  final class DeregisterGraphRequest extends
     return org.tensorflow.distruntime.WorkerProtos.internal_static_tensorflow_DeregisterGraphRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             org.tensorflow.distruntime.DeregisterGraphRequest.class, org.tensorflow.distruntime.DeregisterGraphRequest.Builder.class);
+  }
+
+  public static final int SESSION_HANDLE_FIELD_NUMBER = 2;
+  private volatile java.lang.Object sessionHandle_;
+  /**
+   * <pre>
+   * The session_handle used when registering the graph. If session_handle is
+   * empty, a single global namespace is used.
+   * </pre>
+   *
+   * <code>optional string session_handle = 2;</code>
+   */
+  public java.lang.String getSessionHandle() {
+    java.lang.Object ref = sessionHandle_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      sessionHandle_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * The session_handle used when registering the graph. If session_handle is
+   * empty, a single global namespace is used.
+   * </pre>
+   *
+   * <code>optional string session_handle = 2;</code>
+   */
+  public com.google.protobuf.ByteString
+      getSessionHandleBytes() {
+    java.lang.Object ref = sessionHandle_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      sessionHandle_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   public static final int GRAPH_HANDLE_FIELD_NUMBER = 1;
@@ -131,6 +182,9 @@ public  final class DeregisterGraphRequest extends
     if (!getGraphHandleBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, graphHandle_);
     }
+    if (!getSessionHandleBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sessionHandle_);
+    }
   }
 
   public int getSerializedSize() {
@@ -140,6 +194,9 @@ public  final class DeregisterGraphRequest extends
     size = 0;
     if (!getGraphHandleBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, graphHandle_);
+    }
+    if (!getSessionHandleBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sessionHandle_);
     }
     memoizedSize = size;
     return size;
@@ -157,6 +214,8 @@ public  final class DeregisterGraphRequest extends
     org.tensorflow.distruntime.DeregisterGraphRequest other = (org.tensorflow.distruntime.DeregisterGraphRequest) obj;
 
     boolean result = true;
+    result = result && getSessionHandle()
+        .equals(other.getSessionHandle());
     result = result && getGraphHandle()
         .equals(other.getGraphHandle());
     return result;
@@ -169,6 +228,8 @@ public  final class DeregisterGraphRequest extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptorForType().hashCode();
+    hash = (37 * hash) + SESSION_HANDLE_FIELD_NUMBER;
+    hash = (53 * hash) + getSessionHandle().hashCode();
     hash = (37 * hash) + GRAPH_HANDLE_FIELD_NUMBER;
     hash = (53 * hash) + getGraphHandle().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -289,6 +350,8 @@ public  final class DeregisterGraphRequest extends
     }
     public Builder clear() {
       super.clear();
+      sessionHandle_ = "";
+
       graphHandle_ = "";
 
       return this;
@@ -313,6 +376,7 @@ public  final class DeregisterGraphRequest extends
 
     public org.tensorflow.distruntime.DeregisterGraphRequest buildPartial() {
       org.tensorflow.distruntime.DeregisterGraphRequest result = new org.tensorflow.distruntime.DeregisterGraphRequest(this);
+      result.sessionHandle_ = sessionHandle_;
       result.graphHandle_ = graphHandle_;
       onBuilt();
       return result;
@@ -355,6 +419,10 @@ public  final class DeregisterGraphRequest extends
 
     public Builder mergeFrom(org.tensorflow.distruntime.DeregisterGraphRequest other) {
       if (other == org.tensorflow.distruntime.DeregisterGraphRequest.getDefaultInstance()) return this;
+      if (!other.getSessionHandle().isEmpty()) {
+        sessionHandle_ = other.sessionHandle_;
+        onChanged();
+      }
       if (!other.getGraphHandle().isEmpty()) {
         graphHandle_ = other.graphHandle_;
         onChanged();
@@ -382,6 +450,100 @@ public  final class DeregisterGraphRequest extends
           mergeFrom(parsedMessage);
         }
       }
+      return this;
+    }
+
+    private java.lang.Object sessionHandle_ = "";
+    /**
+     * <pre>
+     * The session_handle used when registering the graph. If session_handle is
+     * empty, a single global namespace is used.
+     * </pre>
+     *
+     * <code>optional string session_handle = 2;</code>
+     */
+    public java.lang.String getSessionHandle() {
+      java.lang.Object ref = sessionHandle_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sessionHandle_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * The session_handle used when registering the graph. If session_handle is
+     * empty, a single global namespace is used.
+     * </pre>
+     *
+     * <code>optional string session_handle = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSessionHandleBytes() {
+      java.lang.Object ref = sessionHandle_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionHandle_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * The session_handle used when registering the graph. If session_handle is
+     * empty, a single global namespace is used.
+     * </pre>
+     *
+     * <code>optional string session_handle = 2;</code>
+     */
+    public Builder setSessionHandle(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      sessionHandle_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The session_handle used when registering the graph. If session_handle is
+     * empty, a single global namespace is used.
+     * </pre>
+     *
+     * <code>optional string session_handle = 2;</code>
+     */
+    public Builder clearSessionHandle() {
+      
+      sessionHandle_ = getDefaultInstance().getSessionHandle();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The session_handle used when registering the graph. If session_handle is
+     * empty, a single global namespace is used.
+     * </pre>
+     *
+     * <code>optional string session_handle = 2;</code>
+     */
+    public Builder setSessionHandleBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      sessionHandle_ = value;
+      onChanged();
       return this;
     }
 

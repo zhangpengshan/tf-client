@@ -137,7 +137,7 @@ public  final class SaverDef extends
     LEGACY(0),
     /**
      * <pre>
-     * Current format: tf.Saver() which works with tensorflow::table::Table.
+     * Deprecated format: tf.Saver() which works with tensorflow::table::Table.
      * </pre>
      *
      * <code>V1 = 1;</code>
@@ -145,7 +145,7 @@ public  final class SaverDef extends
     V1(1),
     /**
      * <pre>
-     * Experimental format under development.
+     * Current format: more efficient.
      * </pre>
      *
      * <code>V2 = 2;</code>
@@ -164,7 +164,7 @@ public  final class SaverDef extends
     public static final int LEGACY_VALUE = 0;
     /**
      * <pre>
-     * Current format: tf.Saver() which works with tensorflow::table::Table.
+     * Deprecated format: tf.Saver() which works with tensorflow::table::Table.
      * </pre>
      *
      * <code>V1 = 1;</code>
@@ -172,7 +172,7 @@ public  final class SaverDef extends
     public static final int V1_VALUE = 1;
     /**
      * <pre>
-     * Experimental format under development.
+     * Current format: more efficient.
      * </pre>
      *
      * <code>V2 = 2;</code>

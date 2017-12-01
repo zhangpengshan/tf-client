@@ -73,7 +73,7 @@ public interface GPUOptionsOrBuilder extends
    * A comma-separated list of GPU ids that determines the 'visible'
    * to 'virtual' mapping of GPU devices.  For example, if TensorFlow
    * can see 8 GPU devices in the process, and one wanted to map
-   * visible GPU devices 5 and 3 as "/gpu:0", and "/gpu:1", then one
+   * visible GPU devices 5 and 3 as "/device:GPU:0", and "/device:GPU:1", then one
    * would specify this field as "5,3".  This field is similar in
    * spirit to the CUDA_VISIBLE_DEVICES environment variable, except
    * it applies to the visible GPU devices in the process.
@@ -94,7 +94,7 @@ public interface GPUOptionsOrBuilder extends
    * A comma-separated list of GPU ids that determines the 'visible'
    * to 'virtual' mapping of GPU devices.  For example, if TensorFlow
    * can see 8 GPU devices in the process, and one wanted to map
-   * visible GPU devices 5 and 3 as "/gpu:0", and "/gpu:1", then one
+   * visible GPU devices 5 and 3 as "/device:GPU:0", and "/device:GPU:1", then one
    * would specify this field as "5,3".  This field is similar in
    * spirit to the CUDA_VISIBLE_DEVICES environment variable, except
    * it applies to the visible GPU devices in the process.
@@ -111,4 +111,44 @@ public interface GPUOptionsOrBuilder extends
    */
   com.google.protobuf.ByteString
       getVisibleDeviceListBytes();
+
+  /**
+   * <pre>
+   * In the event polling loop sleep this many microseconds between
+   * PollEvents calls, when the queue is not empty.  If value is not
+   * set or set to 0, gets set to a non-zero default.
+   * </pre>
+   *
+   * <code>optional int32 polling_active_delay_usecs = 6;</code>
+   */
+  int getPollingActiveDelayUsecs();
+
+  /**
+   * <pre>
+   * In the event polling loop sleep this many millisconds between
+   * PollEvents calls, when the queue is empty.  If value is not
+   * set or set to 0, gets set to a non-zero default.
+   * </pre>
+   *
+   * <code>optional int32 polling_inactive_delay_msecs = 7;</code>
+   */
+  int getPollingInactiveDelayMsecs();
+
+  /**
+   * <pre>
+   * Force all tensors to be gpu_compatible. On a GPU-enabled TensorFlow,
+   * enabling this option forces all CPU tensors to be allocated with Cuda
+   * pinned memory. Normally, TensorFlow will infer which tensors should be
+   * allocated as the pinned memory. But in case where the inference is
+   * incomplete, this option can significantly speed up the cross-device memory
+   * copy performance as long as it fits the memory.
+   * Note that this option is not something that should be
+   * enabled by default for unknown or very large models, since all Cuda pinned
+   * memory is unpageable, having too much pinned memory might negatively impact
+   * the overall host system performance.
+   * </pre>
+   *
+   * <code>optional bool force_gpu_compatible = 8;</code>
+   */
+  boolean getForceGpuCompatible();
 }
