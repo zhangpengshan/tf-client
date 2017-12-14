@@ -30,7 +30,7 @@ public class TFServingClient {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		// host and port setting
-		String host = "shifu.ml";
+		String host = "";
 		int port = 8080;
 
 		if (args.length == 1) {
